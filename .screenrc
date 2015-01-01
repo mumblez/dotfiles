@@ -1,0 +1,20 @@
+defescape ``
+escape ``
+defutf8 on
+#hardstatus alwayslastline "%-Lw%{+b kc}%50>%n%f* %t%{-}%+Lw%<"
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %C%a "
+caption always "%3n %t%? @%u%?%? [%h]%?"
+autodetach on
+startup_message off
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+screen -t "YT - Main" 1
+#screen -t "Spare -2" 1
+shelltitle "shell"
+vbell on
+vbell_msg "Hey - checkout %t (%n)"
+#activity "Hey - something's moving in %t(%n)"
+activity "%c activity -> %n%f %t"
+termcapinfo xterm|xterms|xs|rxvt ti@:te@
