@@ -2,6 +2,7 @@ execute pathogen#infect()
 filetype plugin indent on
 syntax on
 set hlsearch
+set incsearch
 set nocompatible             " Use Vim defaults (much better!)
 set bs=indent,eol,start      " allow backspacing over everything in
 set history=50               " keep 50 lines of command line history
@@ -43,4 +44,5 @@ endfunction
     set list
 
 "== better digraphs =="
+"set enc=utf-8
 "inoremap <expr>  <C-K>   BDG_GetDigraph()
