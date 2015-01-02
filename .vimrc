@@ -13,6 +13,10 @@ set shiftwidth=4
 set expandtab
 set number " show line numbers
 
+"== set look and feel =="
+set background=dark
+colorscheme solarized
+
 "== show column boundary =="
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
