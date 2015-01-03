@@ -15,5 +15,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
 
-"== Toggle NERDTree =="
+"== Fn Toggles =="
 map <F2> :NERDTreeToggle<CR>
+set pastetoggle=<F3>
