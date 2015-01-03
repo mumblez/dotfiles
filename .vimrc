@@ -9,6 +9,7 @@ set history=50               " keep 50 lines of command line history
 set ruler                    " show the cursor position all the time
 set cursorline               " highlight current line
 set number                   " show line numbers
+set mouse=a                  " allow click to move cursor and select
 
 " == indentation - prefer spaces =="
 set smartindent
