@@ -14,3 +14,6 @@ nnoremap <C-l> <C-w>l
 "== add blank lines above and below current line
 nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
+
+"== Toggle NERDTree =="
+map <F2> :NERDTreeToggle<CR>

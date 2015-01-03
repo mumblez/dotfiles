@@ -9,6 +9,7 @@ set history=50               " keep 50 lines of command line history
 set ruler                    " show the cursor position all the time
 set cursorline               " highlight current line
 set number                   " show line numbers
+
 " == indentation - prefer spaces =="
 set smartindent
 set tabstop=4
@@ -21,11 +22,15 @@ call matchadd('ColorColumn', '\%81v', 100)
 
 "== Make tabs, trailing whitespace, and non-breaking spaces visible =="
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+exec "set listchars=eol:¬"
 set list
 
 "== better digraphs =="
 "set enc=utf-8
 "inoremap <expr>  <C-K>   BDG_GetDigraph()
+
+"== auto reload .vimrc on save =="
+autocmd! bufwritepost .vimrc source %
 
 "== Script configs =="
 let NERDTreeMinimalUI=1
