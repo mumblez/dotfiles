@@ -11,11 +11,15 @@ set cursorline               " highlight current line
 set number                   " show line numbers
 set mouse=a                  " allow click to move cursor and select
 
-" == indentation - prefer spaces =="
+"== indentation - prefer spaces =="
 set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+"== easier indentation =="
+vnoremap < <gv
+vnoremap > >gv
 
 "== show column boundary =="
 highlight ColorColumn ctermbg=magenta
