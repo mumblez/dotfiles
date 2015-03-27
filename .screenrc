@@ -17,4 +17,7 @@ vbell on
 vbell_msg "Hey - checkout %t (%n)"
 #activity "Hey - something's moving in %t(%n)"
 activity "%c activity -> %n%f %t"
-termcapinfo xterm|xterms|xs|rxvt ti@:te@
+#termcapinfo xterm*|xs|rxvt ti@:te@
+#https://wiki.archlinux.org/index.php/GNU_Screen
+termcapinfo xterm*|xterms|xs|rxvt ti@:te@
+altscreen on
