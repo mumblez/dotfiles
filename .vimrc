@@ -11,6 +11,7 @@ set cursorline               " highlight current line
 set number                   " show line numbers
 set mouse=a                  " allow click to move cursor and select
 
+
 "== indentation - prefer spaces =="
 set smartindent
 set tabstop=4
@@ -26,12 +27,11 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
 "== Make tabs, trailing whitespace, and non-breaking spaces visible =="
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-exec "set listchars=eol:¬"
-set list
+exec "set listchars=eol:¬,trail:.,nbsp:~,tab:»·"
+set nolist
 
 "== better digraphs =="
-"set enc=utf-8
+set enc=utf-8
 "inoremap <expr>  <C-K>   BDG_GetDigraph()
 
 "== auto reload .vimrc on save =="
