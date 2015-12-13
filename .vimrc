@@ -19,6 +19,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+set completeopt-=preview
+
 "== easier indentation =="
 vnoremap < <gv
 vnoremap > >gv
