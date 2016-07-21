@@ -3,6 +3,8 @@ filetype plugin indent on
 syntax on
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase                " case insensitive search unless capital used
 set nocompatible             " Use Vim defaults (much better!)
 set bs=indent,eol,start      " allow backspacing over everything in
 set history=50               " keep 50 lines of command line history
@@ -11,7 +13,6 @@ set cursorline               " highlight current line
 set number                   " show line numbers
 set mouse=a                  " allow click to move cursor and select
 set relativenumber
-
 
 "== indentation - prefer spaces =="
 set smartindent

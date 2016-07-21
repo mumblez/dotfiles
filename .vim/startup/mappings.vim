@@ -5,7 +5,11 @@ let mapleader = ","
 nnoremap <silent> n n:call HLNext(0.4)<cr>
 nnoremap <silent> N N:call HLNext(0.4)<cr>
 
-"== navigate between windows easier"
+"== toggle highlighted search =="
+nnoremap <leader>q :nohlsearch<CR>
+
+"== navigate between windows easier, also doesn't conflict with iterm which
+"   closes the terminal tab "
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
