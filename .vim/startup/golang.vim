@@ -12,7 +12,12 @@ autocmd BufWritePre * :%s/\s\+$//e
 set viminfo='100,\"2500,:200,%,n~/.viminfo
 
 " set scratch preview window below
-" set splitbelow
+"set splitbelow
+augroup PreviewOnBottom
+  autocmd InsertEnter * set splitbelow
+  autocmd InsertLeave * set splitbelow!
+  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+augroup END
 
 " use goimports for formatting
 let g:go_fmt_command = "goimports"
