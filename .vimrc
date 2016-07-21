@@ -19,7 +19,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-set completeopt-=preview
+"set completeopt-=preview
 
 "== easier indentation =="
 vnoremap < <gv
@@ -52,3 +52,4 @@ let NERDTreeDirArrows=1
 source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
 source ~/.vim/startup/yaml.vim
+source ~/.vim/startup/golang.vim

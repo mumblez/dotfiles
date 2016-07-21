@@ -18,3 +18,6 @@ nnoremap <leader>O O<ESC>j
 "== Fn Toggles =="
 map <F2> :NERDTreeToggle<CR>
 set pastetoggle=<F3>
+
+"== Golang run =="
+map <F5> :GoRun<CR>
