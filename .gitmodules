@@ -15,7 +15,7 @@
     url = git@github.com:valloric/youcompleteme.git
 [submodule ".vim/bundle/syntastic"]
     path = .vim/bundle/syntastic
-    url = git@github.com/scrooloose/syntastic.git
+    url = git@github.com:scrooloose/syntastic.git
 [submodule ".vim/bundle/tmuxline.vim"]
     path = .vim/bundle/tmuxline.vim
     url = git@github.com:edkolev/tmuxline.vim.git
