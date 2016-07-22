@@ -33,7 +33,7 @@
     url = git@github.com:airblade/vim-gitgutter.git
 [submodule ".vim/bundle/vim-go"]
     path = .vim/bundle/vim-go
-    url = git@github.com:faith/vim-go.git
+    url = git@github.com:fatih/vim-go.git
 [submodule ".vim/bundle/ultisnips"]
 	path = .vim/bundle/ultisnips
 	url = git@github.com:SirVer/ultisnips.git
