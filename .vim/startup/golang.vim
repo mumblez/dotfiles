@@ -37,7 +37,8 @@ let g:go_highlight_build_constraints = 1
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 
-let g:syntastic_go_checkers = ['go', 'golint', 'errcheck', 'gometalinter', 'govet', 'gofmt']
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck', 'govet', 'gofmt']
+"let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>

@@ -14,6 +14,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <leader>\ :q!<cr>
 
 "== add blank lines above and below current line
 nnoremap <leader>o o<ESC>k

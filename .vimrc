@@ -12,7 +12,8 @@ set ruler                    " show the cursor position all the time
 set cursorline               " highlight current line
 set number                   " show line numbers
 set mouse=a                  " allow click to move cursor and select
-set relativenumber
+"set relativenumber
+set laststatus=2
 
 "== indentation - prefer spaces =="
 set smartindent
@@ -54,3 +55,4 @@ source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
 source ~/.vim/startup/yaml.vim
 source ~/.vim/startup/golang.vim
+source ~/.vim/startup/airline.vim
