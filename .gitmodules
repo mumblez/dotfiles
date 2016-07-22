@@ -17,11 +17,8 @@
     path = .vim/bundle/syntastic
     url = git@github.com:scrooloose/syntastic.git
 [submodule ".vim/bundle/tmuxline.vim"]
-    path = .vim/bundle/tmuxline.vim
-    url = git@github.com:edkolev/tmuxline.vim.git
-[submodule ".vim/bundle/ultisnips"]
-    path = .vim/bundle/ultisnips
-    url = git@github.com:SirVer/ultisnips.git
+	path = .vim/bundle/tmuxline.vim
+	url = git@github.com:edkolev/tmuxline.vim.git
 [submodule ".vim/bundle/vim-airline"]
     path = .vim/bundle/vim-airline
     url = git@github.com:vim-airline/vim-airline.git
@@ -37,3 +34,6 @@
 [submodule ".vim/bundle/vim-go"]
     path = .vim/bundle/vim-go
     url = git@github.com:faith/vim-go.git
+[submodule ".vim/bundle/ultisnips"]
+	path = .vim/bundle/ultisnips
+	url = git@github.com:SirVer/ultisnips.git
