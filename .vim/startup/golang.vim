@@ -44,3 +44,7 @@ let g:syntastic_go_checkers = ['go', 'golint', 'errcheck', 'govet', 'gofmt']
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+
+" enable ultisnips but use different selection to not conflict with
+" YouCompleteMe
+let g:UltiSnipsExpandTrigger="<c-x>"
