@@ -26,3 +26,7 @@ set pastetoggle=<F3>
 
 "== Golang run =="
 map <F5> :GoRun<CR>
+
+"== cleanup lines over 80 chars =="
+let @a = '080lBi'
+nnoremap <leader>a @a

@@ -13,7 +13,7 @@ set cursorline               " highlight current line
 set number                   " show line numbers
 set mouse=a                  " allow click to move cursor and select
 "set relativenumber
-set laststatus=2
+set laststatus=2             " required for airline
 
 "== indentation - prefer spaces =="
 set smartindent
