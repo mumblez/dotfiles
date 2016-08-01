@@ -14,6 +14,7 @@ set number                   " show line numbers
 set mouse=a                  " allow click to move cursor and select
 "set relativenumber
 set laststatus=2             " required for airline
+set splitright               " vsplit to the right
 
 "== indentation - prefer spaces =="
 set smartindent
