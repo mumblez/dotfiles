@@ -39,4 +39,4 @@
 	url = git@github.com:SirVer/ultisnips.git
 [submodule "bash-git-prompt"]
 	path = bash-git-prompt
-	url = https://github.com/magicmonty/bash-git-prompt.git
+	url = git@github.com:magicmonty/bash-git-prompt.git
