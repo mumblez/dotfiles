@@ -55,3 +55,6 @@
 [submodule ".vim/bundle/javascript-libraries-syntax.vim"]
 	path = .vim/bundle/javascript-libraries-syntax.vim
 	url = git@github.com:othree/javascript-libraries-syntax.vim.git
+[submodule ".vim/bundle/emmet-vim"]
+	path = .vim/bundle/emmet-vim
+	url = git@github.com:mattn/emmet-vim.git
