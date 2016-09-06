@@ -9,7 +9,7 @@ set nocompatible             " Use Vim defaults (much better!)
 set bs=indent,eol,start      " allow backspacing over everything in
 set history=50               " keep 50 lines of command line history
 set ruler                    " show the cursor position all the time
-set cursorline               " highlight current line
+"set cursorline               " highlight current line
 set number                   " show line numbers
 set mouse=a                  " allow click to move cursor and select
 "set relativenumber
@@ -57,3 +57,6 @@ source ~/.vim/startup/mappings.vim
 source ~/.vim/startup/yaml.vim
 source ~/.vim/startup/golang.vim
 source ~/.vim/startup/airline.vim
+
+"== fix/override line number background ==
+highlight LineNr ctermfg=white ctermbg=black
