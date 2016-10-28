@@ -4,6 +4,9 @@
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Use NeoComplete as 'YouCompleteMe' buggy
+let g:neocomplete#enable_at_startup = 1
+
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
