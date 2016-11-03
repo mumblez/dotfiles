@@ -54,6 +54,5 @@ let NERDTreeDirArrows=1
 source ~/.vim/startup/color.vim
 source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
-source ~/.vim/startup/yaml.vim
 source ~/.vim/startup/golang.vim
 source ~/.vim/startup/airline.vim
