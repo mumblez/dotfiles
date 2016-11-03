@@ -57,6 +57,3 @@ source ~/.vim/startup/mappings.vim
 source ~/.vim/startup/yaml.vim
 source ~/.vim/startup/golang.vim
 source ~/.vim/startup/airline.vim
-
-"== fix/override line number background ==
-highlight LineNr ctermfg=white ctermbg=black
