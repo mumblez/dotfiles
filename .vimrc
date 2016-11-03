@@ -32,7 +32,7 @@ vnoremap > >gv
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
-"== Change ping autocomplete background"
+"== Change popup autocomplete background"
 highlight Pmenu ctermbg=red ctermfg=white
 
 "== Make tabs, trailing whitespace, and non-breaking spaces visible =="

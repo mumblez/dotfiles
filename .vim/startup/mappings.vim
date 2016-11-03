@@ -14,6 +14,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+"== quite without saving
 nnoremap <leader>\ :q!<cr>
 
 "== add blank lines above and below current line
@@ -25,7 +27,7 @@ map <F2> :NERDTreeToggle<CR>
 set pastetoggle=<F3>
 
 "== Golang run =="
-map <F5> :GoRun<CR>
+map <F5> :GoRun %<CR>
 
 "== cleanup lines over 80 chars =="
 let @a = '080lBi'
