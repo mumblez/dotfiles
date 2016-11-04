@@ -27,7 +27,7 @@ map <F2> :NERDTreeToggle<CR>
 set pastetoggle=<F3>
 
 "== Golang run =="
-map <F5> :GoRun %<CR>
+"map <F5> :GoRun %<CR>
 
 "== cleanup lines over 80 chars =="
 let @a = '080lBi'
@@ -35,9 +35,11 @@ nnoremap <leader>a @a
 
 "== buffer switching
 "next buffer
-nnoremap <leader>b :bn<CR>
+"nnoremap <leader>b :bn<CR>
+nnoremap <F7> :bn<CR>
 "previous buffer
-nnoremap <leader>B :bp<CR>
+nnoremap <F8> :bp<CR>
 
 " example of creating a custom snippet
 "nnoremap ,html :-1read /Users/yusuf/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
+
