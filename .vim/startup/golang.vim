@@ -4,13 +4,12 @@
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Use NeoComplete as 'YouCompleteMe' buggy
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+" auto write file so we can test and build without saving first
+autocmd FileType go set autowrite
+" only use quickfix window
+let g:go_list_type = "quickfix"
+let g:go_auto_type_info = 1
+autocmd FileType go set updatetime=100
 
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -45,15 +44,20 @@ let g:go_highlight_build_constraints = 1
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 
-let g:syntastic_go_checkers = ['go', 'golint', 'errcheck', 'govet', 'gofmt']
+"let g:syntastic_go_checkers = ['go', 'golint', 'errcheck', 'govet', 'gofmt']
 "let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 " au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>r :exe "GoRun %"<CR>
-au Filetype go nnoremap <leader>t :tab <CR>:exe "GoTest"<CR>
+au Filetype go nnoremap <leader>t :exe "GoTest"<CR>
+au Filetype go nnoremap <leader>b :exe "GoBuild"<CR>
 
 " enable ultisnips but use different selection to not conflict with
 " YouCompleteMe
