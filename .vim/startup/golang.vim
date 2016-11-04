@@ -8,8 +8,6 @@ let g:syntastic_check_on_wq = 0
 autocmd FileType go set autowrite
 " only use quickfix window
 let g:go_list_type = "quickfix"
-let g:go_auto_type_info = 1
-autocmd FileType go set updatetime=100
 
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -58,6 +56,8 @@ au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>r :exe "GoRun %"<CR>
 au Filetype go nnoremap <leader>t :exe "GoTest"<CR>
 au Filetype go nnoremap <leader>b :exe "GoBuild"<CR>
+au Filetype go nnoremap <leader>i :exe "GoInfo"<CR>
+au Filetype go nnoremap <leader>d :exe "GoDoc"<CR>
 
 " enable ultisnips but use different selection to not conflict with
 " YouCompleteMe
