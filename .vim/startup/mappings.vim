@@ -38,3 +38,6 @@ nnoremap <leader>a @a
 nnoremap <leader>b :bn<CR>
 "previous buffer
 nnoremap <leader>B :bp<CR>
+
+" example of creating a custom snippet
+"nnoremap ,html :-1read /Users/yusuf/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
