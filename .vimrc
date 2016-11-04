@@ -32,7 +32,7 @@ vnoremap > >gv
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
-"== Change ping autocomplete background"
+"== Change popup autocomplete background"
 highlight Pmenu ctermbg=red ctermfg=white
 
 "== Make tabs, trailing whitespace, and non-breaking spaces visible =="
@@ -54,9 +54,5 @@ let NERDTreeDirArrows=1
 source ~/.vim/startup/color.vim
 source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
-source ~/.vim/startup/yaml.vim
 source ~/.vim/startup/golang.vim
 source ~/.vim/startup/airline.vim
-
-"== fix/override line number background ==
-highlight LineNr ctermfg=white ctermbg=black

@@ -9,3 +9,6 @@ colorscheme Monokai-Refined
 highlight Pmenu ctermbg=125 ctermfg=15
 " black on light blue bg
 " highlight Pmenu ctermbg=195 ctermfg=0
+
+"== fix/override line number background ==
+highlight LineNr ctermfg=white ctermbg=black
