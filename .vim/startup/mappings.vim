@@ -40,6 +40,10 @@ nnoremap <F7> :bn<CR>
 "previous buffer
 nnoremap <F8> :bp<CR>
 
+"== quickfix list (backwards and forwards through list)
+nnoremap <F5> :cp<CR>
+nnoremap <F6> :cn<CR>
+
 " example of creating a custom snippet
 "nnoremap ,html :-1read /Users/yusuf/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
 
