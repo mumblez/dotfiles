@@ -50,14 +50,15 @@ let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-" au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-au Filetype go nnoremap <leader>r :exe "GoRun %"<CR>
-au Filetype go nnoremap <leader>t :exe "GoTest"<CR>
-au Filetype go nnoremap <leader>b :exe "GoBuild"<CR>
-au Filetype go nnoremap <leader>i :exe "GoInfo"<CR>
-au Filetype go nnoremap <leader>d :exe "GoDoc"<CR>
+nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+"nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+nnoremap <leader>r :exe "GoRun %"<CR>
+nnoremap <leader>t :exe "GoTest"<CR>
+nnoremap <leader>b :exe "GoBuild"<CR>
+nnoremap <leader>i :exe "GoInfo"<CR>
+nnoremap <leader>d :exe "GoDoc"<CR>
+nnoremap \t :exe "GoTestFunc"<CR>
 
 " enable ultisnips but use different selection to not conflict with
 " YouCompleteMe

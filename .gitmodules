@@ -61,3 +61,6 @@
 [submodule ".vim/bundle/youcompleteme"]
 	path = .vim/bundle/youcompleteme
 	url = git@github.com:valloric/youcompleteme.git
+[submodule ".vim/bundle/errormarker.vim"]
+	path = .vim/bundle/errormarker.vim
+	url = git@github.com:mh21/errormarker.vim.git
