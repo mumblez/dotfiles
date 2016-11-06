@@ -25,6 +25,7 @@ nnoremap <leader>O O<ESC>j
 "== Fn Toggles =="
 map <F2> :NERDTreeToggle<CR>
 set pastetoggle=<F3>
+nnoremap <F4> :set spell!<CR>
 
 "== Golang run =="
 "map <F5> :GoRun %<CR>
@@ -35,14 +36,18 @@ nnoremap <leader>a @a
 
 "== buffer switching
 "next buffer
-"nnoremap <leader>b :bn<CR>
-nnoremap <F8> :bn<CR>
+"nnoremap <F8> :bn<CR>
+nnoremap <leader>bn :bn<CR>
 "previous buffer
-nnoremap <F7> :bp<CR>
+"nnoremap <F7> :bp<CR>
+nnoremap <leader>bp :bp<CR>
+nnoremap <leader>bd :bd!<CR>
 
 "== quickfix list (backwards and forwards through list)
-nnoremap <F5> :cp<CR>
-nnoremap <F6> :cn<CR>
+nnoremap <leader>cn :cn<CR>
+nnoremap <leader>cp :cp<CR>
+nnoremap <leader>cl :clist<CR>
+nnoremap <leader>cc :cclose<CR>
 
 " example of creating a custom snippet
 "nnoremap ,html :-1read /Users/yusuf/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi

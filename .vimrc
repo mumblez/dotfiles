@@ -12,7 +12,7 @@ set ruler                    " show the cursor position all the time
 "set cursorline               " highlight current line
 set number                   " show line numbers
 set mouse=a                  " allow click to move cursor and select
-"set relativenumber
+"set relativenumber number
 set laststatus=2             " required for airline
 set splitright               " vsplit to the right
 set complete+=kspell   " add spell checking words to word completion (ctrl+p)
