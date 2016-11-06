@@ -68,5 +68,6 @@ let NERDTreeDirArrows=1
 source ~/.vim/startup/color.vim
 source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
-autocmd BufRead,BufNewFile *.go source ~/.vim/startup/golang.vim
+"autocmd BufRead,BufNewFile *.go source ~/.vim/startup/golang.vim
+source ~/.vim/startup/golang.vim
 source ~/.vim/startup/airline.vim
