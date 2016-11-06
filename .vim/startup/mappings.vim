@@ -36,9 +36,9 @@ nnoremap <leader>a @a
 "== buffer switching
 "next buffer
 "nnoremap <leader>b :bn<CR>
-nnoremap <F7> :bn<CR>
+nnoremap <F8> :bn<CR>
 "previous buffer
-nnoremap <F8> :bp<CR>
+nnoremap <F7> :bp<CR>
 
 "== quickfix list (backwards and forwards through list)
 nnoremap <F5> :cp<CR>
