@@ -16,7 +16,7 @@ set mouse=a                  " allow click to move cursor and select
 set laststatus=2             " required for airline
 set splitright               " vsplit to the right
 set complete+=kspell   " add spell checking words to word completion (ctrl+p)
-autocmd BufRead,BufNewFile   *.txt,*.md set spell " turn on spell checking for text files
+" autocmd BufRead,BufNewFile   *.txt,*.md set spell " turn on spell checking for text files
 
 "== indentation - prefer spaces =="
 set smartindent
