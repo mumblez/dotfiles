@@ -47,7 +47,7 @@ nnoremap <leader>bd :bd!<CR>
 nnoremap <leader>cn :cn<CR>
 nnoremap <leader>cp :cp<CR>
 nnoremap <leader>cl :clist<CR>
-nnoremap <leader>cc :cclose<CR>
+nnoremap <leader>ccl :cclose<CR>
 
 " example of creating a custom snippet
 "nnoremap ,html :-1read /Users/yusuf/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
