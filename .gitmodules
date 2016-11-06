@@ -58,3 +58,9 @@
 [submodule ".vim/bundle/errormarker.vim"]
 	path = .vim/bundle/errormarker.vim
 	url = git@github.com:mh21/errormarker.vim.git
+[submodule ".vim/bundle/vim-bufferline"]
+	path = .vim/bundle/vim-bufferline
+	url = git@github.com:bling/vim-bufferline.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = git@github.com:vim-syntastic/syntastic.git
