@@ -62,8 +62,7 @@ autocmd BufRead,BufNewFile *.go nnoremap \t :exe "GoTestFunc"<CR>
 
 " enable ultisnips but use different selection to not conflict with
 " YouCompleteMe
-let g:UltiSnipsExpandTrigger="<c-x>"
-
+" let g:UltiSnipsExpandTrigger="<c-x>"
 let g:UltiSnipsExpandTrigger = "<nop>"
 let g:ulti_expand_or_jump_res = 0
 function! ExpandSnippetOrCarriageReturn()

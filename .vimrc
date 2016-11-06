@@ -15,7 +15,7 @@ set mouse=a                  " allow click to move cursor and select
 "set relativenumber number
 set laststatus=2             " required for airline
 set splitright               " vsplit to the right
-set complete+=kspell   " add spell checking words to word completion (ctrl+p)
+autocmd BufRead,BufNewFile *.txt,*.md set complete+=kspell   " add spell checking words to word completion (ctrl+p)
 " autocmd BufRead,BufNewFile   *.txt,*.md set spell " turn on spell checking for text files
 
 "== indentation - prefer spaces =="
@@ -47,11 +47,11 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
 "== Change popup autocomplete background"
-highlight Pmenu ctermbg=red ctermfg=white
+"highlight Pmenu ctermbg=red ctermfg=white
 
 "== Make tabs, trailing whitespace, and non-breaking spaces visible =="
-exec "set listchars=eol:¬,trail:.,nbsp:~,tab:»·"
-set nolist
+" exec "set listchars=eol:¬,trail:.,nbsp:~,tab:»·"
+" set nolist
 
 "== better digraphs =="
 set enc=utf-8
