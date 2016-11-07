@@ -2,7 +2,7 @@
 " we want to see code highlighting and checks when  we open a file
 " but we don't care so much that it reruns when we close the file
 " let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_wq = 1
 
 " auto write file so we can test and build without saving first
 autocmd FileType go set autowrite
@@ -42,7 +42,7 @@ let g:go_highlight_build_constraints = 1
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 
-"let g:syntastic_go_checkers = ['go', 'golint', 'errcheck', 'govet', 'gofmt']
+" let g:syntastic_go_checkers = ['go', 'golint', 'errcheck', 'govet', 'gofmt']
 "let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
