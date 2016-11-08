@@ -72,3 +72,4 @@ source ~/.vim/startup/mappings.vim
 "autocmd BufRead,BufNewFile *.go source ~/.vim/startup/golang.vim
 source ~/.vim/startup/golang.vim
 source ~/.vim/startup/airline.vim
+source ~/.vim/startup/ctrlp.vim
