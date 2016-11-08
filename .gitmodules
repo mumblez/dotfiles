@@ -46,3 +46,6 @@
 [submodule ".vim/bundle/vim-bufferline"]
 	path = .vim/bundle/vim-bufferline
 	url = git@github.com:bling/vim-bufferline.git
+[submodule ".vim/bundle/ctrlp.vim"]
+	path = .vim/bundle/ctrlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim.git
