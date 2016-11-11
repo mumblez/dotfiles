@@ -10,5 +10,3 @@ function! HLNext (blinktime)
     call matchdelete(ring)
     redraw
 endfunction
-
-

@@ -12,6 +12,8 @@ inoremap ( ()<esc>i
 inoremap ' ''<esc>i
 inoremap " ""<esc>i
 inoremap ` ``<esc>i
+" jump over auto closed item (as long as we're not at the end
+inoremap <c-l> <esc>la
 
 " auto write file so we can test and build without saving first
 "autocmd FileType go set autowrite
