@@ -5,7 +5,8 @@
 " let g:syntastic_check_on_wq = 1
 
 " auto write file so we can test and build without saving first
-autocmd FileType go set autowrite
+"autocmd FileType go set autowrite
+set autowrite
 " only use quickfix window
 let g:go_list_type = "quickfix"
 
@@ -51,6 +52,14 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
 "nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+" au FileType go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+" au FileType go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+" au FileType go nnoremap <leader>r :exe "GoRun %"<CR>
+" au FileType go nnoremap <leader>t :exe "GoTest"<CR>
+" au FileType go nnoremap <leader>b :exe "GoBuild"<CR>
+" au FileType go nnoremap <leader>i :exe "GoInfo"<CR>
+" au FileType go nnoremap <leader>d :exe "GoDoc"<CR>
+" au FileType go nnoremap \t :exe "GoTestFunc"<CR>
 au FileType go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au FileType go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au FileType go nnoremap <leader>r :exe "GoRun %"<CR>
