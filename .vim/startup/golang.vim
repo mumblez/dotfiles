@@ -4,6 +4,15 @@
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 1
 
+" add closing brackets / quotes
+inoremap {<CR> {<CR>}<Esc>O
+inoremap { {}<esc>i
+inoremap [ []<esc>i
+inoremap ( ()<esc>i
+inoremap ' ''<esc>i
+inoremap " ""<esc>i
+inoremap ` ``<esc>i
+
 " auto write file so we can test and build without saving first
 "autocmd FileType go set autowrite
 set autowrite
