@@ -12,3 +12,6 @@ highlight Pmenu ctermbg=125 ctermfg=15
 
 "== fix/override line number background ==
 highlight LineNr ctermfg=white ctermbg=black
+
+"== override comment color
+highlight Comment ctermfg=grey

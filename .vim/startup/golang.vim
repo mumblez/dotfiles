@@ -43,10 +43,14 @@ let g:go_fmt_command = "goimports"
 
 " turn highlighting on
 let g:go_highlight_functions = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
 
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -72,14 +76,14 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 " au FileType go nnoremap <leader>i :exe "GoInfo"<CR>
 " au FileType go nnoremap <leader>d :exe "GoDoc"<CR>
 " au FileType go nnoremap \t :exe "GoTestFunc"<CR>
-au FileType go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au FileType go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-au FileType go nnoremap <leader>r :exe "GoRun %"<CR>
-au FileType go nnoremap <leader>t :exe "GoTest"<CR>
-au FileType go nnoremap <leader>b :exe "GoBuild"<CR>
-au FileType go nnoremap <leader>i :exe "GoInfo"<CR>
-au FileType go nnoremap <leader>d :exe "GoDoc"<CR>
-au FileType go nnoremap \t :exe "GoTestFunc"<CR>
+nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+nnoremap <leader>r :exe "GoRun %"<CR>
+nnoremap <leader>t :exe "GoTest"<CR>
+nnoremap <leader>b :exe "GoBuild"<CR>
+nnoremap <leader>i :exe "GoInfo"<CR>
+nnoremap <leader>d :exe "GoDoc"<CR>
+nnoremap \t :exe "GoTestFunc"<CR>
 
 " enable ultisnips but use different selection to not conflict with
 " YouCompleteMe
