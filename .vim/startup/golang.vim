@@ -5,16 +5,16 @@
 " let g:syntastic_check_on_wq = 1
 
 " add closing brackets / quotes
-inoremap {<CR> {<CR>}<Esc>O
-inoremap { {}<esc>i
-inoremap [ []<esc>i
-inoremap ( ()<esc>i
-inoremap ' ''<esc>i
-inoremap " ""<esc>i
-inoremap ` ``<esc>i
-" jump over auto closed item (as long as we're not at the end
-inoremap <c-l> <esc>la
-inoremap <c-j> <esc>o
+" inoremap {<CR> {<CR>}<Esc>O
+" inoremap { {}<esc>i
+" inoremap [ []<esc>i
+" inoremap ( ()<esc>i
+" inoremap ' ''<esc>i
+" inoremap " ""<esc>i
+" inoremap ` ``<esc>i
+" " jump over auto closed item (as long as we're not at the end
+" inoremap <c-l> <esc>la
+" inoremap <c-j> <esc>o
 
 " auto write file so we can test and build without saving first
 "autocmd FileType go set autowrite
@@ -68,22 +68,22 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
 "nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-" au FileType go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-" au FileType go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-" au FileType go nnoremap <leader>r :exe "GoRun %"<CR>
-" au FileType go nnoremap <leader>t :exe "GoTest"<CR>
-" au FileType go nnoremap <leader>b :exe "GoBuild"<CR>
-" au FileType go nnoremap <leader>i :exe "GoInfo"<CR>
-" au FileType go nnoremap <leader>d :exe "GoDoc"<CR>
-" au FileType go nnoremap \t :exe "GoTestFunc"<CR>
-nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-nnoremap <leader>r :exe "GoRun %"<CR>
-nnoremap <leader>t :exe "GoTest"<CR>
-nnoremap <leader>b :exe "GoBuild"<CR>
-nnoremap <leader>i :exe "GoInfo"<CR>
-nnoremap <leader>d :exe "GoDoc"<CR>
-nnoremap \t :exe "GoTestFunc"<CR>
+au FileType go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au FileType go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+au FileType go nnoremap <leader>r :exe "GoRun %"<CR>
+au FileType go nnoremap <leader>t :exe "GoTest"<CR>
+au FileType go nnoremap <leader>b :exe "GoBuild"<CR>
+au FileType go nnoremap <leader>i :exe "GoInfo"<CR>
+au FileType go nnoremap <leader>d :exe "GoDoc"<CR>
+au FileType go nnoremap \t :exe "GoTestFunc"<CR>
+" nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+" nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+" nnoremap <leader>r :exe "GoRun %"<CR>
+" nnoremap <leader>t :exe "GoTest"<CR>
+" nnoremap <leader>b :exe "GoBuild"<CR>
+" nnoremap <leader>i :exe "GoInfo"<CR>
+" nnoremap <leader>d :exe "GoDoc"<CR>
+" nnoremap \t :exe "GoTestFunc"<CR>
 
 " enable ultisnips but use different selection to not conflict with
 " YouCompleteMe
