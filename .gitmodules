@@ -58,3 +58,9 @@
 [submodule ".vim/bundle/Vim-Jinja2-Syntax"]
 	path = .vim/bundle/Vim-Jinja2-Syntax
 	url = git@github.com:Glench/Vim-Jinja2-Syntax.git
+[submodule ".vim/bundle/vim-terraform"]
+	path = .vim/bundle/vim-terraform
+	url = git@github.com:hashivim/vim-terraform.git
+[submodule ".vim/bundle/vim-packer"]
+	path = .vim/bundle/vim-packer
+	url = git@github.com:hashivim/vim-packer.git
