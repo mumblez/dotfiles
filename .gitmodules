@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/vim-packer"]
 	path = .vim/bundle/vim-packer
 	url = git@github.com:hashivim/vim-packer.git
+[submodule ".vim/bundle/tabular"]
+	path = .vim/bundle/tabular
+	url = git@github.com:godlygeek/tabular.git
