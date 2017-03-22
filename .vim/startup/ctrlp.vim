@@ -1,5 +1,5 @@
-"let g:ctrl_map = '<c-p>'
-"let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_cmd = 'CtrlPMixed'
 "let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_working_path_mode = 'ra'
