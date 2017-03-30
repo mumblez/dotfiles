@@ -15,7 +15,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"== quite without saving
+"== quit without saving
 nnoremap <leader>q :q!<cr>
 
 "== add blank lines above and below current line
@@ -36,11 +36,8 @@ nnoremap <leader>a @a
 
 "== buffer switching
 "next buffer
-"nnoremap <F8> :bn<CR>
-"nnoremap <leader>bn :bn<CR>
 nnoremap <C-n> :bnext<CR>
 "previous buffer
-"nnoremap <F7> :bp<CR>
 nnoremap <C-p> :bprevious<CR>
 nnoremap <leader>bd :bd!<CR>
 
