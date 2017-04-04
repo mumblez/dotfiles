@@ -24,7 +24,7 @@ nnoremap <leader>O O<ESC>j
 
 "== Fn Toggles =="
 map <F2> :NERDTreeToggle<CR>
-set pastetoggle=<F3>
+"set pastetoggle=<F3>
 nnoremap <F4> :set spell!<CR>
 
 "== Golang run =="
