@@ -74,3 +74,6 @@ source ~/.vim/startup/golang.vim
 source ~/.vim/startup/airline.vim
 source ~/.vim/startup/ctrlp.vim
 source ~/.vim/startup/terraform.vim
+
+set rtp+=~/.fzf
+
