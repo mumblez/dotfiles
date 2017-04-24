@@ -49,4 +49,8 @@ nnoremap <leader>ccl :cclose<CR>
 
 " example of creating a custom snippet
 "nnoremap ,html :-1read /Users/yusuf/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
-
+"
+" Quick folding toggle
+nnoremap <space> za
+set foldmethod=indent
+set foldlevel=99
