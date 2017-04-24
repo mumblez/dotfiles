@@ -71,6 +71,7 @@ source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
 " autocmd FileType go source ~/.vim/startup/golang.vim
 source ~/.vim/startup/golang.vim
+source ~/.vim/startup/python.vim
 source ~/.vim/startup/airline.vim
 source ~/.vim/startup/ctrlp.vim
 source ~/.vim/startup/terraform.vim
