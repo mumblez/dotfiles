@@ -16,7 +16,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 "== quit without saving
-nnoremap <leader>q :q!<cr>
+nnoremap <leader>q :quit<cr>
+nnoremap <leader>Q :qa!<cr>
 
 "== add blank lines above and below current line
 nnoremap <leader>o o<ESC>k
