@@ -40,7 +40,6 @@ nnoremap <leader>a @a
 nnoremap <C-n> :bnext<CR>
 "previous buffer
 nnoremap <C-p> :bprevious<CR>
-nnoremap <leader>bd :bd!<CR>
 
 "== quickfix list (backwards and forwards through list)
 nnoremap <leader>cn :cn<CR>
