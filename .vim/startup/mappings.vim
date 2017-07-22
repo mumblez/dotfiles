@@ -54,3 +54,6 @@ nnoremap <leader>ccl :cclose<CR>
 nnoremap <space> za
 set foldmethod=indent
 set foldlevel=99
+
+"== save read-only file
+cmap w!! w !sudo tee > /dev/null %
