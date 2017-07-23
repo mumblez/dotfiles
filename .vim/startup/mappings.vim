@@ -16,6 +16,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 "== copy and paste shortcuts into system clipboard
+" can use '+' or '*'
 vnoremap <F5> "*y
 nnoremap <F6> "*p
 
