@@ -15,6 +15,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+"== copy and paste shortcuts into system clipboard
+vnoremap <F5> "*y
+nnoremap <F6> "*p
+
 "== quit without saving
 nnoremap <leader>q :quit<cr>
 nnoremap <leader>Q :qa!<cr>
