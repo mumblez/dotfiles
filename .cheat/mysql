@@ -1,0 +1,44 @@
+# To connect to a database
+mysql -h localhost -u root -p
+
+# Connect / dump with ssl certificates, selecting db, turn off gtid and overwrite db
+[mysql | mysqldump] -h localhost -u user -p --ssl-ca=ca.pem --ssl-cert=dev.pem --ssl-key=dev.key -B metabase --set-gtid-purged=OFF --add-drop-database > data.sql
+
+
+# To backup all databases
+mysqldump --all-databases --all-routines -u root -p > ~/fulldump.sql
+
+# backup with compression
+mysqldump --all-databases --all-routines -u root -p | gzip -9 > ~/fulldump.sql.tgz
+
+# To restore all databases
+mysql -u root -p  < ~/fulldump.sql
+
+# restore from compressed backup
+gunzip < fulldump.sql.tgz | mysql -u root -p [dbname]
+
+# To create a database in utf8 charset
+CREATE DATABASE owa CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+# To add a user and give rights on the given database
+GRANT ALL PRIVILEGES ON database.* TO 'user'@'localhost'IDENTIFIED BY 'password' WITH GRANT OPTION;
+
+# new way to create user
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+
+# To list the privileges granted to the account that you are using to connect to the server. Any of the 3 statements will work.
+SHOW GRANTS FOR CURRENT_USER();
+SHOW GRANTS;
+SHOW GRANTS FOR CURRENT_USER;
+
+# Basic SELECT Statement
+SELECT * FROM tbl_name;
+
+# Basic INSERT Statement
+INSERT INTO tbl_name (col1,col2) VALUES(15,col1*2);
+
+# Basic UPDATE Statement
+UPDATE tbl_name SET col1 = "example";
+
+# Basic DELETE Statement
+DELETE FROM tbl_name WHERE user = 'jcole';
