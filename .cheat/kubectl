@@ -1,5 +1,8 @@
 # ref - https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/
 
+# create secrets
+kubectl create secret generic db-dev-ssl --from-file=ca.pem --from-file=dev.pem --from-file=dev.key
+
 $ source <(kubectl completion bash) # setup autocomplete in bash, bash-completion package should be installed first.
 $ source <(kubectl completion zsh)  # setup autocomplete in zsh
 

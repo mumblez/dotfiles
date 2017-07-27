@@ -1,0 +1,8 @@
+# save ssl certificates from database instance
+
+DBINSTANCE="db-1"
+PROJECT="gcp-project"
+CERTNAME="dev"
+gcloud -project $PROJECT sql ssl-certs create $CERTNAME ${CERTNAME}.key -i $DBINSTANCE
+gcloud -project $PROJECT sql ssl-certs describe $CERTNAME -i $DBINSTANCE --format="value(cert)" > ${CERTNAME}.pem
+gcloud -project $PROJECT sql instances describe $DBINSTANCE --format="value(serverCaCert.cert)" > ca.pem
