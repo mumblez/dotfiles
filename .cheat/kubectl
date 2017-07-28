@@ -6,6 +6,12 @@ kubectl create secret generic db-dev-ssl --from-file=ca.pem --from-file=dev.pem 
 $ source <(kubectl completion bash) # setup autocomplete in bash, bash-completion package should be installed first.
 $ source <(kubectl completion zsh)  # setup autocomplete in zsh
 
+# proxy connections - ensure correct context first!!!
+kubectl proxy [--port=8001]
+# then access service like
+http://localhost:8001/api/v1/proxy/namespaces/default/services/data-metabase:http/setup
+
+
 $ kubectl config view # Show Merged kubeconfig settings.
 
 # use multiple kubeconfig files at the same time and view merged config
