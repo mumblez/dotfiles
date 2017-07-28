@@ -3,6 +3,24 @@
 # create secrets
 kubectl create secret generic db-dev-ssl --from-file=ca.pem --from-file=dev.pem --from-file=dev.key
 
+# patch default service account to use image secret to access private images, e.g. on gcr
+### Create our service account, key and assign role
+gcloud --project karhoo-production iam service-accounts create gcr-production.karhoo-common.iam.gserviceaccount.com --display-name "GCR - Production"
+gcloud --project karhoo-production iam service-accounts keys create gcr-production.json --iam-account gcr-production.karhoo-common.iam.gserviceaccount.com
+gcloud projects add-iam-policy-binding karhoo-production --member "serviceAccount:gcr-production.karhoo-common.iam.gserviceaccount.com" --role roles/storage.objectViewer
+
+### Create secret on k8s cluster
+kubectl create secret docker-registry "gcr" \
+    --docker-username=_json_key \
+    --docker-server=https://eu.gcr.io \
+    --docker-password="$(cat gcr-production.json)" \
+    --docker-email=__DUMMY__
+
+
+### patch default service account
+kubectl patch serviceaccount default \
+          -p '{"imagePullSecrets": [{"name": "gcr"}]}'
+
 $ source <(kubectl completion bash) # setup autocomplete in bash, bash-completion package should be installed first.
 $ source <(kubectl completion zsh)  # setup autocomplete in zsh
 
