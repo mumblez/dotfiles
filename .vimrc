@@ -25,6 +25,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+"== correct yaml indentation
+autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
+
 "set completeopt-=preview
 
 "== finding files
