@@ -6,3 +6,8 @@ CERTNAME="dev"
 gcloud -project $PROJECT sql ssl-certs create $CERTNAME ${CERTNAME}.key -i $DBINSTANCE
 gcloud -project $PROJECT sql ssl-certs describe $CERTNAME -i $DBINSTANCE --format="value(cert)" > ${CERTNAME}.pem
 gcloud -project $PROJECT sql instances describe $DBINSTANCE --format="value(serverCaCert.cert)" > ca.pem
+
+# pull, re-tag and upload docker images to gcr
+gcloud docker -- pull "$GCR_IMAGE:$GCR_TAG"
+gcloud docker -- tag "$GCR_IMAGE:$GCR_TAG" "$GCR_IMAGE:$DATA_METABASE_RELEASE_VERSIONNAME"
+gcloud docker -- push $GCR_IMAGE

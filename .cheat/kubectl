@@ -24,6 +24,11 @@ kubectl patch serviceaccount default \
 $ source <(kubectl completion bash) # setup autocomplete in bash, bash-completion package should be installed first.
 $ source <(kubectl completion zsh)  # setup autocomplete in zsh
 
+# output custom columns
+kubectl get pods -o custom-columns=NAME:metadata.name,SERVICEACCOUNT:spec.serviceAccountName
+NAME                       SERVICEACCOUNT
+nginx-1-1297132431-14k2v   k-sa-1
+
 # proxy connections - ensure correct context first!!!
 kubectl proxy [--port=8001]
 # then access service like
