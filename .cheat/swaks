@@ -1,0 +1,2 @@
+# test sending email
+swaks --to some@address.com --from metabase@karhoo.com -s smtp.somehost.com:2525 -tls -a LOGIN -au someUsername123 -ap somePass123
