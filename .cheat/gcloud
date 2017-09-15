@@ -11,3 +11,6 @@ gcloud -project $PROJECT sql instances describe $DBINSTANCE --format="value(serv
 gcloud docker -- pull "$GCR_IMAGE:$GCR_TAG"
 gcloud docker -- tag "$GCR_IMAGE:$GCR_TAG" "$GCR_IMAGE:$DATA_METABASE_RELEASE_VERSIONNAME"
 gcloud docker -- push $GCR_IMAGE
+
+# sql / database backup / export
+gcloud --project karhoo-production sql instances export db-1-failover gs://kh-dump/db-1/15-09-2017.sql.gz --async
