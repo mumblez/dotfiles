@@ -13,4 +13,13 @@ gcloud docker -- tag "$GCR_IMAGE:$GCR_TAG" "$GCR_IMAGE:$DATA_METABASE_RELEASE_VE
 gcloud docker -- push $GCR_IMAGE
 
 # sql / database backup / export
+## Get db instance service account
+db_svc=$(gcloud sql instances describe db-1-failover --format="value(serviceAccountEmailAddress)")
+## set the permissions to the db instance's service account - allow it to write only
+gsutil acl ch -u "$db_svc":W gs://kh-dump
+## Do the backup
 gcloud --project karhoo-production sql instances export db-1-failover gs://kh-dump/db-1/15-09-2017.sql.gz --async
+
+# create instance with scopes and custom image
+gcloud compute instances create rundeck-debug --preemptible --image-family rundeck --scopes='https://www.googleapis.com/auth/compute','https://www.googleapis.com/auth/devstorage.full_control';
+
