@@ -32,6 +32,7 @@ nnoremap <leader>O O<ESC>j
 map <F2> :NERDTreeToggle<CR>
 "set pastetoggle=<F3>
 nnoremap <F4> :set spell!<CR>
+nnoremap <F3> :set number!<CR>
 
 "== Golang run =="
 "map <F5> :GoRun %<CR>
