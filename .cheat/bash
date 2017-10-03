@@ -31,3 +31,8 @@ echo ${PIPESTATUS[0]}  # replace 0 with N
 
 # Lock file:
 ( set -o noclobber; echo > my.lock ) || echo 'Failed to create lock file'
+
+# log all output to file from within a script
+LOG="/tmp/someScript.log"
+exec >  >(tee -ia $LOG)
+exec 2> >(tee -ia $LOG >&2)
