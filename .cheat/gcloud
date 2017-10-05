@@ -1,6 +1,4 @@
-# save ssl certificates from database instance
-
-DBINSTANCE="db-1"
+# save ssl certificates from database instance DBINSTANCE="db-1"
 PROJECT="gcp-project"
 CERTNAME="dev"
 gcloud -project $PROJECT sql ssl-certs create $CERTNAME ${CERTNAME}.key -i $DBINSTANCE
@@ -19,7 +17,34 @@ db_svc=$(gcloud sql instances describe db-1-failover --format="value(serviceAcco
 gsutil acl ch -u "$db_svc":W gs://kh-dump
 ## Do the backup
 gcloud --project karhoo-production sql instances export db-1-failover gs://kh-dump/db-1/15-09-2017.sql.gz --async
+### example ###
+### BACKUP ###
+PROJECT_SRC="karhoo-staging"
+PROJECT_DST="karhoo-test-1"
+DB_INSTANCE="db-1"
+DB_SVC_SOURCE=$(gcloud --project $PROJECT_SRC sql instances describe $DB_INSTANCE --format="value(serviceAccountEmailAddress)")
+DB_SVC_DESTINATION=$(gcloud --project $PROJECT_DST sql instances describe $DB_INSTANCE --format="value(serviceAccountEmailAddress)")
+BUCKET_URL="gs://kh-dump"
+BACKUP_FILE="someDate.sql.gz"
+BACKUP="${BUCKET_URL}/${DB_INSTANCE}/${BACKUP_FILE}"
+# Set the permissions to the db instance's service account - allow it to write only
+gsutil acl ch -u "${DB_SVC_SOURCE}":W "$BUCKET_URL"
+# Do the backup (--async is so we don't wait for completion, time for backup varies!)
+gcloud --project $PROJECT_SRC sql instances export "$DB_INSTANCE" "$BACKUP" --async
+# Checking on the backup operation
+gcloud --project $PROJECT_DST sql operations list --instance "$DB_INSTANCE" --limit 5
+### RESTORE ###
+# Assuming instance name is the same, allow target instance to read from the bucket and import
+gsutil acl ch -u "${DB_SVC_TARGET}":R "$BUCKET_URL"
+gcloud --project $PROJECT_DST sql instances import "$DB_INSTANCE" "$BACKUP" --async
+#####
 
 # create instance with scopes and custom image
 gcloud compute instances create rundeck-debug --preemptible --image-family rundeck --scopes='https://www.googleapis.com/auth/compute','https://www.googleapis.com/auth/devstorage.full_control';
 
+
+# filter example # --format=json to see the correct field names
+gcloud compute images list --filter='family:rundeck'
+
+# list docker images
+gcloud container images list --repository eu.gcr.io/karhoo-common

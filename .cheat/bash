@@ -1,5 +1,10 @@
 # script current directory no matter where it's called from
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR=$(cd `dirname $0` && pwd)
+
+# error mesage function
+errorMsg() {
+    echo "$*" 1>&2
+}
 
 # run script and ensure we exit on failure
 bash -eou pipefail <script>
@@ -36,3 +41,8 @@ echo ${PIPESTATUS[0]}  # replace 0 with N
 LOG="/tmp/someScript.log"
 exec >  >(tee -ia $LOG)
 exec 2> >(tee -ia $LOG >&2)
+
+# misc
+die() { echo $* 1>&2 ; exit 1 ; }
+TIMESTAMP=$(date +%Y-%m-%d-%H%M)
+FILE_DATE=$(date +%Y-%m-%d)
