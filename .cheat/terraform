@@ -3,7 +3,7 @@
 gcloud auth application-default login
 
 # and exported the environment variable to the saved file (or but in bashrc):
-export GOOGLE_APPLICATION_DEFAULTS=~/.config/gcloud/application_default_credentials.json
+export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/application_default_credentials.json
 
 # no need to setup custom variable now in terraform providers block, just region and project name will suffice.
 # ensure to unset these variables as they'll take precedance:
