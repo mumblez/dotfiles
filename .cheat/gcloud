@@ -45,6 +45,18 @@ gcloud compute instances create rundeck-debug --preemptible --image-family runde
 
 # filter example # --format=json to see the correct field names
 gcloud compute images list --filter='family:rundeck'
+gcloud compute snapshots list --filter="name~'autogcs-${PD_NAME}-.*'" --uri
+
+# format example # show only name field (always lowercase, get json output to see all available fields)
+gcloud compute images list --format='value(name)' # can be comma separated list of values
+
+# format and filter combined and looking for specific named value and piping into while loop
+gcloud compute disks list --format='value(name,zone)' --filter="name:${PD_NAME}" | while read DISK_NAME ZONE; do...
 
 # list docker images
 gcloud container images list --repository eu.gcr.io/karhoo-common
+
+# generate application defaults
+gcloud auth application-default login
+# (launches browser to authenticate and saves json key to ~/.config/gcloud/application_default_credentials.json which
+# we can export as GOOGLE_APPLICATION_CREDENTIALS and terraform will pick this up)

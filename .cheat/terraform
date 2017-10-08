@@ -1,0 +1,12 @@
+# instead of using the service account you can use your personal account provided you've
+# authenticated with gcloud:
+gcloud auth application-default login
+
+# and exported the environment variable to the saved file (or but in bashrc):
+export GOOGLE_APPLICATION_DEFAULTS=~/.config/gcloud/application_default_credentials.json
+
+# no need to setup custom variable now in terraform providers block, just region and project name will suffice.
+# ensure to unset these variables as they'll take precedance:
+- GOOGLE_CREDENTIALS
+- GOOGLE_CLOUD_KEYFILE_JSON
+- GCLOUD_KEYFILE_JSON

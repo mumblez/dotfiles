@@ -1,0 +1,29 @@
+# gce inventory setup - copy gce.py into an inventory directory (e.g. for a role or project or python env)
+#
+git clone https://github.com/ansible/ansible
+cp ansible/contrib/inventory/gce.py ~/project/inventory/
+
+# export environment variables for gce.py to use
+export GCE_PROJECT=some-gcp-project
+export GCE_EMAIL=[your.google@domain.com]
+export GCE_CREDENTIALS_FILE_PATH=~/.config/gcloud/application_default_credentials.json
+# if you don't have that file, authenticate with google via gcloud:
+gcloud auth application-default login
+# or since you may already of exported GOOGLE_APPLICATION_CREDENTIALS
+export GCE_CREDENTIALS_FILE_PATH="$GOOGLE_APPLICATION_CREDENTIALS"
+
+# dry run a role against a tagged instance, e.g. tag_rundeck (set as hosts in yml)
+ansible-playbook --check --diff -i inventory rundeck.yml
+
+# run for real
+ansible-playbook -i inventory rundeck.yml
+
+# list of fields (can use as hosts)
+gce.py --list | jq .
+
+# do a ping test
+ansible -i inventory tag_rundeck -m ping
+
+# run a shell command (as root)
+ansible -i inventory tag_rundeck -b -a "ls -l /root"
+
