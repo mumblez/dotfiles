@@ -11,6 +11,7 @@ export GCE_CREDENTIALS_FILE_PATH=~/.config/gcloud/application_default_credential
 gcloud auth application-default login
 # or since you may already of exported GOOGLE_APPLICATION_CREDENTIALS
 export GCE_CREDENTIALS_FILE_PATH="$GOOGLE_APPLICATION_CREDENTIALS"
+#### it does break after a while, maybe stick with terraform credentials!!! ###
 
 # dry run a role against a tagged instance, e.g. tag_rundeck (set as hosts in yml)
 ansible-playbook --check --diff -i inventory rundeck.yml
