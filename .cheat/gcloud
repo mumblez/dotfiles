@@ -53,6 +53,15 @@ gcloud compute images list --format='value(name)' # can be comma separated list 
 # format and filter combined and looking for specific named value and piping into while loop
 gcloud compute disks list --format='value(name,zone)' --filter="name:${PD_NAME}" | while read DISK_NAME ZONE; do...
 
+# delete according to age
+FROM_DATE=$(date -d "-${MAX_AGE} days" "+%Y-%m-%d")
+gcloud compute snapshots list --filter="name~'autogcs-${PD_NAME}-${FROM_DATE}-.*'" --uri | while read SNAPSHOT_URI; do
+  gcloud compute snapshots delete $SNAPSHOT_URI
+done
+
+# filter packer disk images
+gcloud --project karhoo-common compute images list --filter="family:rundeck"
+
 # list docker images
 gcloud container images list --repository eu.gcr.io/karhoo-common
 
