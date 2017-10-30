@@ -66,7 +66,7 @@ set updatetime=3000
 
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave_enabled = ['golint', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
 "nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
