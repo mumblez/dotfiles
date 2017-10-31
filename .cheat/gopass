@@ -1,0 +1,54 @@
+# repo and demo - https://github.com/justwatchcom/gopass
+# commands and examples - https://github.com/justwatchcom/gopass/blob/master/docs/features.md
+
+# initialise a new repository / password store (personal / root / default) - 'root' is the primary mount
+gopass --init [--path] [--store] [gpg-key]
+
+# clone existing password store / repo (will put in ~/.password-store for personal use)
+gopass clone gitrepoURL
+gopass clone gitrepoURL name # will put in ~/.password-store-name
+
+# maybe best to just do regular git clone to where you save your repo's, e.g. ~/git ~/repos
+# then mount
+
+# see mounts
+gopass mounts
+
+# clone and mount a new repo
+git clone git@github.com:bla/passes.git ~/repos/passes
+gopass mounts add someLabel ~/repos/passes
+
+# show all mounts and directory structure
+gopass
+
+# add random pw to new mount 20 characters long
+gopass generate someLabel/databases/db-1 20
+
+# add file (base64 and encrypts automatically)
+gopass binary cp existing-file.json someLabel/databases/existing-file.json # it will append auto .b64 with you list / view
+
+# copy file out
+gopass binary cp someLabel/databases/existing-file.json.b64 /new/path/new-name.json
+
+# see settings
+gopass config
+
+# setting config options, ensure --store [--path] are set!
+# e.g. gopass config autosync false --store rd-data --autoimport true
+
+# default config:
+$HOME/.config/gopass/config.yml
+
+# add gpg user / key to a mounted store
+gopass recipients add [key id - has to be added in your keychain first] --store [store name] # (leave out last two options to add interactively)
+
+# new users WITHOUT a gpg key!!!, direct devops to do normal gopass --init and let them select their public key / uid
+# First initialize a new shared store and push it to an empty remote
+gopass --yes setup --remote github.com/example/pass.git --alias example --create --name "John Doe" --email "john.doe@example.com"
+
+# For every other team member initialize a new store and clone the existing remote
+gopass --yes setup --remote github.com/example/pass.git --alias example --name "Jane Doe" --email "jane.doe@example.com"
+
+# FZF integration for searching (--flat)
+gopass ls --flat | fzf # then begin typing to narrow down the results, optionally add --store
+
