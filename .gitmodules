@@ -79,3 +79,6 @@
 [submodule ".vim/bundle/indentpython.vim"]
 	path = .vim/bundle/indentpython.vim
 	url = git@github.com:vim-scripts/indentpython.vim.git
+[submodule ".vim/bundle/vim-toml"]
+	path = .vim/bundle/vim-toml
+	url = git@github.com:cespare/vim-toml.git
