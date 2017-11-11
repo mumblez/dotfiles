@@ -82,3 +82,6 @@
 [submodule ".vim/bundle/vim-toml"]
 	path = .vim/bundle/vim-toml
 	url = git@github.com:cespare/vim-toml.git
+[submodule ".vim/bundle/vim-peekaboo"]
+	path = .vim/bundle/vim-peekaboo
+	url = git@github.com:junegunn/vim-peekaboo.git
