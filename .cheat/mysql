@@ -42,3 +42,14 @@ UPDATE tbl_name SET col1 = "example";
 
 # Basic DELETE Statement
 DELETE FROM tbl_name WHERE user = 'jcole';
+
+# Export users with percona tools
+# make a my.cnf file
+# [client]
+# user=terraform
+# password=<pass>
+# socket=/cloudsql/karhoo-test1:europe-west1:db-1
+# or
+# host=<ip>
+pt-show-grants --defaults-file=./my.cnf > users.sql
+
