@@ -85,3 +85,6 @@
 [submodule ".vim/bundle/vim-peekaboo"]
 	path = .vim/bundle/vim-peekaboo
 	url = git@github.com:junegunn/vim-peekaboo.git
+[submodule ".vim/bundle/vim-nix"]
+	path = .vim/bundle/vim-nix
+	url = git@github.com:LnL7/vim-nix.git
