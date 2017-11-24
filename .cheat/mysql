@@ -53,3 +53,6 @@ DELETE FROM tbl_name WHERE user = 'jcole';
 # host=<ip>
 pt-show-grants --defaults-file=./my.cnf > users.sql
 
+# dump and restore in single command
+mysqldump -u root -ptmppassword sugarcrm | mysql \
+                 -u root -ptmppassword --host=remote-server -C sugarcrm1
