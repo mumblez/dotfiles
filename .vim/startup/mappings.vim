@@ -31,8 +31,9 @@ nnoremap <leader>O O<ESC>j
 "== Fn Toggles =="
 map <F2> :NERDTreeToggle<CR>
 "set pastetoggle=<F3>
-nnoremap <F4> :set spell!<CR>
 nnoremap <F3> :set number!<CR>
+nnoremap <F4> :set spell!<CR>
+nnoremap <F5> :set ft=sh<CR>
 
 "== Golang run =="
 "map <F5> :GoRun %<CR>
@@ -63,3 +64,4 @@ set foldlevel=99
 
 "== save read-only file
 cmap w!! w !sudo tee > /dev/null %
+
