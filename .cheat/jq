@@ -58,3 +58,6 @@ do
 done
 echo ']'
 
+
+# add element to an existing array (redirect to a file)
+cat userMappings.json | jq '.github_to_slack += [{"slack": "zzzslack", "github": "zzzgithub"}]'
