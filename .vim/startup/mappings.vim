@@ -17,8 +17,8 @@ nnoremap <C-l> <C-w>l
 
 "== copy and paste shortcuts into system clipboard
 " can use '+' or '*'
-vnoremap <F5> "*y
-nnoremap <F6> "*p
+vnoremap <F6> "*y
+nnoremap <F7> "*p
 
 "== quit without saving
 nnoremap <leader>q :quit<cr>
