@@ -61,3 +61,9 @@ echo ']'
 
 # add element to an existing array (redirect to a file)
 cat userMappings.json | jq '.github_to_slack += [{"slack": "zzzslack", "github": "zzzgithub"}]'
+
+# concatenate / combine json objects / files
+jq -s '.[0].bla[] * .[1]' file1 file2
+# concatenate string
+cat someJson.json | jq '.bla[] += { "greeting": "bye bye" }'
+
