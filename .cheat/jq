@@ -67,3 +67,6 @@ jq -s '.[0].bla[] * .[1]' file1 file2
 # concatenate string
 cat someJson.json | jq '.bla[] += { "greeting": "bye bye" }'
 
+# add element to existing array
+echo '[]' | jq '.[. | length] |= . + "bla"'
+JSONLIST=$(echo $JSONLIST | jq --arg row "$i" '.[. | length] |= . + $row')
