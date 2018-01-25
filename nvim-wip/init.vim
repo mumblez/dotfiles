@@ -176,28 +176,46 @@ call plug#begin()
 
 Plug 'neomake/neomake'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'sebdah/vim-delve'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
+Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
 Plug 'zchee/deoplete-go', { 'do': 'make' }
-"Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neocomplcache'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'scrooloose/nerdtree'
-Plug 'sebdah/vim-delve'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
-Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
 Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'
 Plug 'jodosha/vim-godebug'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'LnL7/vim-nix'
+Plug 'cespare/vim-toml'
+Plug 'edkolev/tmuxline.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'bling/vim-bufferline'
+Plug 'mattn/emmet-vim'
+Plug 'pearofducks/ansible-vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-packer'
+Plug 'godlygeek/tabular'
+Plug 'wincent/terminus'
+
+call plug#end()
+
+
 
 " brew install delve
 " xcode-select --install for dlv / lldb-server to work
 
 let g:delve_backend = "native"
 
-" Add plugins to &runtimepath
-call plug#end()
 
 " install missing plugins on start
 autocmd VimEnter *
