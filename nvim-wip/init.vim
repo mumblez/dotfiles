@@ -11,10 +11,6 @@
 " - goimports on save (using vim-go)
 " - auto-completion (using deoplete)
 "
-" First install vim-plug:
-" curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
-"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"
 " Then save this file as ~/.config/nvim/init.vim
 
 " Note: Skip initialization for vim-tiny or vim-small.
@@ -22,6 +18,18 @@ if 0 | endif
 
 if &compatible
   set nocompatible
+endif
+
+"== setup plug if not installed
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+
+if !filereadable(vimplug_exists)
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
 endif
 
 let g:mapleader = ","
@@ -37,6 +45,7 @@ command Tsplit split term://$SHELL
 command Tvsplit vsplit term://$SHELL
 command Ttabedit tabedit term://$SHELL
 
+set hidden
 
 "=== old vimrc ===
 filetype plugin indent on
@@ -272,15 +281,17 @@ let g:neosnippet#disable_runtime_snippets = {
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " show tab # not splits in tab
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#bufferline#overwrite_variables = 0
-"let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 """" Bufferline (show buffers on airline) config
 let g:bufferline_echo = 1 " no buffer display on the command line
 let g:bufferline_active_buffer_left = '>'
 let g:bufferline_active_buffer_right = ''
 let g:bufferline_show_bufnr = 1
-" let g:bufferline_active_highlight = 'StatusLineNC'
+let g:bufferline_active_highlight = 'StatusLineNC'
 " let g:bufferline_active_highlight = 'airline_c'
 " let g:bufferline_inactive_highlight = 'airline_c'
