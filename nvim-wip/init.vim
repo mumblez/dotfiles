@@ -207,7 +207,7 @@ Plug 'LnL7/vim-nix'
 Plug 'cespare/vim-toml'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tomtom/tcomment_vim'
-" Plug 'bling/vim-bufferline'
+Plug 'bling/vim-bufferline'
 Plug 'mattn/emmet-vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -245,21 +245,22 @@ imap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 imap <expr> <cr>    pumvisible() ? deoplete#close_popup() : "\<cr>"
 
 " vim-go mappings
-" autocmd FileType go nmap <buffer> <leader>r <plug>(go-run)
-" autocmd FileType go nmap <buffer> <leader>b <plug>(go-build)
-" autocmd FileType go nmap <buffer> <leader>t <plug>(go-test)
-" autocmd FileType go nmap <buffer> <leader>e <plug>(go-rename)
-" autocmd FileType go nmap <buffer> gd <plug>(go-def-vertical)
-" autocmd FileType go nmap <buffer> gd <plug>(go-def)
-" autocmd FileType go nmap <buffer> <c-]> <plug>(go-def)
-" autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
-" au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
+autocmd FileType go nmap <buffer> <leader>r <plug>(go-run)
+autocmd FileType go nmap <buffer> <leader>b <plug>(go-build)
+autocmd FileType go nmap <buffer> <leader>t <plug>(go-test)
+autocmd FileType go nmap <buffer> <leader>e <plug>(go-rename)
+autocmd FileType go nmap <buffer> <leader>d <plug>(go-doc)
+"autocmd FileType go nmap <buffer> gd <plug>(go-def-vertical)
+autocmd FileType go nmap <buffer> gd <plug>(go-def)
+autocmd FileType go nmap <buffer> <c-]> <plug>(go-def)
+autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
+"au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
 
 "== Load custom settings =="
 source ~/.vim/startup/color.vim
 source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
-" autocmd FileType go source ~/.vim/startup/golang.vim
+"autocmd FileType go source ~/.vim/startup/golang.vim
 "source ~/.vim/startup/golang.vim
 source ~/.vim/startup/python.vim
 "source ~/.vim/startup/airline.vim
@@ -283,15 +284,15 @@ let g:airline#extensions#tabline#tab_nr_type = 1 " show tab # not splits in tab
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#bufferline#overwrite_variables = 0
+let g:airline#extensions#bufferline#overwrite_variables = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 """" Bufferline (show buffers on airline) config
 let g:bufferline_echo = 1 " no buffer display on the command line
 let g:bufferline_active_buffer_left = '>'
-let g:bufferline_active_buffer_right = ''
+let g:bufferline_active_buffer_right = '<'
 let g:bufferline_show_bufnr = 1
-let g:bufferline_active_highlight = 'StatusLineNC'
-" let g:bufferline_active_highlight = 'airline_c'
+" let g:bufferline_active_highlight = 'StatusLineNC'
+let g:bufferline_active_highlight = 'airline_c'
 " let g:bufferline_inactive_highlight = 'airline_c'
