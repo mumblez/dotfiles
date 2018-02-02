@@ -15,11 +15,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"== copy and paste shortcuts into system clipboard
-" can use '+' or '*'
-vnoremap <F6> "*y
-nnoremap <F7> "*p
-
 "== quit without saving
 nnoremap <leader>q :quit<cr>
 nnoremap <leader>Q :qa!<cr>
@@ -28,12 +23,17 @@ nnoremap <leader>Q :qa!<cr>
 nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
 
-"== Fn Toggles =="
+"====== Fn Toggles / mappings ========"
 map <F2> :NERDTreeToggle<CR>
 "set pastetoggle=<F3>
 nnoremap <F3> :set number!<CR>
 nnoremap <F4> :set spell!<CR>
 nnoremap <F5> :set ft=sh<CR>
+"== copy and paste shortcuts into system clipboard
+" can use '+' or '*'
+vnoremap <F6> "*y
+nnoremap <F7> "*p
+nnoremap <F8> :GFiles <CR>
 
 "== Golang run =="
 "map <F5> :GoRun %<CR>
