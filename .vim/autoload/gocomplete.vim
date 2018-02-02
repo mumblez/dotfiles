@@ -1,0 +1,1 @@
+/Users/yusuf/.config/nvim/plugged/gocode/vim/autoload/gocomplete.vim
