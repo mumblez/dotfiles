@@ -63,7 +63,7 @@ nnoremap <leader>ccl :cclose<CR>
 "
 " Quick folding toggle
 nnoremap <space> za
-set foldmethod=indent
+set foldmethod=manual
 set foldlevel=99
 
 "== save read-only file
