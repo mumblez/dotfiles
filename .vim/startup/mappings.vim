@@ -33,7 +33,11 @@ nnoremap <F5> :set ft=sh<CR>
 " can use '+' or '*'
 vnoremap <F6> "*y
 nnoremap <F7> "*p
-nnoremap <F8> :GFiles <CR>
+"== fzf shortcuts
+nnoremap \g :GFiles <CR>
+nnoremap \l :Locate <CR>
+
+nnoremap \b :bd <CR>
 
 "== Golang run =="
 "map <F5> :GoRun %<CR>
