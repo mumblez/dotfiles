@@ -34,6 +34,8 @@ endif
 
 let g:mapleader = ","
 
+set foldmethod=manual
+
 "set inccommand=split
 
 set noshowmode
