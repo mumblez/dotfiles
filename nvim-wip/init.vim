@@ -274,6 +274,7 @@ if executable('rustc')
         let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
     endif
 endif
+let g:racer_experimental_completer = 1
 
 "== Load custom settings =="
 source ~/.vim/startup/color.vim
