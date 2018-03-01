@@ -216,6 +216,8 @@ Plug 'hashivim/vim-terraform'
 Plug 'hashivim/vim-packer'
 Plug 'godlygeek/tabular'
 Plug 'wincent/terminus'
+Plug 'rust-lang/rust.vim'
+Plug 'sebastianmarkow/deoplete-rust'
 
 call plug#end()
 
