@@ -258,6 +258,11 @@ autocmd FileType go nmap <buffer> gd <plug>(go-def)
 autocmd FileType go nmap <buffer> <c-]> <plug>(go-def)
 autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
 "au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
+"
+" rust
+let g:rustfmt_autosave = 1
+let g:deoplete#sources#rust#racer_binary=expand('~/.cargo/bin/racer')
+let g:deoplete#sources#rust#rust_source_path=expand('~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src')
 
 "== Load custom settings =="
 source ~/.vim/startup/color.vim
@@ -299,3 +304,4 @@ let g:bufferline_show_bufnr = 1
 " let g:bufferline_active_highlight = 'StatusLineNC'
 let g:bufferline_active_highlight = 'airline_c'
 " let g:bufferline_inactive_highlight = 'airline_c'
+
