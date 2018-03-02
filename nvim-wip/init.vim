@@ -130,34 +130,42 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 let g:deoplete#sources#go#align_class = 1
 
 " neomake
-autocmd BufWritePost * Neomake
-let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
-let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
-let g:neomake_go_enabled_makers = [ 'go', 'gometalinter' ]
-let g:neomake_go_gometalinter_maker = {
-  \ 'args': [
-  \   '--tests',
-  \   '--enable-gc',
-  \   '--concurrency=3',
-  \   '--fast',
-  \   '-D', 'aligncheck',
-  \   '-D', 'dupl',
-  \   '-D', 'gocyclo',
-  \   '-D', 'gotype',
-  \   '-E', 'errcheck',
-  \   '-E', 'misspell',
-  \   '-E', 'unused',
-  \   '%:p:h',
-  \ ],
-  \ 'append_file': 0,
-  \ 'errorformat':
-  \   '%E%f:%l:%c:%trror: %m,' .
-  \   '%W%f:%l:%c:%tarning: %m,' .
-  \   '%E%f:%l::%trror: %m,' .
-  \   '%W%f:%l::%tarning: %m'
-  \ }
+" autocmd BufWritePost * Neomake
+" let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
+" let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
+" let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
+" let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
+" let g:neomake_go_enabled_makers = [ 'go', 'gometalinter' ]
+" let g:neomake_go_gometalinter_maker = {
+"   \ 'args': [
+"   \   '--tests',
+"   \   '--enable-gc',
+"   \   '--concurrency=3',
+"   \   '--fast',
+"   \   '-D', 'aligncheck',
+"   \   '-D', 'dupl',
+"   \   '-D', 'gocyclo',
+"   \   '-D', 'gotype',
+"   \   '-E', 'errcheck',
+"   \   '-E', 'misspell',
+"   \   '-E', 'unused',
+"   \   '%:p:h',
+"   \ ],
+"   \ 'append_file': 0,
+"   \ 'errorformat':
+"   \   '%E%f:%l:%c:%trror: %m,' .
+"   \   '%W%f:%l:%c:%tarning: %m,' .
+"   \   '%E%f:%l::%trror: %m,' .
+"   \   '%W%f:%l::%tarning: %m'
+"   \ }
+
+" ale
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
+
 
 " vim-go
 let g:go_def_mapping_enabled = 1
@@ -183,7 +191,7 @@ let g:go_snippet_engine = "neosnippet"
 " plugins
 call plug#begin()
 
-Plug 'neomake/neomake'
+"==Plug 'neomake/neomake'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'sebdah/vim-delve'
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' }
@@ -218,6 +226,7 @@ Plug 'godlygeek/tabular'
 Plug 'wincent/terminus'
 Plug 'rust-lang/rust.vim'
 Plug 'sebastianmarkow/deoplete-rust'
+Plug 'w0rp/ale'
 
 call plug#end()
 
