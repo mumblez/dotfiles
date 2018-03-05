@@ -34,3 +34,5 @@ docker images
 # tail logs
 docker logs -f <container_id>
 
+# cleanup
+docker system prune -a -f
