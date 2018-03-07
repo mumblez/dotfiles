@@ -70,3 +70,7 @@ cat someJson.json | jq '.bla[] += { "greeting": "bye bye" }'
 # add element to existing array
 echo '[]' | jq '.[. | length] |= . + "bla"'
 JSONLIST=$(echo $JSONLIST | jq --arg row "$i" '.[. | length] |= . + $row')
+
+# delete element in array
+cat db_mappings.json | jq '. | del( .service_repos[] | select (.database == "cases"))'
+
