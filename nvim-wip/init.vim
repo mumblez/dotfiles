@@ -227,6 +227,7 @@ Plug 'wincent/terminus'
 Plug 'rust-lang/rust.vim'
 Plug 'sebastianmarkow/deoplete-rust'
 Plug 'w0rp/ale'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
 
