@@ -1,0 +1,11 @@
+# find and start bastion
+
+# get instance id
+aws ec2 describe-instances --filters "Name=tag:Name,Values=Bastion" | jq .Reservations[].Instances[].InstanceId
+
+# get Public IP
+aws ec2 describe-instances --filters "Name=tag:Name,Values=Bastion" | jq .Reservations[].Instances[].PublicIpAddress
+
+# start instance
+aws ec2 start-instances --instance-ids i-05c4e7927dc249a6c
+
