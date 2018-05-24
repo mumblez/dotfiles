@@ -226,6 +226,7 @@ Plug 'godlygeek/tabular'
 Plug 'wincent/terminus'
 Plug 'rust-lang/rust.vim'
 Plug 'sebastianmarkow/deoplete-rust'
+"Plug 'racer-rust/vim-racer'
 Plug 'w0rp/ale'
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -272,7 +273,10 @@ autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
 " rust
 let g:rustfmt_autosave = 1
 if executable('racer')
+  " cargo install racer
+  " rustup component add rust-src
   let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
+  let g:racer_cmd = systemlist('which racer')[0]
 endif
 
 if executable('rustc')
@@ -284,7 +288,11 @@ if executable('rustc')
         let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
     endif
 endif
-let g:racer_experimental_completer = 1
+"let g:racer_experimental_completer = 1
+
+" rust mappings
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 "== Load custom settings =="
 source ~/.vim/startup/color.vim
