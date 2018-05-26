@@ -246,7 +246,7 @@ autocmd VimEnter *
   \|   PlugInstall
   \| endif
 
-call deoplete#custom#set('_', 'converters',
+call deoplete#custom#source('_', 'converters',
       \ ['converter_auto_paren',
       \  'converter_auto_delimiter',
       \  'converter_remove_overlap'])
@@ -288,11 +288,13 @@ if executable('rustc')
         let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
     endif
 endif
-"let g:racer_experimental_completer = 1
+" let g:racer_experimental_completer = 1
 
 " rust mappings
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+" au FileType rust nmap gd <Plug>(rust-def)
+" au FileType rust nmap <leader>gd <Plug>(rust-doc)
+au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
+au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
 
 "== Load custom settings =="
 source ~/.vim/startup/color.vim
