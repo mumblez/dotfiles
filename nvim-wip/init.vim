@@ -232,6 +232,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_github=1
 " brew install grip
+Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
@@ -291,7 +292,7 @@ if executable('rustc')
         let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
     endif
 endif
-" let g:racer_experimental_completer = 1
+let g:racer_experimental_completer = 1
 
 " rust mappings
 " au FileType rust nmap gd <Plug>(rust-def)
