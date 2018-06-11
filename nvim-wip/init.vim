@@ -233,6 +233,7 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_github=1
 " brew install grip
 Plug 'skywind3000/asyncrun.vim'
+let g:asyncrun_open = 15
 
 call plug#end()
 
@@ -299,6 +300,9 @@ let g:racer_experimental_completer = 1
 " au FileType rust nmap <leader>gd <Plug>(rust-doc)
 au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
 au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
+au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr>
+au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run<cr>
+au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
 
 "== Load custom settings =="
 source ~/.vim/startup/color.vim
