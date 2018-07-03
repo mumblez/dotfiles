@@ -69,3 +69,6 @@ gcloud container images list --repository eu.gcr.io/karhoo-common
 gcloud auth application-default login
 # (launches browser to authenticate and saves json key to ~/.config/gcloud/application_default_credentials.json which
 # we can export as GOOGLE_APPLICATION_CREDENTIALS and terraform will pick this up)
+
+# list grantable roles
+gcloud iam list-grantable-roles //cloudresourcemanager.googleapis.com/projects/<some project>
