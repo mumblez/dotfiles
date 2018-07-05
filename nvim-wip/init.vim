@@ -234,6 +234,7 @@ let vim_markdown_preview_github=1
 " brew install grip
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 15
+"Plug 'wokalski/autocomplete-flow'
 
 call plug#end()
 
