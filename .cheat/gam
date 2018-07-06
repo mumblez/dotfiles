@@ -1,0 +1,9 @@
+# delete accidentally sent email
+# get the message ID (show original message) and prefix 'rfc822msgid:' in the query
+
+## for all users
+gam all users delete messages query rfc822msgid:CACQE+CmLnCpqFAdPAM2250aEuGx+ZxcASGOYgnLcBYLmVRYvpw@mail.gmail.com doit
+
+## for single user
+gam user zilesh delete messages query rfc822msgid:CACQE+CmLnCpqFAdPAM2250aEuGx+ZxcASGOYgnLcBYLmVRYvpw@mail.gmail.com doit
+
