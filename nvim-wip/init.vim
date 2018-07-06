@@ -236,6 +236,7 @@ Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 15
 "Plug 'wokalski/autocomplete-flow'
 Plug 'elmcast/elm-vim'
+Plug 'pbogut/deoplete-elm'
 
 call plug#end()
 
