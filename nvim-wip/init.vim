@@ -235,6 +235,7 @@ let vim_markdown_preview_github=1
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 15
 "Plug 'wokalski/autocomplete-flow'
+Plug 'elmcast/elm-vim'
 
 call plug#end()
 
