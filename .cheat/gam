@@ -9,3 +9,12 @@ gam user zilesh delete messages query rfc822msgid:CACQE+CmLnCpqFAdPAM2250aEuGx+Z
 
 # search and filter users
 gam print users query "orgUnitPath='/Path/To/OU' isSuspended=False"
+
+# misc
+gam info domain
+
+gam create user jsmith firstname John lastname Smith password secretpass changepassword on
+
+gam update user jsmith suspended on
+
+gam update group announcements add member jsmith
