@@ -7,3 +7,5 @@ gam all users delete messages query rfc822msgid:CACQE+CmLnCpqFAdPAM2250aEuGx+Zxc
 ## for single user
 gam user zilesh delete messages query rfc822msgid:CACQE+CmLnCpqFAdPAM2250aEuGx+ZxcASGOYgnLcBYLmVRYvpw@mail.gmail.com doit
 
+# search and filter users
+gam print users query "orgUnitPath='/Path/To/OU' isSuspended=False"
