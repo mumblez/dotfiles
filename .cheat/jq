@@ -74,3 +74,6 @@ JSONLIST=$(echo $JSONLIST | jq --arg row "$i" '.[. | length] |= . + $row')
 # delete element in array
 cat db_mappings.json | jq '. | del( .service_repos[] | select (.database == "cases"))'
 
+# using regex to select and check multiple queries (test)
+# https://til.hashrocket.com/posts/uv0bjiokwk-use-jq-to-filter-objects-list-with-regex
+gcloud projects get-iam-policy karhoo-staging --format=json | jq '.bindings[] | select(.role | test(".bigquery.|.KarhooData.|.KarhooMicro."))'
