@@ -31,4 +31,5 @@ CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
 GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
 
 # connect via socket
-psql -f "user=someUser host=/path/to/sock/dir" -w # -w means not to ask for pass, but can provide in a ~/.pgpass file, user must match
+psql "user=someUser host=/path/to/sock/dir" -w # -w means not to ask for pass, but can provide in a ~/.pgpass file, user must match
+psql -U postgres -h /path/to/socket/dir -w
