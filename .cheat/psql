@@ -33,3 +33,6 @@ GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
 # connect via socket
 psql "user=someUser host=/path/to/sock/dir" -w # -w means not to ask for pass, but can provide in a ~/.pgpass file, user must match
 psql -U postgres -h /path/to/socket/dir -w
+
+# connection options
+https://www.postgresql.org/docs/current/static/libpq-connect.html#LIBPQ-CONNECT-PASSFILE
