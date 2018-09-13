@@ -36,3 +36,21 @@ psql -U postgres -h /path/to/socket/dir -w
 
 # connection options
 https://www.postgresql.org/docs/current/static/libpq-connect.html#LIBPQ-CONNECT-PASSFILE
+
+# commands once logged in
+http://www.postgresonline.com/special_feature.php?sf_name=postgresql83_psql_cheatsheet&outputformat=html
+
+## List databases
+\l
+
+## List / Describe tables
+#
+\dt
+
+## Describe tables containing 's'
+\dt *s*
+
+## List users
+\du
+
+
