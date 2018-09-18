@@ -1,0 +1,13 @@
+# capture network traffic, like http and replay
+
+# install goreplay
+go get github.com/buger/goreplay
+
+# getting started https://github.com/buger/goreplay/wiki/Getting+Started
+
+# ensure you have a server listening, then launch goreplay on same port to capture, e.g.
+sudo goreplay --input-raw :5555 --output-file=gor-gwg # need sudo to analyze raw traffic
+
+# and to replay
+goreplay --input-file gor-gwg_0 --output-http="http://localhost:5555/gwg"
+
