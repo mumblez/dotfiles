@@ -19,7 +19,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>q :quit<cr>
 nnoremap <leader>Q :qa!<cr>
 
-"== add blank lines above and below current line
+"== add blank lines above and below current line.
 nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
 
