@@ -58,6 +58,11 @@ nnoremap <leader>cp :cp<CR>
 nnoremap <leader>cl :clist<CR>
 nnoremap <leader>ccl :cclose<CR>
 
+"== location list
+nnoremap <silent> <C-Up> :lprevious<CR>
+nnoremap <silent> <C-Down> :lnext<CR>
+
+
 " example of creating a custom snippet
 "nnoremap ,html :-1read /Users/yusuf/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
 "
