@@ -240,7 +240,6 @@ let g:asyncrun_open = 15
 "Plug 'wokalski/autocomplete-flow'
 Plug 'elmcast/elm-vim'
 Plug 'pbogut/deoplete-elm'
-" ctags, ensure its installed, for non-linux, install universal ctags:
 " brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 " mkdir ~/.cache
 Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
@@ -336,6 +335,56 @@ source ~/.vim/startup/terraform.vim
 
 set rtp+=~/.fzf
 
+" ctags for go
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+    \ }
+
+let g:tagbar_type_rust = {
+    \ 'ctagstype': 'rust',
+    \ 'kinds': [
+        \ 's:structs',
+        \ 'i:impls, trait implementations',
+        \ 't:traits',
+        \ 'c:consts, static constants',
+        \ 'f:functions',
+        \ 'g:enums',
+        \ 'T:types, type defs',
+        \ 'v:variables',
+        \ 'M:macros',
+        \ 'm:fields',
+        \ 'e:variants',
+        \ 'F:methods'
+    \ ]}
+let g:tagbar_authshowtag = 1
+" colors - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+" fix highlight and function signature color 
+highlight TagbarSignature ctermfg=37
+highlight TagbarHighlight ctermfg=37
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
