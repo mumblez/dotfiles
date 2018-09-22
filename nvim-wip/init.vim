@@ -118,6 +118,15 @@ let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
 "=== end of old vimrc  ================
 
+"== return to last edit position when opening files
+augroup last_edit
+  autocmd!
+  autocmd BufReadPost *
+       \ if line("'\"") > 0 && line("'\"") <= line("$") |
+       \   exe "normal! g`\"" |
+       \ endif
+augroup END
+
 " deoplete
 set completeopt=longest,menuone " auto complete setting
 let g:deoplete#enable_at_startup = 1
@@ -292,6 +301,7 @@ autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
 "au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
 "
 " rust
+"let g:ale_rust_cargo_use_check = 1
 let g:rustfmt_autosave = 1
 if executable('racer')
   " cargo install racer
@@ -322,6 +332,9 @@ au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run<cr>
 au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
 
 "== Load custom settings =="
+" for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
+"     exe 'source' f
+" endfor
 source ~/.vim/startup/color.vim
 source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
