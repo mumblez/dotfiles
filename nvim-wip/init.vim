@@ -253,7 +253,6 @@ call plug#end()
 " tell gutentags how to detect root of a project to build tags for
 autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
 autocmd FileType rust call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
-autocmd FileType rust :TagbarOpen
 
 
 " brew install delve
@@ -335,7 +334,7 @@ source ~/.vim/startup/terraform.vim
 
 set rtp+=~/.fzf
 
-" ctags for go
+" ctags for go - brew install gotags
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
 	\ 'kinds'     : [
@@ -364,27 +363,37 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
     \ }
 
-let g:tagbar_type_rust = {
-    \ 'ctagstype': 'rust',
-    \ 'kinds': [
-        \ 's:structs',
-        \ 'i:impls, trait implementations',
-        \ 't:traits',
-        \ 'c:consts, static constants',
-        \ 'f:functions',
-        \ 'g:enums',
-        \ 'T:types, type defs',
-        \ 'v:variables',
-        \ 'M:macros',
-        \ 'm:fields',
-        \ 'e:variants',
-        \ 'F:methods'
-    \ ]}
-let g:tagbar_authshowtag = 1
+
+
+" add to $HOME/.ctags -
+" https://github.com/nikomatsakis/rust-ctags/blob/master/ctags.rust, more
+" reliable method definitions than putting definition with tagbar
+" cargo install rusty-tags
+" let g:tagbar_type_rust = {
+"     \ 'ctagstype': 'rust',
+"     \ 'kinds': [
+"         \ 's:structs',
+"         \ 'i:impls, trait implementations',
+"         \ 't:traits',
+"         \ 'F:methods',
+"         \ 'c:consts, static constants',
+"         \ 'f:functions',
+"         \ 'g:enums',
+"         \ 'T:types, type defs',
+"         \ 'v:variables',
+"         \ 'M:macros',
+"         \ 'm:fields',
+"         \ 'e:variants'
+"     \ ]}
+
+"\ 'ctagsargs' : '-sort -silent'
+"\ 'ctagsbin'  : 'rusty-tags'}
+let g:tagbar_autoshowtag = 1
+autocmd FileType go,rust nested :TagbarOpen
 " colors - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 " fix highlight and function signature color 
 highlight TagbarSignature ctermfg=37
-highlight TagbarHighlight ctermfg=37
+highlight TagbarHighlight ctermfg=119
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
