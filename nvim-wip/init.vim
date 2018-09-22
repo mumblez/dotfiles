@@ -240,9 +240,21 @@ let g:asyncrun_open = 15
 "Plug 'wokalski/autocomplete-flow'
 Plug 'elmcast/elm-vim'
 Plug 'pbogut/deoplete-elm'
+" ctags, ensure its installed, for non-linux, install universal ctags:
+" brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+" mkdir ~/.cache
+Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
+" build and cache tags rather than maintain tags file for each project
+" need to also ensure $HOME/.ctags exists with definitions for each language
+Plug 'ludovicchabant/vim-gutentags'
+let g:gutentags_cache_dir = '~/.cache/gutentags'
 
 call plug#end()
 
+" tell gutentags how to detect root of a project to build tags for
+autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
+autocmd FileType rust call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
+autocmd FileType rust :TagbarOpen
 
 
 " brew install delve
