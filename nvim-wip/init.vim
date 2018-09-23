@@ -256,6 +256,7 @@ Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
 " need to also ensure $HOME/.ctags exists with definitions for each language
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.cache/gutentags'
+"Plug 'romainl/vim-qf'
 
 call plug#end()
 
@@ -436,3 +437,9 @@ let g:bufferline_show_bufnr = 1
 let g:bufferline_active_highlight = 'airline_c'
 " let g:bufferline_inactive_highlight = 'airline_c'
 
+" augroup MyGroup
+"     autocmd!
+"     if exists('##QuitPre')
+"         autocmd QuitPre * if &filetype != 'qf' | silent! lclose | endif
+"     endif
+" augroup END
