@@ -1,5 +1,5 @@
 {
-  "Working Directory" : "\/Users\/yt",
+  "Working Directory" : "\/Users\/yusuf",
   "Prompt Before Closing 2" : 0,
   "Selected Text Color" : {
     "Green Component" : 0.78764206171035767,
@@ -8,13 +8,13 @@
   },
   "Rows" : 25,
   "Ansi 11 Color" : {
-    "Red Component" : 0.702911376953125,
+    "Red Component" : 0.76531982421875,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.016474485397338867,
+    "Blue Component" : 0.016547518782317638,
     "Alpha Component" : 1,
-    "Green Component" : 0.6639433225667134
+    "Green Component" : 0.72281310655394704
   },
-  "Use Italic Font" : false,
+  "Use Italic Font" : true,
   "Foreground Color" : {
     "Green Component" : 0.94316399097442627,
     "Red Component" : 0.81984084844589233,
@@ -317,9 +317,11 @@
     "Green Component" : 0.94039824898451141
   },
   "Ansi 2 Color" : {
-    "Green Component" : 0.54115492105484009,
-    "Red Component" : 0.44977453351020813,
-    "Blue Component" : 0.020208755508065224
+    "Red Component" : 0.13836117255959834,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.0092787519097328186,
+    "Alpha Component" : 1,
+    "Green Component" : 0.67266845703125
   },
   "Background Image Is Tiled" : false,
   "Send Code When Idle" : false,
@@ -364,17 +366,19 @@
   "Blinking Cursor" : false,
   "Guid" : "96656579-309A-429E-A07E-600437DDBD4B",
   "Ansi 1 Color" : {
-    "Green Component" : 0.10840655118227005,
-    "Red Component" : 0.81926977634429932,
-    "Blue Component" : 0.14145714044570923
+    "Red Component" : 0.84991455078125,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.38226442411541939,
+    "Alpha Component" : 1,
+    "Green Component" : 0.39037383848839724
   },
   "Idle Code" : 0,
   "Ansi 10 Color" : {
-    "Red Component" : 0.1488129872385959,
+    "Red Component" : 0.15493593806193695,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.13506137765944004,
+    "Blue Component" : 0.13872820883989334,
     "Alpha Component" : 1,
-    "Green Component" : 0.7366943359375
+    "Green Component" : 0.762725830078125
   },
   "Ansi 8 Color" : {
     "Green Component" : 0.11783610284328461,
