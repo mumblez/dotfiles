@@ -176,23 +176,6 @@ let g:ale_sign_warning = '⚠'
 let g:airline#extensions#ale#enabled = 1
 
 
-" vim-go
-let g:go_def_mapping_enabled = 1
-let g:go_fmt_command = 'goimports'
-let g:go_fmt_fail_silently = 1
-let g:go_term_enabled = 1
-
-let g:go_highlight_functions = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_auto_type_info = 1
-let g:go_snippet_engine = "neosnippet"
 
 " use real tabs in .go files, not spaces
 "autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
@@ -201,13 +184,16 @@ let g:go_snippet_engine = "neosnippet"
 call plug#begin()
 
 "==Plug 'neomake/neomake'
+" if errors when editing go files, on vim-go update, in terminal `gocode exit`, re-run GoInstallBinaries
+" or GoUpdateBinaries, 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'sebdah/vim-delve'
-Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' }
+"Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' }
+Plug 'jodosha/vim-godebug'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
 Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
-Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neocomplcache'
@@ -218,7 +204,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 "Plug 'mhinz/vim-signify'
-Plug 'jodosha/vim-godebug'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-surround'
@@ -259,6 +244,24 @@ let g:gutentags_cache_dir = '~/.cache/gutentags'
 "Plug 'romainl/vim-qf'
 
 call plug#end()
+
+" vim-go
+let g:go_def_mapping_enabled = 1
+let g:go_fmt_command = 'goimports'
+let g:go_fmt_fail_silently = 1
+let g:go_term_enabled = 1
+
+let g:go_highlight_functions = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_auto_type_info = 1
+let g:go_snippet_engine = "neosnippet"
 
 " tell gutentags how to detect root of a project to build tags for
 autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
@@ -403,7 +406,8 @@ let g:tagbar_type_go = {
 
 "\ 'ctagsargs' : '-sort -silent'
 "\ 'ctagsbin'  : 'rusty-tags'}
-let g:tagbar_autoshowtag = 1
+let g:tagbar_autoshowtag = 0
+"autocmd FileType go,rust nested :TagbarOpen
 autocmd FileType go,rust nested :TagbarOpen
 " colors - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 " fix highlight and function signature color 
