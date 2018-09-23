@@ -246,11 +246,10 @@ let g:gutentags_cache_dir = '~/.cache/gutentags'
 call plug#end()
 
 " vim-go
-let g:go_def_mapping_enabled = 1
+" let g:go_def_mapping_enabled = 1
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_fail_silently = 1
 let g:go_term_enabled = 1
-
 let g:go_highlight_functions = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
@@ -260,7 +259,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_chan_whitespace_error = 1
 let g:go_highlight_extra_types = 1
-let g:go_auto_type_info = 1
+" let g:go_auto_type_info = 1 " seems to cause errors
 let g:go_snippet_engine = "neosnippet"
 
 " tell gutentags how to detect root of a project to build tags for
@@ -406,9 +405,9 @@ let g:tagbar_type_go = {
 
 "\ 'ctagsargs' : '-sort -silent'
 "\ 'ctagsbin'  : 'rusty-tags'}
-let g:tagbar_autoshowtag = 0
-"autocmd FileType go,rust nested :TagbarOpen
-autocmd FileType go,rust nested :TagbarOpen
+let g:tagbar_autoshowtag = 1
+"autocmd FileType go,rust nested :TagbarOpen "annoying on close, have to press
+"enter twice
 " colors - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 " fix highlight and function signature color 
 highlight TagbarSignature ctermfg=37

@@ -33,7 +33,7 @@ nnoremap <F5> :set ft=sh<CR>
 " can use '+' or '*'
 vnoremap <F6> "*y
 nnoremap <F7> "*p
-nnoremap <F8> :TagbarToggle<CR>
+nnoremap <F8> :TagbarOpenAutoClose<CR>
 
 "== fzf shortcuts
 nnoremap \g :GFiles <CR>
