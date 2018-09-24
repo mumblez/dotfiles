@@ -37,7 +37,7 @@ nnoremap <F8> :TagbarOpenAutoClose<CR>
 
 "== fzf shortcuts
 nnoremap \g :GFiles <CR>
-nnoremap \l :Locate <CR>
+nnoremap \l :Locate 
 
 nnoremap \b :bd <CR>
 
