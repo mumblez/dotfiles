@@ -248,6 +248,10 @@ Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 "Plug 'romainl/vim-qf'
+" this only works if you manually clone to ~/.config/nvim/plugged
+" then add below line. Use 'Ack <search term>', dd irrelevant lines/files,
+" then 'Acks /replace/me/' to do multi-file search and replace
+Plug 'wincent/ferret'
 
 call plug#end()
 
