@@ -54,19 +54,21 @@ nnoremap <C-n> :bnext<CR>
 "previous buffer
 nnoremap <C-p> :bprevious<CR>
 
-"== quickfix list (backwards and forwards through list)
-nnoremap <leader>cn :cn<CR>
-nnoremap <leader>cp :cp<CR>
-nnoremap <leader>cl :clist<CR>
-nnoremap <leader>ccl :cclose<CR>
-
-"== location list
-nnoremap <silent> <C-Up> :lprevious<CR>
-nnoremap <silent> <C-Down> :lnext<CR>
+"== QUICKFIX window navigation
+" cycle when we hit end / beginning
+command! Cnext try | cnext | catch | cfirst | catch | endtry
+command! Cprev try | cprev | catch | clast | catch | endtry
+nnoremap <silent> <C-Down> :Cnext<CR>
+nnoremap <silent> <C-Up> :Cprev<CR>
+"== will close quickfix window if all last window
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
 
 
 " example of creating a custom snippet
-"nnoremap ,html :-1read /Users/yusuf/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
+nnoremap ,html :-1read ~/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
 "
 " Quick folding toggle
 nnoremap <space> za

@@ -172,6 +172,10 @@ let g:deoplete#sources#go#align_class = 1
 " Error and warning signs.
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 
