@@ -340,8 +340,8 @@ let g:racer_experimental_completer = 1
 au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
 au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
 au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr>
-" au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run -q<cr>
-au FileType rust nmap <buffer> <leader>r :sp term://cargo run -q<cr>
+au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run -q<cr>
+" au FileType rust nmap <buffer> <leader>r :sp term://cargo run -q<cr>
 " au FileType rust nmap <buffer> <leader>r :AsyncRun RustRun<cr>
 au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
 
