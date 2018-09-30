@@ -240,11 +240,15 @@ let g:asyncrun_open = 15
 "Plug 'wokalski/autocomplete-flow'
 Plug 'elmcast/elm-vim'
 Plug 'pbogut/deoplete-elm'
-" brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-" mkdir ~/.cache
 Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
 " build and cache tags rather than maintain tags file for each project
 " need to also ensure $HOME/.ctags exists with definitions for each language
+" using universal ctags, can drop tag definitions in ~/.ctags.d/<lang>.ctags
+" but rusty-tags will use from other plugins, e.g.
+" ~/.config/nvim/plugged/rust/ctags/rust.ctags
+" brew install --HEAD universal-ctags/universal-ctags/universal-ctags # need
+" this for recursive support!
+" mkdir ~/.cache # for vim-gutentags to cache tag files
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 "Plug 'romainl/vim-qf'
@@ -273,10 +277,13 @@ let g:go_highlight_extra_types = 1
 let g:go_snippet_engine = "neosnippet"
 
 " tell gutentags how to detect root of a project to build tags for
+" will cache tags file in ~/.cache/gutentags/
+" enables native <C-]> and <C-t> to hop around (without using tagbar menu)
 autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
 autocmd FileType rust call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
-
-
+" autocmd FileType rust call tagbar#debug#start_debug()
+ 
+" r#debug#start_debug()call
 " brew install delve
 " xcode-select --install for dlv / lldb-server to work
 
@@ -339,7 +346,8 @@ let g:racer_experimental_completer = 1
 " au FileType rust nmap <leader>gd <Plug>(rust-doc)
 au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
 au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr>
+" au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr> " weird errors 
+au FileType rust nmap <buffer> <leader>t :!cargo test<cr>
 au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run -q<cr>
 " au FileType rust nmap <buffer> <leader>r :sp term://cargo run -q<cr>
 " au FileType rust nmap <buffer> <leader>r :AsyncRun RustRun<cr>
@@ -392,36 +400,35 @@ let g:tagbar_type_go = {
 
 
 
-" add to $HOME/.ctags -
-" https://github.com/nikomatsakis/rust-ctags/blob/master/ctags.rust, more
-" reliable method definitions than putting definition with tagbar
-" cargo install rusty-tags
-" let g:tagbar_type_rust = {
-"     \ 'ctagstype': 'rust',
-"     \ 'kinds': [
-"         \ 's:structs',
-"         \ 'i:impls, trait implementations',
-"         \ 't:traits',
-"         \ 'F:methods',
-"         \ 'c:consts, static constants',
-"         \ 'f:functions',
-"         \ 'g:enums',
-"         \ 'T:types, type defs',
-"         \ 'v:variables',
-"         \ 'M:macros',
-"         \ 'm:fields',
-"         \ 'e:variants'
-"     \ ]}
+" it'll use ctags from rust.vim instead
+" also crashes on mod tests when below def enabled, but also works when not
+" enabled!
+" workaround is to open vim first (without a file) then open the file within
+" vim!
+" https://github.com/majutsushi/tagbar/wiki#rust
+"  let g:tagbar_type_rust = {
+"     \ 'ctagstype' : 'rust',
+"     \ 'kinds' : [
+"         \'T:types,type definitions',
+"         \'f:functions,function definitions',
+"         \'g:enum,enumeration names',
+"         \'s:structure names',
+"         \'m:modules,module names',
+"         \'c:consts,static constants',
+"         \'t:traits',
+"         \'i:impls,trait implementations',
+"     \]
+"     \}
 
-"\ 'ctagsargs' : '-sort -silent'
-"\ 'ctagsbin'  : 'rusty-tags'}
 let g:tagbar_autoshowtag = 1
-"autocmd FileType go,rust nested :TagbarOpen "annoying on close, have to press
-"enter twice
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose = 1
+" autocmd FileType go,rust nested :TagbarOpen "annoying on close, have to press, also breaks colouring
 " colors - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 " fix highlight and function signature color 
 highlight TagbarSignature ctermfg=37
 highlight TagbarHighlight ctermfg=119
+" also strange errors when there are tests within a lib.rs
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -456,3 +463,5 @@ let g:bufferline_active_highlight = 'airline_c'
 "         autocmd QuitPre * if &filetype != 'qf' | silent! lclose | endif
 "     endif
 " augroup END
+" autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+" autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
