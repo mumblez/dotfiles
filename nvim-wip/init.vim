@@ -41,9 +41,9 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
 tnoremap <Esc> <C-\><C-n>
-command Tsplit split term://$SHELL
-command Tvsplit vsplit term://$SHELL
-command Ttabedit tabedit term://$SHELL
+" command Tsplit split term://$SHELL
+" command Tvsplit vsplit term://$SHELL
+" command Ttabedit tabedit term://$SHELL
 
 set hidden
 
@@ -177,8 +177,9 @@ let g:deoplete#sources#go#align_class = 1
 " Error and warning signs.
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_set_loclist = 1
+" breaks navigating items in qf across multi files
+let g:ale_set_quickfix = 0
 let g:ale_open_list = 1
 
 " Enable integration with airline.
@@ -188,6 +189,12 @@ let g:airline#extensions#ale#enabled = 1
 
 " use real tabs in .go files, not spaces
 "autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
+
+"== create cache dir, for tags, vim sessions...
+let cache_dir = expand('~/.cache')
+if !isdirectory(cache_dir)
+    silent! execute "!mkdir " . cache_dir
+endif
 
 " plugins
 call plug#begin()
@@ -253,18 +260,25 @@ Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
 " ~/.config/nvim/plugged/rust/ctags/rust.ctags
 " brew install --HEAD universal-ctags/universal-ctags/universal-ctags # need
 " this for recursive support!
-" mkdir ~/.cache # for vim-gutentags to cache tag files
+" mkdir ~/.cache/gutentags # for vim-gutentags to cache tag files
 Plug 'ludovicchabant/vim-gutentags'
-let g:gutentags_cache_dir = '~/.cache/gutentags'
+let g:gutentags_cache_dir = cache_dir . '/gutentags'
 "Plug 'romainl/vim-qf'
 " this only works if you manually clone to ~/.config/nvim/plugged
 " then add below line. Use 'Ack <search term>', dd irrelevant lines/files,
 " then 'Acks /replace/me/' to do multi-file search and replace
 Plug 'wincent/ferret'
 Plug 'xolox/vim-session'
+let vim_sessions_cache_dir = cache_dir . '/vim-sessions'
 Plug 'xolox/vim-misc'
 
 call plug#end()
+
+"== create plugin cache directories
+for plugin_cache_dir in [g:gutentags_cache_dir, vim_sessions_cache_dir]
+    silent! execute "!mkdir " . plugin_cache_dir
+endfor
+
 
 " vim-go
 " let g:go_def_mapping_enabled = 1
@@ -316,16 +330,24 @@ imap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 imap <expr> <cr>    pumvisible() ? deoplete#close_popup() : "\<cr>"
 
 " vim-go mappings
-autocmd FileType go nmap <buffer> <leader>r <plug>(go-run)
-autocmd FileType go nmap <buffer> <leader>b <plug>(go-build)
-autocmd FileType go nmap <buffer> <leader>t <plug>(go-test)
-autocmd FileType go nmap <buffer> <leader>e <plug>(go-rename)
-autocmd FileType go nmap <buffer> <leader>d <plug>(go-doc)
-"autocmd FileType go nmap <buffer> gd <plug>(go-def-vertical)
-autocmd FileType go nmap <buffer> gd <plug>(go-def)
-autocmd FileType go nmap <buffer> <c-]> <plug>(go-def)
-autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
-"au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
+augroup go_bindings
+    autocmd!
+    autocmd FileType go nmap <buffer> <leader>r <plug>(go-run)
+    autocmd FileType go nmap <buffer> <leader>b <plug>(go-build)
+    autocmd FileType go nmap <buffer> <leader>t <plug>(go-test)
+    autocmd FileType go nmap <buffer> <leader>e <plug>(go-rename)
+    autocmd FileType go nmap <buffer> <leader>d <plug>(go-doc)
+    "autocmd FileType go nmap <buffer> gd <plug>(go-def-vertical)
+    autocmd FileType go nmap <buffer> gd <plug>(go-def)
+    autocmd FileType go nmap <buffer> <c-]> <plug>(go-def)
+    autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
+    "au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
+    " navigate errors using location list overriding quick fix
+    autocmd FileType go command! Lnext try | lnext | catch | lfirst | catch | endtry
+    autocmd FileType go command! Lprev try | lprev | catch | llast | catch | endtry
+    autocmd FileType go nnoremap <silent> <C-Down> :Lnext<CR>
+    autocmd FileType go nnoremap <silent> <C-Up> :Lprev<CR>
+augroup END
 "
 " rust
 "let g:ale_rust_cargo_use_check = 1
@@ -349,16 +371,24 @@ endif
 let g:racer_experimental_completer = 1
 
 " rust mappings
-" au FileType rust nmap gd <Plug>(rust-def)
-" au FileType rust nmap <leader>gd <Plug>(rust-doc)
-au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
-au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-" au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr> " weird errors 
-au FileType rust nmap <buffer> <leader>t :!cargo test<cr>
-au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run -q<cr>
-" au FileType rust nmap <buffer> <leader>r :sp term://cargo run -q<cr>
-" au FileType rust nmap <buffer> <leader>r :AsyncRun RustRun<cr>
-au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
+augroup rust_bindings
+    au!
+    " au FileType rust nmap gd <Plug>(rust-def)
+    " au FileType rust nmap <leader>gd <Plug>(rust-doc)
+    au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
+    au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
+    " au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr> " weird errors 
+    au FileType rust nmap <buffer> <leader>t :!cargo test<cr>
+    au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run -q<cr>
+    " au FileType rust nmap <buffer> <leader>r :sp term://cargo run -q<cr>
+    " au FileType rust nmap <buffer> <leader>r :AsyncRun RustRun<cr>
+    au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
+    " navigate errors using location list overriding quick fix
+    autocmd FileType rust command! Lnext try | lnext | catch | lfirst | catch | endtry
+    autocmd FileType rust command! Lprev try | lprev | catch | llast | catch | endtry
+    autocmd FileType rust nnoremap <silent> <C-Down> :Lnext<CR>
+    autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
+augroup END
 
 "== Load custom settings =="
 " for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
@@ -371,7 +401,7 @@ source ~/.vim/startup/mappings.vim
 "source ~/.vim/startup/golang.vim
 source ~/.vim/startup/python.vim
 "source ~/.vim/startup/airline.vim
-source ~/.vim/startup/ctrlp.vim
+"source ~/.vim/startup/ctrlp.vim
 source ~/.vim/startup/terraform.vim
 
 set rtp+=~/.fzf
@@ -404,7 +434,6 @@ let g:tagbar_type_go = {
 	\ 'ctagsbin'  : 'gotags',
 	\ 'ctagsargs' : '-sort -silent'
     \ }
-
 
 
 " it'll use ctags from rust.vim instead
@@ -463,12 +492,3 @@ let g:bufferline_show_bufnr = 1
 " let g:bufferline_active_highlight = 'StatusLineNC'
 let g:bufferline_active_highlight = 'airline_c'
 " let g:bufferline_inactive_highlight = 'airline_c'
-
-" augroup MyGroup
-"     autocmd!
-"     if exists('##QuitPre')
-"         autocmd QuitPre * if &filetype != 'qf' | silent! lclose | endif
-"     endif
-" augroup END
-" autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
-" autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!

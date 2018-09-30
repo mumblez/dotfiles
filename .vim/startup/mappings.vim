@@ -80,7 +80,7 @@ aug END
 
 
 " example of creating a custom snippet
-nnoremap ,html :-1read ~/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
+" nnoremap ,html :-1read ~/goworkspace/src/yt/experiments/bitwise/hello.txt<CR>5jwi
 "
 " Quick folding toggle
 nnoremap <space> za
