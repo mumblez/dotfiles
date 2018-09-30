@@ -41,6 +41,7 @@ nnoremap \g :GFiles <CR>
 nnoremap \l :Locate 
 
 nnoremap \b :bd <CR>
+" nnoremap \j :lcd %:p:h <CR> :pwd <CR>
 
 "== Golang run =="
 "map <F5> :GoRun %<CR>

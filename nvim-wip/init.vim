@@ -79,6 +79,11 @@ autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
 
 "set completeopt-=preview
 
+
+"== change to directory of file on enter (for each buffer)
+"helps with tmux so we can open a split and run terraform or such!
+autocmd BufEnter * silent! lcd %:p:h
+
 "== finding files
 set path+=**
 set wildmenu "display matching files for tab complete
