@@ -261,6 +261,8 @@ let g:gutentags_cache_dir = '~/.cache/gutentags'
 " then add below line. Use 'Ack <search term>', dd irrelevant lines/files,
 " then 'Acks /replace/me/' to do multi-file search and replace
 Plug 'wincent/ferret'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 
 call plug#end()
 

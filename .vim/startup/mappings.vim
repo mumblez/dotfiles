@@ -43,6 +43,16 @@ nnoremap \l :Locate
 nnoremap \b :bd <CR>
 " nnoremap \j :lcd %:p:h <CR> :pwd <CR>
 
+"== sessions
+let g:session_directory = "~/.cache/vim-sessions"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+nnoremap <leader>so :OpenSession 
+nnoremap <leader>ss :SaveSession 
+nnoremap <leader>sd :DeleteSession 
+nnoremap <leader>sc :CloseSession<CR>
+
 "== Golang run =="
 "map <F5> :GoRun %<CR>
 
