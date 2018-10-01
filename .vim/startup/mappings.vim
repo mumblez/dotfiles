@@ -53,6 +53,17 @@ nnoremap <leader>ss :SaveSession
 nnoremap <leader>sd :DeleteSession 
 nnoremap <leader>sc :CloseSession<CR>
 
+"== git / fugitive
+nnoremap <leader>g :Gstatus<cr>
+" inside status window
+" C-n - next file
+" C-p - prev file
+" -   - stage / unstage file
+" cc  - commit
+" dv  - vertical diff split
+" q   - quit status
+" r   - reload
+
 "== Golang run =="
 "map <F5> :GoRun %<CR>
 
