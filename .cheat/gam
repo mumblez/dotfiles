@@ -18,3 +18,4 @@ gam update group announcements add member jsmith    # assign user to group
 gam print [orgs|groups|users]                       # list ...
 
 # cheat sheet - https://gamcheatsheet.com/GAM%20Cheat%20Sheet%20A3.pdf
+# advance-x - https://gamcheatsheet.com/Advanced%20GAM%20Cheat%20Sheet%20A3.pdf
