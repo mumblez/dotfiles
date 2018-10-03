@@ -41,9 +41,9 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
 tnoremap <Esc> <C-\><C-n>
-" command Tsplit split term://$SHELL
-" command Tvsplit vsplit term://$SHELL
-" command Ttabedit tabedit term://$SHELL
+command Tsplit split term://$SHELL
+command Tvsplit vsplit term://$SHELL
+command Ttabedit tabedit term://$SHELL
 
 set hidden
 
@@ -81,8 +81,10 @@ autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
 
 
 "== change to directory of file on enter (for each buffer)
-"helps with tmux so we can open a split and run terraform or such!
-autocmd BufEnter * silent! lcd %:p:h
+" helps with tmux so we can open a split and run terraform or such!
+" but also breaks navigation for Rg / Ag search results when jumping to
+" results
+" autocmd BufEnter * silent! lcd %:p:h " or use mapping \j to set
 
 "== finding files
 set path+=**
@@ -116,7 +118,7 @@ set enc=utf-8
 "inoremap <expr>  <C-K>   BDG_GetDigraph()
 
 "== auto reload .vimrc on save =="
-autocmd! bufwritepost .vimrc source %
+autocmd! bufwritepost init.vim source %
 
 "== Script configs =="
 let NERDTreeMinimalUI=1

@@ -41,7 +41,7 @@ nnoremap \g :GFiles <CR>
 nnoremap \l :Locate 
 
 nnoremap \b :bd <CR>
-" nnoremap \j :lcd %:p:h <CR> :pwd <CR>
+nnoremap \j :lcd %:p:h<CR>:pwd<CR>
 
 "== sessions
 let g:session_directory = "~/.cache/vim-sessions"
