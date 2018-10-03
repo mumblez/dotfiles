@@ -8,13 +8,13 @@ gam all users delete messages query rfc822msgid:CACQE+CmLnCpqFAdPAM2250aEuGx+Zxc
 gam user zilesh delete messages query rfc822msgid:CACQE+CmLnCpqFAdPAM2250aEuGx+ZxcASGOYgnLcBYLmVRYvpw@mail.gmail.com doit
 
 gam print users query "orgUnitPath='/Path/To/OU' isSuspended=False" # search and filter users
-gam info domain # display info about # of licenses, admin, customer ID etc
+gam info [domain|user <user email>|group <group email>] # display info about # of licenses, admin, customer ID etc, for user, it's groups, status etc
 
 # create new user
 gam create user jsmith firstname John lastname Smith password secretpass changepassword on org /NEW STARTERS
 
 gam update user jsmith suspended on                 # suspend user
 gam update group announcements add member jsmith    # assign user to group
-gam print [orgs|groups]                             # list ...
+gam print [orgs|groups|users]                       # list ...
 
 # cheat sheet - https://gamcheatsheet.com/GAM%20Cheat%20Sheet%20A3.pdf
