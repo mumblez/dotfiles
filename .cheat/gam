@@ -19,3 +19,11 @@ gam print [orgs|groups|users]                       # list ...
 
 # cheat sheet - https://gamcheatsheet.com/GAM%20Cheat%20Sheet%20A3.pdf
 # advance-x - https://gamcheatsheet.com/Advanced%20GAM%20Cheat%20Sheet%20A3.pdf
+#
+# https://github.com/taers232c/GAMADV-X/wiki/Users#create-a-user
+# create new user
+gam create user <email> ou '/NEW STARTERS' firstname <first name> lastname <last name> notify <email to send creds to>
+
+# delete / suspend user
+gam [delete | suspend] user <email>
+
