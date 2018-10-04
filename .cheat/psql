@@ -4,26 +4,13 @@
 # -p port.
 # -h server hostname/address.
 
-# Connect to a specific database:
-psql -U postgres -h serverAddress -d dbName
-
-# Get databases on a server:
-psql -U postgres -h serverAddress --list
-
-# Execute sql query and save output to file:
-psql -U postgres -d dbName -c 'select * from tableName;' -o fileName
-
-# Execute query and get tabular html output:
-psql -U postgres -d dbName -H -c 'select * from tableName;'
-
-# Execute query and save resulting rows to csv file:
-psql -U postgres -d dbName -t -A -P fieldsep=',' -c 'select * from tableName;' -o fileName.csv
-
-# Read commands from file:
-psql -f fileName
-
-# Restore databases from file:
-psql -f fileName.backup postgres
+psql -U postgres -h serverAddress -d dbName                             # Connect to a specific database:
+psql -U postgres -h serverAddress --list                                # Get databases on a server:
+psql -U postgres -d dbName -c 'select * from tableName;' -o fileName    # Execute sql query and save output to file:
+psql -U postgres -d dbName -H -c 'select * from tableName;'             # Execute query and get tabular html output:
+psql -U postgres -d dbName -t -A -P fieldsep=',' -c 'select * from tableName;' -o fileName.csv # Execute query and save resulting rows to csv file:
+psql -f fileName                                                        # Read commands from file:
+psql -f fileName.backup postgres                                        # Restore databases from file:
 
 # create db and user:
 CREATE DATABASE yourdbname;
@@ -40,17 +27,7 @@ https://www.postgresql.org/docs/current/static/libpq-connect.html#LIBPQ-CONNECT-
 # commands once logged in
 http://www.postgresonline.com/special_feature.php?sf_name=postgresql83_psql_cheatsheet&outputformat=html
 
-## List databases
-\l
-
-## List / Describe tables
-#
-\dt
-
-## Describe tables containing 's'
-\dt *s*
-
-## List users
-\du
-
-
+\l      # List databases
+\dt     # List / Describe tables
+\dt *s* # Describe tables containing 's'
+\du     # List users
