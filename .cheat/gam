@@ -30,3 +30,5 @@ gam [delete | suspend] user <email>
 # change password
 gam update user <email> password random changepasswordatnextlogin true notify <some other email>
 
+# user info / custom attributes
+gam user update yusuf.tran Groupings.Contractor <True | False> Groupings.Company <company / division> organization department <dept> title "Job Title" description 'Job Type: Contractor / Full-time / Part-time'
