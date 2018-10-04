@@ -28,4 +28,4 @@ gam create user <email> ou '/NEW STARTERS' firstname <first name> lastname <last
 gam [delete | suspend] user <email>
 
 # user info / custom attributes
-gam user update yusuf.tran Groupings.Company <company / division> organization department <dept> title "Job Title" description 'Job Type: Contractor / Full-time / Part-time'
+gam user update yusuf.tran Groupings.Contractor <True | False> Groupings.Company <company / division> organization department <dept> title "Job Title" description 'Job Type: Contractor / Full-time / Part-time'
