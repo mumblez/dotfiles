@@ -22,8 +22,11 @@ gam print [orgs|groups|users]                       # list ...
 #
 # https://github.com/taers232c/GAMADV-X/wiki/Users#create-a-user
 # create new user
-gam create user <email> ou '/NEW STARTERS' firstname <first name> lastname <last name> notify <email to send creds to>
+gam create user <email> ou '/NEW STARTERS' firstname <first name> lastname <last name> notify <email to send creds to> changepasswordatnextlogin true
 
 # delete / suspend user
 gam [delete | suspend] user <email>
+
+# change password
+gam update user <email> password random changepasswordatnextlogin true notify <some other email>
 

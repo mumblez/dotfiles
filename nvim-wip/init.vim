@@ -41,9 +41,9 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
 tnoremap <Esc> <C-\><C-n>
-command Tsplit split term://$SHELL
-command Tvsplit vsplit term://$SHELL
-command Ttabedit tabedit term://$SHELL
+" command Tsplit split term://$SHELL
+" command Tvsplit vsplit term://$SHELL
+" command Ttabedit tabedit term://$SHELL
 
 set hidden
 
@@ -275,7 +275,8 @@ Plug 'wincent/ferret'
 Plug 'xolox/vim-session'
 let vim_sessions_cache_dir = cache_dir . '/vim-sessions'
 Plug 'xolox/vim-misc'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons' "icons are small unless using different font
+" but then breaks status line and tmux line!
 
 call plug#end()
 
