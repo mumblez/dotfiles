@@ -27,3 +27,5 @@ gam create user <email> ou '/NEW STARTERS' firstname <first name> lastname <last
 # delete / suspend user
 gam [delete | suspend] user <email>
 
+# user info / custom attributes
+gam user update yusuf.tran Company_Grouping.Company <company / division> organization department <dept> title "Job Title" description 'Job Type: Contractor / Full-time / Part-time'
