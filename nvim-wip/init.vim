@@ -308,6 +308,10 @@ let g:go_snippet_engine = "neosnippet"
 " enables native <C-]> and <C-t> to hop around (without using tagbar menu)
 autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
 autocmd FileType rust call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
+" fixes tagbar bug when we have unit tests in the file
+if !filereadable(expand('~/.ctags.d/rust.ctags'))
+    let g:tagbar_type_rust.deffile = expand('~/.ctags.d/rust.ctags')
+endif
 " autocmd FileType rust call tagbar#debug#start_debug()
  
 " r#debug#start_debug()call
@@ -499,6 +503,3 @@ let g:bufferline_show_bufnr = 1
 let g:bufferline_active_highlight = 'airline_c'
 " let g:bufferline_inactive_highlight = 'airline_c'
 "
-"
-command! -nargs=1 -bang Locate call fzf#run(fzf#wrap(
-      \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))
