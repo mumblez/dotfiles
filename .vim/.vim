@@ -1,1 +1,0 @@
-/Users/yusuf/.vim
