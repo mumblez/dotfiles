@@ -498,3 +498,7 @@ let g:bufferline_show_bufnr = 1
 " let g:bufferline_active_highlight = 'StatusLineNC'
 let g:bufferline_active_highlight = 'airline_c'
 " let g:bufferline_inactive_highlight = 'airline_c'
+"
+"
+command! -nargs=1 -bang Locate call fzf#run(fzf#wrap(
+      \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))

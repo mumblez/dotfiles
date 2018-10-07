@@ -24,7 +24,8 @@ nnoremap <leader>o o<ESC>k
 nnoremap <leader>O O<ESC>j
 
 "====== Fn Toggles / mappings ========"
-map <F2> :NERDTreeToggle<CR>
+nnoremap <F2> :NERDTreeToggle<CR>
+" nnoremap <F2> :NERDTreeFind<CR>
 "set pastetoggle=<F3>
 nnoremap <F3> :set number!<CR>
 nnoremap <F4> :set spell!<CR>
@@ -68,8 +69,11 @@ nnoremap <leader>g :Gstatus<cr>
 "map <F5> :GoRun %<CR>
 
 "== cleanup lines over 80 chars =="
-let @a = '080lBi'
-nnoremap <leader>a @a
+" let @a = '080lBi\'
+" nnoremap <leader>a @a
+
+"== quote highlighted (search) ==
+let @q = 'gnS"nn'
 
 "== buffer switching
 "next buffer
