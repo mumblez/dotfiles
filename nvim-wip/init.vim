@@ -353,10 +353,10 @@ augroup go_bindings
     autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
     "au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
     " navigate errors using location list overriding quick fix
-    autocmd FileType go command! Lnext try | lnext | catch | lfirst | catch | endtry
-    autocmd FileType go command! Lprev try | lprev | catch | llast | catch | endtry
-    autocmd FileType go nnoremap <silent> <C-Down> :Lnext<CR>
-    autocmd FileType go nnoremap <silent> <C-Up> :Lprev<CR>
+    " autocmd FileType go command! Lnext try | lnext | catch | lfirst | catch | endtry
+    " autocmd FileType go command! Lprev try | lprev | catch | llast | catch | endtry
+    " autocmd FileType go nnoremap <silent> <C-Down> :Lnext<CR>
+    " autocmd FileType go nnoremap <silent> <C-Up> :Lprev<CR>
 augroup END
 "
 " rust
@@ -394,10 +394,10 @@ augroup rust_bindings
     " au FileType rust nmap <buffer> <leader>r :AsyncRun RustRun<cr>
     au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
     " navigate errors using location list overriding quick fix
-    autocmd FileType rust command! Lnext try | lnext | catch | lfirst | catch | endtry
-    autocmd FileType rust command! Lprev try | lprev | catch | llast | catch | endtry
-    autocmd FileType rust nnoremap <silent> <C-Down> :Lnext<CR>
-    autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
+    " autocmd FileType rust command! Lnext try | lnext | catch | lfirst | catch | endtry
+    " autocmd FileType rust command! Lprev try | lprev | catch | llast | catch | endtry
+    " autocmd FileType rust nnoremap <silent> <C-Down> :Lnext<CR>
+    " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
 augroup END
 
 "== Load custom settings =="

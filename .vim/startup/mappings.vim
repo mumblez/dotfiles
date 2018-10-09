@@ -85,13 +85,19 @@ nnoremap <C-p> :bprevious<CR>
 " cycle when we hit end / beginning
 command! Cnext try | cnext | catch | cfirst | catch | endtry
 command! Cprev try | cprev | catch | clast | catch | endtry
-nnoremap <silent> <C-Down> :Cnext<CR>
-nnoremap <silent> <C-Up> :Cprev<CR>
+nnoremap <silent> <M-Down> :Cnext<CR>
+nnoremap <silent> <M-Up> :Cprev<CR>
 "== will close quickfix window if all last window
 aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
+
+"== Location window navigation
+command! Lnext try | lnext | catch | lfirst | catch | endtry
+command! Lprev try | lprev | catch | llast | catch | endtry
+nnoremap <silent> <C-Down> :Lnext<CR>
+nnoremap <silent> <C-Up> :Lprev<CR>
 
 
 " example of creating a custom snippet
