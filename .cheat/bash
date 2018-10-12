@@ -62,3 +62,12 @@ for x in {0..8}; do
     done
 done
 echo ""
+
+# save multiline string to var
+read -r -d'\0' USAGE <<EOF # 'EOF' = don't expand variables, <<-EOF = remove tab indents
+USAGE:                     # -d'\0' fixes the scripts that use 'set -euo pipefail' failing silently , ensure you put \0 at and
+    ...
+
+The End\\0
+EOF
+echo "$USAGE"
