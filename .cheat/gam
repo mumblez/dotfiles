@@ -38,3 +38,7 @@ gam show group-members member user.name | grep Group # leave of the grep pipe to
 
 # group members of a group
 gam show group-members group payment
+
+# print all / specific fields of a user
+gam print users firstName lastName primaryEmail
+gam print users allfields
