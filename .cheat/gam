@@ -42,3 +42,6 @@ gam show group-members group payment
 # print all / specific fields of a user
 gam print users firstName lastName primaryEmail
 gam print users allfields
+
+# see custom attributes
+gam print users primaryEmail custom Groupings
