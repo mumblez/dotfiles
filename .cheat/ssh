@@ -61,3 +61,5 @@ ssh -N -L 3307:<mysql instance ip>:3306 <bastion ip>
 
 mysql -h 127.0.0.1 -P 3307 ...
 
+# tunnel socket to socket directly # needs OpenSSH 6.7+
+ssh -R/var/run/mysql.sock:/var/run/mysql.sock -R127.0.0.1:3306:/var/run/mysql.sock <mysql instance>
