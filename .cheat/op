@@ -1,0 +1,39 @@
+# sign in
+eval $(op signin <org>)
+
+# list items
+op list items --vault <vault>
+
+# get item by name
+op get item "some pw title" --vault <vault> | jq -r .details.password
+
+# get totp
+op get totp "some pw title" --vault <vault>
+
+# create item (Login ex)
+## create template file first ( from an existing template, op get template Login )
+read -r -d '\0' P1_PW_FILE <<EOF
+{
+  "notesPlain": "",
+  "sections": [],
+  "passwordHistory": [],
+  "fields": [
+    {
+      "value": "${MY_USERNAME}",
+      "name": "username",
+      "type": "T",
+      "designation": "username"
+    },
+    {
+      "value": "${MY_PASSWORD}",
+      "name": "password",
+      "type": "P",
+      "designation": "password"
+    }
+  ]
+}
+\0
+EOF
+
+op create item Login "$(echo "P1_PW_FILE")" --title=<title> --url=<url> --vault=<vault>
+
