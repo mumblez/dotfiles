@@ -1,1 +1,4 @@
 nix-channel --update && nix-env -iA nixpkgs.nix # Update nix package manager
+
+# precompute hash like nix-prefetch-url
+nix-hash --type sha256 --flat --base32 <file>

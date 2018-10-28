@@ -1,0 +1,6 @@
+# install
+brew install watchman
+
+# quick and dirty watch and run command
+watchman-make -p '*.py' 'another/dir/*.py' -r 'cmd to run'
+
