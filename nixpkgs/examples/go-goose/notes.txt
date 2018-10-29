@@ -1,0 +1,7 @@
+https://github.com/kamilchm/go2nix
+
+cloud_sql_proxy -instances=karhoo-test-1:europe-west1:db-1=tcp:3305
+
+goose mysql "user:password@tcp(127.0.0.1:3305)/users?parseTime=true" status
+
+lsof -i :3307 &>/dev/null # check port availability
