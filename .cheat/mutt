@@ -1,0 +1,9 @@
+# assuming postfix and gmail have been setup
+
+# set from name and address
+# add to ~/.muttrc
+set from="First Last <first.last@company.com>"
+
+# send an email with an attachment
+echo "This is the message body" | mutt -a "/some/file/to/attach" -s "subject of
+ message" -- email@company.com
