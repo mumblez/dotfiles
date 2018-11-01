@@ -1,0 +1,8 @@
+# install
+brew install sshuttle
+
+# no need to install on remote server as long as they have python
+
+# tunnel for internal 10.100.0.0/28 subnet
+-----------<     bastion  > <internal subnet> # can use 0/0 to tunnel all traffic!!!
+sshuttle -r 35.187.190.130 10.100.0.0/28
