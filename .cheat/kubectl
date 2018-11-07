@@ -1,4 +1,6 @@
 # ref - https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/
+# full example - https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/
+# google cloud builders - https://github.com/GoogleCloudPlatform/cloud-builders
 
 # create secrets
 kubectl create secret generic db-dev-ssl --from-file=ca.pem --from-file=dev.pem --from-file=dev.key
