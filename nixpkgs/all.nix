@@ -5,4 +5,5 @@ with import <nixpkgs> {};
 stdenv.mkDerivation rec {
   _1password = callPackage ./onepassword.nix {};
   terraform = callPackage ./terraform.nix {};
+  kubectl = callPackage ./kubectl.nix {};
 }
