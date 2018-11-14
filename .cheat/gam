@@ -24,6 +24,9 @@ gam print [orgs|groups|users]                       # list ...
 # create new user
 gam create user <email> ou '/NEW STARTERS' firstname <first name> lastname <last name> notify <email to send creds to> changepasswordatnextlogin true
 
+# create group
+gam create group <email> name "Display name" description "description"
+
 # delete / suspend user
 gam [delete | suspend] user <email>
 
