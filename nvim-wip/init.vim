@@ -210,6 +210,7 @@ Plug 'sebdah/vim-delve'
 Plug 'jodosha/vim-godebug'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make' }
+Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
 Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
 Plug 'honza/vim-snippets'
@@ -302,6 +303,10 @@ let g:go_highlight_chan_whitespace_error = 1
 let g:go_highlight_extra_types = 1
 " let g:go_auto_type_info = 1 " seems to cause errors
 let g:go_snippet_engine = "neosnippet"
+let g:go_def_mode = "gopls"
+call deoplete#custom#option('omni_patterns', {
+\ 'go': '[^. *\t]\.\w*',
+\})
 
 " tell gutentags how to detect root of a project to build tags for
 " will cache tags file in ~/.cache/gutentags/
