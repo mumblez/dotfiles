@@ -489,7 +489,7 @@ let g:neosnippet#disable_runtime_snippets = {
     \ 'go': 1
     \}
 
-"""" Airline config (cool status bars)
+"""" Airline config (cool status bars).
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " show tab # not splits in tab
 let g:airline#extensions#tabline#enabled = 1
