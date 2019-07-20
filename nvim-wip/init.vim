@@ -278,13 +278,16 @@ let vim_sessions_cache_dir = cache_dir . '/vim-sessions'
 Plug 'xolox/vim-misc'
 " Plug 'ryanoasis/vim-devicons' "icons are small unless using different font
 " but then breaks status line and tmux line!
-
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 "== create plugin cache directories
 for plugin_cache_dir in [g:gutentags_cache_dir, vim_sessions_cache_dir]
     silent! execute "!mkdir " . plugin_cache_dir
 endfor
+
+" autoformat
+au BufWrite *.py :Autoformat
 
 
 " vim-go
