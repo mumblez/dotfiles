@@ -1,17 +1,19 @@
-" Minimal neovim configuration for go
+" Minimal neovim configuration for go, rust, python
 "
 " deoplete requires neovim, so this will not work with regular vim
 "
 " prereqs:
 " - neovim
-" - neovim python3 (pip3 install --upgrade neovim)
+" - neovim python3
+" - pip install:
+"   - pynvim jedi flake8 autopep8 mypy pylint
 "
 " includes:
 " - syntax checking on save (using neomake, go and gometalinter)
 " - goimports on save (using vim-go)
 " - auto-completion (using deoplete)
 "
-" Then save this file as ~/.config/nvim/init.vim
+" ~/.config/nvim/init.vim # symlink from dotfiles repo
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
@@ -206,7 +208,6 @@ call plug#begin()
 " or GoUpdateBinaries, 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'sebdah/vim-delve'
-"Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' }
 Plug 'jodosha/vim-godebug'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -279,16 +280,13 @@ Plug 'xolox/vim-misc'
 " Plug 'ryanoasis/vim-devicons' "icons are small unless using different font
 " but then breaks status line and tmux line!
 Plug 'Chiel92/vim-autoformat'
+au BufWrite *.py :Autoformat
 call plug#end()
 
 "== create plugin cache directories
 for plugin_cache_dir in [g:gutentags_cache_dir, vim_sessions_cache_dir]
     silent! execute "!mkdir " . plugin_cache_dir
 endfor
-
-" autoformat
-au BufWrite *.py :Autoformat
-
 
 " vim-go
 " let g:go_def_mapping_enabled = 1
@@ -310,6 +308,9 @@ let g:go_def_mode = "gopls"
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
 \})
+" brew install delve
+" xcode-select --install for dlv / lldb-server to work
+
 
 " tell gutentags how to detect root of a project to build tags for
 " will cache tags file in ~/.cache/gutentags/
@@ -323,8 +324,6 @@ endif
 " autocmd FileType rust call tagbar#debug#start_debug()
  
 " r#debug#start_debug()call
-" brew install delve
-" xcode-select --install for dlv / lldb-server to work
 
 let g:delve_backend = "native"
 
