@@ -280,7 +280,6 @@ Plug 'xolox/vim-misc'
 " Plug 'ryanoasis/vim-devicons' "icons are small unless using different font
 " but then breaks status line and tmux line!
 Plug 'Chiel92/vim-autoformat'
-Plug 'fabi1cazenave/termopen.vim', { 'do': 'sed -i \"55s/signcolumn=no //\" ./plugin/termopen.vim' }
 au BufWrite *.py :Autoformat
 call plug#end()
 
