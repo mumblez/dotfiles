@@ -268,7 +268,7 @@ Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = cache_dir . '/gutentags'
 " override system ctags when xcode installed
-let g:gutentags_ctags_executable = '/usr/local/bin/ctags'
+" let g:gutentags_ctags_executable = '/usr/local/bin/ctags'
 "Plug 'romainl/vim-qf'
 " this only works if you manually clone to ~/.config/nvim/plugged
 " then add below line. Use 'Ack <search term>', dd irrelevant lines/files,
