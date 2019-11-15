@@ -32,8 +32,8 @@ nnoremap <F4> :set spell!<CR>
 nnoremap <F5> :set ft=sh<CR>
 "== copy and paste shortcuts into system clipboard
 " can use '+' or '*'
-vnoremap <F6> "*y
-nnoremap <F7> "*p
+vnoremap <F6> "+y
+nnoremap <F7> "+p
 "nnoremap <F8> :TagbarOpenAutoClose<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
