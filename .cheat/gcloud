@@ -72,3 +72,6 @@ gcloud auth application-default login
 
 # list grantable roles
 gcloud iam list-grantable-roles //cloudresourcemanager.googleapis.com/projects/<some project>
+
+# tunnel and port forward 
+gcloud compute ssh te-bastion-0 --zone=europe-west2-c -- -NL 5432:10.101.0.7:5432

@@ -31,3 +31,16 @@ http://www.postgresonline.com/special_feature.php?sf_name=postgresql83_psql_chea
 \dt     # List / Describe tables
 \dt *s* # Describe tables containing 's'
 \du     # List users
+
+# backup entire database instance
+pg_dumpall > <file>
+
+
+# backup single database
+pg_dump <dbname> > <file> [| gzip > <file>.gz]
+
+# restore single db
+gunzip -c file.gz | psql <dbname>
+
+# restore from sql file
+psql -f <file> [postgres]

@@ -265,8 +265,8 @@ Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
 " brew install --HEAD universal-ctags/universal-ctags/universal-ctags # need
 " this for recursive support!
 " mkdir ~/.cache/gutentags # for vim-gutentags to cache tag files
-Plug 'ludovicchabant/vim-gutentags'
-let g:gutentags_cache_dir = cache_dir . '/gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
+" let g:gutentags_cache_dir = cache_dir . '/gutentags'
 " override system ctags when xcode installed
 " let g:gutentags_ctags_executable = '/usr/local/bin/ctags'
 "Plug 'romainl/vim-qf'
@@ -284,7 +284,8 @@ au BufWrite *.py :Autoformat
 call plug#end()
 
 "== create plugin cache directories
-for plugin_cache_dir in [g:gutentags_cache_dir, vim_sessions_cache_dir]
+" for plugin_cache_dir in [g:gutentags_cache_dir, vim_sessions_cache_dir]
+for plugin_cache_dir in [vim_sessions_cache_dir]
     silent! execute "!mkdir " . plugin_cache_dir
 endfor
 
@@ -315,8 +316,8 @@ call deoplete#custom#option('omni_patterns', {
 " tell gutentags how to detect root of a project to build tags for
 " will cache tags file in ~/.cache/gutentags/
 " enables native <C-]> and <C-t> to hop around (without using tagbar menu)
-autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
-autocmd FileType rust call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
+" autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
+" autocmd FileType rust call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
 " fixes tagbar bug when we have unit tests in the file
 if !filereadable(expand('~/.ctags.d/rust.ctags'))
     let g:tagbar_type_rust.deffile = expand('~/.ctags.d/rust.ctags')
