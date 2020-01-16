@@ -1,5 +1,5 @@
 # script current directory no matter where it's called from
-DIR=$(cd `dirname $0` && pwd)
+DIR=$(cd "$(dirname "$0")" && pwd)
 
 # error mesage function
 errorMsg() {
