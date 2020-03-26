@@ -6,6 +6,34 @@ errorMsg() {
     echo "$*" 1>&2
 }
 
+# echo with colours
+echo_debug() {
+	echo -ne "\033[01;32m" # green
+	echo $@ >&2
+	echo -ne "\033[00m"
+}
+
+echo_blue() {
+	echo -ne "\033[01;34m" # blue
+	echo $@ >&2
+	echo -ne "\033[00m"
+}
+
+echo_warn() {
+	echo -ne "\033[01;33m" # yellow
+	echo $@ >&2
+	echo -ne "\033[00m"
+}
+
+echo_error() {
+	echo -ne "\033[01;31m" # red
+	echo $@ >&2
+	echo -ne "\033[00m"
+	exit 1
+}
+
+
+
 # run script and ensure we exit on failure
 bash -eou pipefail <script>
 
