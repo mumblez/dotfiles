@@ -80,6 +80,10 @@ let @q = 'gnS"nn'
 nnoremap <C-n> :bnext<CR>
 "previous buffer
 nnoremap <C-p> :bprevious<CR>
+"== tabs
+nnoremap <C-left> :tabprevious<CR>
+nnoremap <C-right> :tabnext<CR>
+nnoremap <leader>t :tabclose<CR>
 
 "== QUICKFIX window navigation
 " cycle when we hit end / beginning
