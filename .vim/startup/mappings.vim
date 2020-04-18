@@ -38,7 +38,7 @@ nnoremap <F7> "+p
 nnoremap <F8> :TagbarToggle<CR>
 
 "== fzf shortcuts
-nnoremap \g :GFiles <CR>
+nnoremap \g :GFiles<CR>
 nnoremap \l :Locate 
 
 nnoremap \b :bd <CR>
