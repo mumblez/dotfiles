@@ -247,7 +247,8 @@ Plug 'sebastianmarkow/deoplete-rust'
 "Plug 'racer-rust/vim-racer'
 Plug 'w0rp/ale'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'JamshedVesuna/vim-markdown-preview'
+" Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'jiangmiao/auto-pairs'
 let vim_markdown_preview_github=1
 " brew install grip

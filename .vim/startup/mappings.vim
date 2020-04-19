@@ -37,12 +37,18 @@ nnoremap <F7> "+p
 "nnoremap <F8> :TagbarOpenAutoClose<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
+"custom function to switch tab logic between spaces and real tab
+nnoremap <F9> mz:execute TabToggle()<CR>'z
+
 "== fzf shortcuts
 nnoremap \g :GFiles<CR>
 nnoremap \l :Locate 
 
 nnoremap \b :bd <CR>
 nnoremap \j :lcd %:p:h<CR>:pwd<CR>
+
+"== markdown preview toggle
+nmap \m <Plug>MarkdownPreviewToggle<CR>
 
 "== sessions
 let g:session_directory = "~/.cache/vim-sessions"
