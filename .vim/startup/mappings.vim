@@ -47,6 +47,9 @@ nnoremap \l :Locate
 nnoremap \b :bd <CR>
 nnoremap \j :lcd %:p:h<CR>:pwd<CR>
 
+"== ALE turn off checks
+nnoremap \a :ALEToggle <CR>
+
 "== markdown preview toggle
 nmap \m <Plug>MarkdownPreviewToggle<CR>
 
