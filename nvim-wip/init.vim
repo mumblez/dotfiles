@@ -141,13 +141,16 @@ augroup END
 " deoplete
 set completeopt=longest,menuone " auto complete setting
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns['default'] = '\h\w*'
-let g:deoplete#omni#input_patterns = {}
+"let g:deoplete#enable_smart_case = 1
+"let g:deoplete#auto_complete_start_length = 1
+"let g:deoplete#keyword_patterns = {}
+"let g:deoplete#keyword_patterns['default'] = '\h\w*'
+"let g:deoplete#omni#input_patterns = {}
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 let g:deoplete#sources#go#align_class = 1
+
+" deoplete new way to handle options
+"[deoplete] g:deoplete#enable_smart_case is deprecated variable.  Please use deoplete#custom#option() instead.
 
 " neomake
 " autocmd BufWritePost * Neomake
