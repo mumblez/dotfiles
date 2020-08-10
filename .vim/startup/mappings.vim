@@ -56,12 +56,13 @@ nmap \m <Plug>MarkdownPreviewToggle<CR>
 "== sessions
 let g:session_directory = "~/.cache/vim-sessions"
 let g:session_autoload = "no"
-let g:session_autosave = "no"
+let g:session_autosave = "yes"
 let g:session_command_aliases = 1
 nnoremap <leader>so :OpenSession 
 nnoremap <leader>ss :SaveSession 
 nnoremap <leader>sd :DeleteSession 
-nnoremap <leader>sc :CloseSession<CR>
+"nnoremap <leader>sc :CloseSession<CR>
+nnoremap <leader>sc :quitall<CR>
 
 "== git / fugitive
 nnoremap <leader>g :Gstatus<cr>
