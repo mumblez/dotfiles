@@ -22,6 +22,8 @@ if &compatible
   set nocompatible
 endif
 
+let g:go_version_warning = 0
+
 "== setup plug if not installed
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
@@ -324,9 +326,9 @@ call deoplete#custom#option('omni_patterns', {
 " autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
 " autocmd FileType rust call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
 " fixes tagbar bug when we have unit tests in the file
-if !filereadable(expand('~/.ctags.d/rust.ctags'))
-    let g:tagbar_type_rust.deffile = expand('~/.ctags.d/rust.ctags')
-endif
+" if !filereadable(expand('~/.ctags.d/rust.ctags'))
+"     let g:tagbar_type_rust.deffile = expand('~/.ctags.d/rust.ctags')
+" endif
 " autocmd FileType rust call tagbar#debug#start_debug()
  
 " r#debug#start_debug()call
