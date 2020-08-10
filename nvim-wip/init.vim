@@ -19,21 +19,20 @@
 if 0 | endif
 
 if &compatible
-  set nocompatible
+    set nocompatible
 endif
 
-let g:go_version_warning = 0
 
 "== setup plug if not installed
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 if !filereadable(vimplug_exists)
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  let g:not_finish_vimplug = "yes"
+    echo "Installing Vim-Plug..."
+    echo ""
+    silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let g:not_finish_vimplug = "yes"
 
-  autocmd VimEnter * PlugInstall
+    autocmd VimEnter * PlugInstall
 endif
 
 let g:mapleader = ","
@@ -131,11 +130,11 @@ let NERDTreeDirArrows=1
 
 "== return to last edit position when opening files
 augroup last_edit
-  autocmd!
-  autocmd BufReadPost *
-       \ if line("'\"") > 0 && line("'\"") <= line("$") |
-       \   exe "normal! g`\"" |
-       \ endif
+    autocmd!
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal! g`\"" |
+                \ endif
 augroup END
 
 " deoplete
@@ -146,8 +145,6 @@ let g:deoplete#enable_at_startup = 1
 "let g:deoplete#keyword_patterns = {}
 "let g:deoplete#keyword_patterns['default'] = '\h\w*'
 "let g:deoplete#omni#input_patterns = {}
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-let g:deoplete#sources#go#align_class = 1
 
 " deoplete new way to handle options
 "[deoplete] g:deoplete#enable_smart_case is deprecated variable.  Please use deoplete#custom#option() instead.
@@ -210,12 +207,17 @@ call plug#begin()
 
 "==Plug 'neomake/neomake'
 " if errors when editing go files, on vim-go update, in terminal `gocode exit`, re-run GoInstallBinaries
-" or GoUpdateBinaries, 
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'sebdah/vim-delve'
-Plug 'jodosha/vim-godebug'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" or GoUpdateBinaries,
+" GO LANG
+" Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" Plug 'sebdah/vim-delve'
+" Plug 'jodosha/vim-godebug'
+" let g:go_version_warning = 0
+" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+" let g:deoplete#sources#go#align_class = 1
+
 Plug 'zchee/deoplete-go', { 'do': 'make' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
 Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
@@ -241,15 +243,25 @@ Plug 'cespare/vim-toml'
 Plug 'tomtom/tcomment_vim'
 Plug 'bling/vim-bufferline'
 Plug 'mattn/emmet-vim'
-Plug 'pearofducks/ansible-vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'hashivim/vim-terraform'
-Plug 'hashivim/vim-packer'
 Plug 'godlygeek/tabular'
 Plug 'wincent/terminus'
-Plug 'rust-lang/rust.vim'
-Plug 'sebastianmarkow/deoplete-rust'
+
+Plug 'sheerun/vim-polyglot'
+" Plug 'pearofducks/ansible-vim'
+" Plug 'Glench/Vim-Jinja2-Syntax'
+" Plug 'hashivim/vim-terraform'
+" Plug 'hashivim/vim-packer'
+" Plug 'rust-lang/rust.vim'
+
+
+" RUST
+" Plug 'sebastianmarkow/deoplete-rust'
 "Plug 'racer-rust/vim-racer'
+" LSP alt - https://dev.to/drmason13/configure-neovim-for-rust-development-1fjn
+Plug 'neovim/nvim-lsp'
+Plug 'Shougo/deoplete-lsp'
+Plug 'ervandew/supertab'
+
 Plug 'w0rp/ale'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'JamshedVesuna/vim-markdown-preview'
@@ -261,8 +273,8 @@ Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 15
 "Plug 'wokalski/autocomplete-flow'
 Plug 'elmcast/elm-vim'
-Plug 'pbogut/deoplete-elm'
-Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
+" Plug 'pbogut/deoplete-elm'
+" Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
 " build and cache tags rather than maintain tags file for each project
 " need to also ensure $HOME/.ctags exists with definitions for each language
 " using universal ctags, can drop tag definitions in ~/.ctags.d/<lang>.ctags
@@ -298,24 +310,24 @@ endfor
 
 " vim-go
 " let g:go_def_mapping_enabled = 1
-let g:go_fmt_command = 'goimports'
-let g:go_fmt_fail_silently = 1
-let g:go_term_enabled = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-" let g:go_auto_type_info = 1 " seems to cause errors
-let g:go_snippet_engine = "neosnippet"
-let g:go_def_mode = "gopls"
-call deoplete#custom#option('omni_patterns', {
-\ 'go': '[^. *\t]\.\w*',
-\})
+" let g:go_fmt_command = 'goimports'
+" let g:go_fmt_fail_silently = 1
+" let g:go_term_enabled = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_chan_whitespace_error = 1
+" let g:go_highlight_extra_types = 1
+" " let g:go_auto_type_info = 1 " seems to cause errors
+" let g:go_snippet_engine = "neosnippet"
+" let g:go_def_mode = "gopls"
+" call deoplete#custom#option('omni_patterns', {
+" \ 'go': '[^. *\t]\.\w*',
+" \})
 " brew install delve
 " xcode-select --install for dlv / lldb-server to work
 
@@ -330,90 +342,102 @@ call deoplete#custom#option('omni_patterns', {
 "     let g:tagbar_type_rust.deffile = expand('~/.ctags.d/rust.ctags')
 " endif
 " autocmd FileType rust call tagbar#debug#start_debug()
- 
+
 " r#debug#start_debug()call
 
-let g:delve_backend = "native"
 
 
 " install missing plugins on start
 autocmd VimEnter *
-  \  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall
-  \| endif
+            \  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+            \|   PlugInstall
+            \| endif
 
 call deoplete#custom#source('_', 'converters',
-      \ ['converter_auto_paren',
-      \  'converter_auto_delimiter',
-      \  'converter_remove_overlap'])
+            \ ['converter_auto_paren',
+            \  'converter_auto_delimiter',
+            \  'converter_remove_overlap'],
+            \ 'max_menu_width', 80)
 
 " mappings
 
 " deoplete
-imap <expr> <tab>   pumvisible() ? "\<c-n>" : "\<tab>"
-imap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
+" imap <expr> <tab>   pumvisible() ? "\<c-n>" : "\<tab>"
+" imap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 imap <expr> <cr>    pumvisible() ? deoplete#close_popup() : "\<cr>"
 
 " vim-go mappings
-augroup go_bindings
-    autocmd!
-    autocmd FileType go nmap <buffer> <leader>r <plug>(go-run)
-    autocmd FileType go nmap <buffer> <leader>b <plug>(go-build)
-    autocmd FileType go nmap <buffer> <leader>t <plug>(go-test)
-    autocmd FileType go nmap <buffer> <leader>e <plug>(go-rename)
-    autocmd FileType go nmap <buffer> <leader>d <plug>(go-doc)
-    "autocmd FileType go nmap <buffer> gd <plug>(go-def-vertical)
-    autocmd FileType go nmap <buffer> gd <plug>(go-def)
-    autocmd FileType go nmap <buffer> <c-]> <plug>(go-def)
-    autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
-    "au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
-    " navigate errors using location list overriding quick fix
-    " autocmd FileType go command! Lnext try | lnext | catch | lfirst | catch | endtry
-    " autocmd FileType go command! Lprev try | lprev | catch | llast | catch | endtry
-    " autocmd FileType go nnoremap <silent> <C-Down> :Lnext<CR>
-    " autocmd FileType go nnoremap <silent> <C-Up> :Lprev<CR>
-augroup END
+" augroup go_bindings
+"     autocmd!
+"     autocmd FileType go nmap <buffer> <leader>r <plug>(go-run)
+"     autocmd FileType go nmap <buffer> <leader>b <plug>(go-build)
+"     autocmd FileType go nmap <buffer> <leader>t <plug>(go-test)
+"     autocmd FileType go nmap <buffer> <leader>e <plug>(go-rename)
+"     autocmd FileType go nmap <buffer> <leader>d <plug>(go-doc)
+"     "autocmd FileType go nmap <buffer> gd <plug>(go-def-vertical)
+"     autocmd FileType go nmap <buffer> gd <plug>(go-def)
+"     autocmd FileType go nmap <buffer> <c-]> <plug>(go-def)
+"     autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
+"     "au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
+"     " navigate errors using location list overriding quick fix
+"     " autocmd FileType go command! Lnext try | lnext | catch | lfirst | catch | endtry
+"     " autocmd FileType go command! Lprev try | lprev | catch | llast | catch | endtry
+"     " autocmd FileType go nnoremap <silent> <C-Down> :Lnext<CR>
+"     " autocmd FileType go nnoremap <silent> <C-Up> :Lprev<CR>
+" augroup END
 "
-" rust
+
+" RUST SETUP
 "let g:ale_rust_cargo_use_check = 1
 let g:rustfmt_autosave = 1
-if executable('racer')
-  " cargo install racer
-  " rustup component add rust-src
-  let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
-  let g:racer_cmd = systemlist('which racer')[0]
-endif
+" if executable('racer')
+"   " cargo install racer
+"   " rustup component add rust-src
+"   let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
+"   let g:racer_cmd = systemlist('which racer')[0]
+" endif
+"
+" if executable('rustc')
+"     " if src installed via rustup, we can get it by running
+"     " rustc --print sysroot then appending the rest of the path
+"     let rustc_root = systemlist('rustc --print sysroot')[0]
+"     let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
+"     if isdirectory(rustc_src_dir)
+"         let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
+"     endif
+" endif
+" let g:racer_experimental_completer = 1
+"
+" " rust mappings
+" augroup rust_bindings
+"     au!
+"     " au FileType rust nmap gd <Plug>(rust-def)
+"     " au FileType rust nmap <leader>gd <Plug>(rust-doc)
+"     au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
+"     au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
+"     " au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr> " weird errors
+"     au FileType rust nmap <buffer> <leader>t :!cargo test<cr>
+"     au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run -q<cr>
+"     " au FileType rust nmap <buffer> <leader>r :sp term://cargo run -q<cr>
+"     " au FileType rust nmap <buffer> <leader>r :AsyncRun RustRun<cr>
+"     au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
+"     " navigate errors using location list overriding quick fix
+"     " autocmd FileType rust command! Lnext try | lnext | catch | lfirst | catch | endtry
+"     " autocmd FileType rust command! Lprev try | lprev | catch | llast | catch | endtry
+"     " autocmd FileType rust nnoremap <silent> <C-Down> :Lnext<CR>
+"     " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
+" augroup END
 
-if executable('rustc')
-    " if src installed via rustup, we can get it by running 
-    " rustc --print sysroot then appending the rest of the path
-    let rustc_root = systemlist('rustc --print sysroot')[0]
-    let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
-    if isdirectory(rustc_src_dir)
-        let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
-    endif
-endif
-let g:racer_experimental_completer = 1
+lua require 'nvim_lsp'.rust_analyzer.setup{}
+autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+let g:SuperTabDefaultCompletionType = "<c-n>"
+autocmd BufWrite * :Autoformat
 
-" rust mappings
-augroup rust_bindings
-    au!
-    " au FileType rust nmap gd <Plug>(rust-def)
-    " au FileType rust nmap <leader>gd <Plug>(rust-doc)
-    au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
-    au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-    " au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr> " weird errors 
-    au FileType rust nmap <buffer> <leader>t :!cargo test<cr>
-    au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run -q<cr>
-    " au FileType rust nmap <buffer> <leader>r :sp term://cargo run -q<cr>
-    " au FileType rust nmap <buffer> <leader>r :AsyncRun RustRun<cr>
-    au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
-    " navigate errors using location list overriding quick fix
-    " autocmd FileType rust command! Lnext try | lnext | catch | lfirst | catch | endtry
-    " autocmd FileType rust command! Lprev try | lprev | catch | llast | catch | endtry
-    " autocmd FileType rust nnoremap <silent> <C-Down> :Lnext<CR>
-    " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
-augroup END
+nnoremap <silent>gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent><c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent>K     <cmd>lua vim.lsp.buf.hover()<CR>
+
+" END RUST SETUP
 
 "== Load custom settings =="
 " for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
@@ -427,38 +451,38 @@ source ~/.vim/startup/mappings.vim
 source ~/.vim/startup/python.vim
 "source ~/.vim/startup/airline.vim
 "source ~/.vim/startup/ctrlp.vim
-source ~/.vim/startup/terraform.vim
+"source ~/.vim/startup/terraform.vim
 
 set rtp+=~/.fzf
 
 " ctags for go - brew install gotags
 let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
-    \ }
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
 
 
 " it'll use ctags from rust.vim instead
@@ -486,7 +510,7 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
 " autocmd FileType go,rust nested :TagbarOpen "annoying on close, have to press, also breaks colouring
 " colors - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-" fix highlight and function signature color 
+" fix highlight and function signature color
 highlight TagbarSignature ctermfg=37
 highlight TagbarHighlight ctermfg=119
 " also strange errors when there are tests within a lib.rs
@@ -496,8 +520,8 @@ smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
 let g:neosnippet#disable_runtime_snippets = {
-    \ 'go': 1
-    \}
+            \ 'go': 1
+            \}
 
 """" Airline config (cool status bars)..
 let g:airline_powerline_fonts = 1
