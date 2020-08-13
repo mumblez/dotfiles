@@ -202,6 +202,9 @@ if !isdirectory(cache_dir)
     silent! execute "!mkdir " . cache_dir
 endif
 
+"fix color support
+set termguicolors
+
 " plugins
 call plug#begin()
 
@@ -249,7 +252,7 @@ Plug 'wincent/terminus'
 Plug 'sheerun/vim-polyglot'
 " Plug 'pearofducks/ansible-vim'
 " Plug 'Glench/Vim-Jinja2-Syntax'
-" Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-terraform'
 " Plug 'hashivim/vim-packer'
 " Plug 'rust-lang/rust.vim'
 
@@ -428,15 +431,16 @@ let g:rustfmt_autosave = 1
 "     " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
 " augroup END
 
-lua require'nvim_lsp'.rust_analyzer.setup{}
-lua require'nvim_lsp'.pyls.setup{}
-lua require'nvim_lsp'.gopls.setup{}
-lua require'nvim_lsp'.terraformls.setup{}
 lua <<EOF
+require'nvim_lsp'.rust_analyzer.setup{}
+require'nvim_lsp'.pyls.setup{}
+require'nvim_lsp'.gopls.setup{}
+require'nvim_lsp'.terraformls.setup{}
 local nvim_lsp = require'nvim_lsp'
 nvim_lsp.terraformls.setup{
 root_dir = nvim_lsp.util.root_pattern('.terraform');
 }
+require'nvim_lsp'.bashls.setup{}
 EOF
 
 lua require'nvim_lsp'.yamlls.setup{}
