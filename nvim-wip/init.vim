@@ -218,7 +218,7 @@ call plug#begin()
 
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
 Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
 Plug 'honza/vim-snippets'
@@ -428,7 +428,18 @@ let g:rustfmt_autosave = 1
 "     " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
 " augroup END
 
-lua require 'nvim_lsp'.rust_analyzer.setup{}
+lua require'nvim_lsp'.rust_analyzer.setup{}
+lua require'nvim_lsp'.pyls.setup{}
+lua require'nvim_lsp'.gopls.setup{}
+lua require'nvim_lsp'.terraformls.setup{}
+lua <<EOF
+local nvim_lsp = require'nvim_lsp'
+nvim_lsp.terraformls.setup{
+root_dir = nvim_lsp.util.root_pattern('.terraform');
+}
+EOF
+
+lua require'nvim_lsp'.yamlls.setup{}
 autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd BufWrite * :Autoformat
