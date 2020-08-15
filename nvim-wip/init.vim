@@ -303,6 +303,8 @@ Plug 'xolox/vim-misc'
 " but then breaks status line and tmux line!
 Plug 'Chiel92/vim-autoformat'
 au BufWrite *.py :Autoformat
+
+"Plug 'mhinz/vim-startify'
 call plug#end()
 
 "== create plugin cache directories
@@ -310,6 +312,7 @@ call plug#end()
 for plugin_cache_dir in [vim_sessions_cache_dir]
     silent! execute "!mkdir " . plugin_cache_dir
 endfor
+
 
 " vim-go
 " let g:go_def_mapping_enabled = 1
