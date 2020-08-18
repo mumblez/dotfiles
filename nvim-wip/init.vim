@@ -225,9 +225,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
 Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
 Plug 'honza/vim-snippets'
-Plug 'Shougo/neosnippet'
-let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet'
+" let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
+" Plug 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
+
 Plug 'Shougo/neocomplcache'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -313,8 +315,16 @@ for plugin_cache_dir in [vim_sessions_cache_dir]
     silent! execute "!mkdir " . plugin_cache_dir
 endfor
 
+" Ultisnips for completion engine
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<m-j>"
+let g:UltiSnipsJumpBackwardTrigger="<m-k>"
 
-" vim-go
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"" vim-go
 " let g:go_def_mapping_enabled = 1
 " let g:go_fmt_command = 'goimports'
 " let g:go_fmt_fail_silently = 1
@@ -533,13 +543,13 @@ highlight TagbarSignature ctermfg=37
 highlight TagbarHighlight ctermfg=119
 " also strange errors when there are tests within a lib.rs
 
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-let g:neosnippet#disable_runtime_snippets = {
-            \ 'go': 1
-            \}
+" imap <C-k> <Plug>(neosnippet_expand_or_jump)
+" smap <C-k> <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k> <Plug>(neosnippet_expand_target)
+"
+" let g:neosnippet#disable_runtime_snippets = {
+"             \ 'go': 1
+"             \}
 
 """" Airline config (cool status bars)..
 let g:airline_powerline_fonts = 1
