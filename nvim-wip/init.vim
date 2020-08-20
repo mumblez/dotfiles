@@ -307,6 +307,7 @@ Plug 'Chiel92/vim-autoformat'
 au BufWrite *.py :Autoformat
 
 "Plug 'mhinz/vim-startify'
+"
 call plug#end()
 
 "== create plugin cache directories
@@ -459,7 +460,7 @@ EOF
 lua require'nvim_lsp'.yamlls.setup{}
 autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 let g:SuperTabDefaultCompletionType = "<c-n>"
-autocmd BufWrite * :Autoformat
+"autocmd BufWrite * :Autoformat
 
 nnoremap <silent>gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent><c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -570,3 +571,10 @@ let g:bufferline_show_bufnr = 1
 let g:bufferline_active_highlight = 'airline_c'
 " let g:bufferline_inactive_highlight = 'airline_c'
 "
+"let g:polyglot_disabled = ['ansible', 'yaml', 'yml']
+let g:ansible_unindent_after_newline = 1
+autocmd FileType yml let b:autoformat_autoindent=0
+autocmd FileType yml let b:autoformat_retab=0
+
+" set modeline
+" set modelines=5
