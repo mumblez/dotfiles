@@ -197,6 +197,10 @@ fi
 
 source ~/google-cloud-sdk/completion.zsh.inc
 
+# brew install olets/tap/zsh-abbr
+source /usr/local/share/zsh-abbr/zsh-abbr.zsh
+
+
 # Import alias
 source ~/dotfiles/alias
 
@@ -216,6 +220,10 @@ if [ -z $TMUX ]; then
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 fi
+
+# import aliases into zsh-abbr only once
+# abbr import-aliases &>/dev/null
+abbr load
 
 # pyenv init
 export PYENV_ROOT="${HOME}/.pyenv"
