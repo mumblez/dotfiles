@@ -224,6 +224,9 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 source "$(pyenv root)/completions/pyenv.zsh"
+# pyenv doctor fix
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
 
 
 # >>> conda initialize >>>
