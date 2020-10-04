@@ -1,0 +1,11 @@
+% gcloud, rtc
+
+# rtc list variables / keys
+gcloud --project <project> beta runtime-config configs variables list --config-name <config>
+
+# rtc get value
+gcloud --project <project> beta runtime-config configs variables get-value <key> --config-name <config>
+
+$ project: gcloud projects list --format='value(project_id)'
+$ config: gcloud --project <project> beta runtime-config configs list --format='value(name)'
+$ key: gcloud --project <project> beta runtime-config configs variables list --config-name <config> --format='value(name)'
