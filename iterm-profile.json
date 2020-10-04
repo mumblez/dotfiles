@@ -1,12 +1,13 @@
 {
-  "Working Directory" : "\/Users\/yusuf",
+  "Set Local Environment Vars" : true,
+  "Working Directory" : "",
   "Prompt Before Closing 2" : 0,
   "Selected Text Color" : {
     "Green Component" : 0.78764206171035767,
     "Red Component" : 0.70352494716644287,
     "Blue Component" : 0.78764206171035767
   },
-  "Rows" : 25,
+  "Rows" : 35,
   "Ansi 11 Color" : {
     "Red Component" : 0.76531982421875,
     "Color Space" : "sRGB",
@@ -31,6 +32,7 @@
 
   ],
   "Blend" : 0.30000001192092896,
+  "Show Mark Indicators" : true,
   "Mouse Reporting" : true,
   "Cursor Boost" : 0,
   "Ansi 4 Color" : {
@@ -48,9 +50,10 @@
     "slogin",
     "telnet"
   ],
-  "Scrollback With Status Bar" : false,
+  "Non-ASCII Ligatures" : true,
   "Scrollback Lines" : 5000,
   "Scrollback in Alternate Screen" : true,
+  "Scrollback With Status Bar" : false,
   "Hide After Opening" : false,
   "Flashing Bell" : false,
   "BM Growl" : false,
@@ -62,6 +65,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.58334750794045931
   },
+  "Use Non-ASCII Font" : false,
   "Link Color" : {
     "Red Component" : 0.031079985201358795,
     "Color Space" : "sRGB",
@@ -78,7 +82,7 @@
   },
   "Use Cursor Guide" : false,
   "Unlimited Scrollback" : false,
-  "Custom Command" : "No",
+  "Custom Command" : "Custom Shell",
   "AWDS Tab Option" : "No",
   "Smart Selection Rules" : [
     {
@@ -239,8 +243,8 @@
       "Action" : 10
     },
     "0xf703-0x280000" : {
-      "Action" : 10,
-      "Text" : "f"
+      "Text" : "f",
+      "Action" : 10
     },
     "0xf700-0x240000" : {
       "Text" : "[1;5A",
@@ -275,8 +279,8 @@
       "Action" : 12
     },
     "0xf702-0x280000" : {
-      "Action" : 10,
-      "Text" : "b"
+      "Text" : "b",
+      "Action" : 10
     },
     "0xf72b-0x20000" : {
       "Text" : "[1;2F",
@@ -298,30 +302,30 @@
       "Text" : "[19;2~",
       "Action" : 10
     },
-    "0xf702-0x240000" : {
-      "Text" : "[1;5D",
-      "Action" : 10
-    },
     "0x9-0x40000" : {
       "Text" : "9",
       "Action" : 11
+    },
+    "0xf702-0x240000" : {
+      "Text" : "[1;5D",
+      "Action" : 10
     }
   },
   "Log Directory" : "",
   "Use Canonical Parser" : false,
   "Ansi 14 Color" : {
-    "Red Component" : 0.092122843489050865,
+    "Red Component" : 0.082352941176470587,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.940399169921875,
+    "Blue Component" : 0.83921568627450982,
     "Alpha Component" : 1,
-    "Green Component" : 0.94039824898451141
+    "Green Component" : 0.83921568627450982
   },
   "Ansi 2 Color" : {
-    "Red Component" : 0.13836117255959834,
+    "Red Component" : 0.52156862745098043,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.0092787519097328186,
+    "Blue Component" : 0.0039215686274509803,
     "Alpha Component" : 1,
-    "Green Component" : 0.67266845703125
+    "Green Component" : 0.59999999999999998
   },
   "Background Image Is Tiled" : false,
   "Send Code When Idle" : false,
@@ -353,18 +357,6 @@
     "Red Component" : 0,
     "Blue Component" : 0.19370138645172119
   },
-  "Default Bookmark" : "No",
-  "Cursor Color" : {
-    "Red Component" : 1,
-    "Color Space" : "sRGB",
-    "Blue Component" : 1,
-    "Alpha Component" : 1,
-    "Green Component" : 1
-  },
-  "Disable Smcup Rmcup" : false,
-  "Name" : "Yusuf",
-  "Blinking Cursor" : false,
-  "Guid" : "96656579-309A-429E-A07E-600437DDBD4B",
   "Ansi 1 Color" : {
     "Red Component" : 0.84991455078125,
     "Color Space" : "sRGB",
@@ -372,37 +364,51 @@
     "Alpha Component" : 1,
     "Green Component" : 0.39037383848839724
   },
-  "Idle Code" : 0,
-  "Ansi 10 Color" : {
-    "Red Component" : 0.15493593806193695,
+  "Default Bookmark" : "No",
+  "Disable Smcup Rmcup" : false,
+  "Name" : "Me",
+  "Blinking Cursor" : false,
+  "Cursor Color" : {
+    "Red Component" : 1,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.13872820883989334,
+    "Blue Component" : 1,
     "Alpha Component" : 1,
-    "Green Component" : 0.762725830078125
+    "Green Component" : 1
   },
+  "Guid" : "96656579-309A-429E-A07E-600437DDBD4B",
   "Ansi 8 Color" : {
-    "Green Component" : 0.11783610284328461,
-    "Red Component" : 0,
-    "Blue Component" : 0.15170273184776306
+    "Red Component" : 0.54896573117002845,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.581390380859375,
+    "Alpha Component" : 1,
+    "Green Component" : 0.57422641000259533
   },
+  "Ansi 10 Color" : {
+    "Red Component" : 0.14901960784313725,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.41568627450980394,
+    "Alpha Component" : 1,
+    "Green Component" : 0.80784313725490198
+  },
+  "Idle Code" : 0,
   "Automatically Log" : false,
   "Smart Cursor Color" : false,
   "Semantic History" : {
-    "text" : "",
     "action" : "best editor",
+    "text" : "",
     "editor" : "com.sublimetext.3"
   },
   "Ambiguous Double Width" : false,
   "Blur Radius" : 2,
-  "Cursor Type" : 2,
   "Ansi 0 Color" : {
     "Green Component" : 0.15575926005840302,
     "Red Component" : 0,
     "Blue Component" : 0.19370138645172119
   },
+  "Cursor Type" : 2,
   "AWDS Pane Directory" : "",
   "Blur" : false,
-  "Normal Font" : "UbuntuMonoDerivativePowerline-Regular 14",
+  "Normal Font" : "UbuntuMonoNerdFontCompleteM-Regular 16",
   "Vertical Spacing" : 1,
   "Disable Printing" : false,
   "Ansi 7 Color" : {
@@ -412,9 +418,11 @@
     "Alpha Component" : 1,
     "Green Component" : 0.90980392156862744
   },
+  "Place Prompt at First Column" : true,
+  "Space" : 0,
   "AWDS Tab Directory" : "",
   "AWDS Pane Option" : "No",
-  "Command" : "",
+  "Command" : "\/usr\/local\/bin\/zsh",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
   "Option Key Sends" : 2,
@@ -430,7 +438,7 @@
     "Red Component" : 0.14679534733295441,
     "Blue Component" : 0.52502274513244629
   },
-  "Transparency" : 0.11241678893566132,
+  "Transparency" : 0.061681144900128305,
   "Initial Text" : "",
   "Background Color" : {
     "Red Component" : 0.0023986364249140024,
@@ -441,7 +449,7 @@
   },
   "Screen" : -1,
   "AWDS Window Option" : "No",
-  "Non Ascii Font" : "UbuntuMonoDerivativePowerline-Regular 14",
+  "Non Ascii Font" : "UbuntuNerdFontCompleteM- 11",
   "Ansi 13 Color" : {
     "Red Component" : 0.928741455078125,
     "Color Space" : "sRGB",
@@ -449,7 +457,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.085624021477997303
   },
-  "Columns" : 100,
+  "Columns" : 130,
   "Visual Bell" : true,
   "Custom Directory" : "No",
   "Ansi 5 Color" : {
@@ -459,5 +467,5 @@
     "Alpha Component" : 1,
     "Green Component" : 0.28810948133468628
   },
-  "Set Local Environment Vars" : true
+  "ASCII Ligatures" : true
 }

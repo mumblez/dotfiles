@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
+
+# patch /etc/zprofile to ensure path_helper only runs if NOT tmux, e.g. [ -z $TMUX ]
 
 autoload -U compinit
 compinit
@@ -67,7 +70,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_GB.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -99,11 +102,10 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 #
 #
-# Luke's config for the Zoomer Shell
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # History in cache directory:
 HISTSIZE=10000
@@ -175,9 +177,17 @@ bindkey '^e' edit-command-line
 VISUAL=nvim
 EDITOR=$VISUAL
 
+# Plugins
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+# Bindings
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+
+# Auto load completions
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
@@ -185,14 +195,36 @@ if type brew &>/dev/null; then
     compinit
 fi
 
-source ~/google-cloud-sdk/path.zsh.inc
 source ~/google-cloud-sdk/completion.zsh.inc
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+
+# Import alias
 source ~/dotfiles/alias
 
+# Prompt
 eval "$(starship init zsh)"
+
+# anything that modifies PATH put in here so it only loads once
+if [ -z $TMUX ]; then
+    source ~/google-cloud-sdk/path.zsh.inc
+
+
+    source ~/dotfiles/functions
+    source ~/dotfiles/paths
+
+    # gpg
+    gpgconf --launch gpg-agent
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+fi
+
+# pyenv init
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+source "$(pyenv root)/completions/pyenv.zsh"
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -203,9 +235,8 @@ else
     if [ -f "/Users/yusuf/miniconda3/etc/profile.d/conda.sh" ]; then
         . "/Users/yusuf/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/yusuf/miniconda3/bin:$PATH"
+        [ -z $TMUX ] && export PATH="/Users/yusuf/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-

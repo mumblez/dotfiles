@@ -22,6 +22,9 @@ if &compatible
     set nocompatible
 endif
 
+" use pyenv virtualevs for neovim python executables
+let g:python_host_prog = expand("~/.pyenv/versions/neovim2/bin/python")
+let g:python3_host_prog = expand("~/.pyenv/versions/neovim3/bin/python")
 
 "== setup plug if not installed
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')

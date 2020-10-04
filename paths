@@ -1,0 +1,16 @@
+# quote if there's space in the path
+paths=(
+    ~/.nix-profile/bin
+    ~/.cargo/bin
+    ~/.fzf/bin
+    /usr/local/opt/libpq/bin
+    /usr/local/opt/ncurses/bin
+    ~/.local/bin
+    ~/bin
+    ~/kb/bin
+    /usr/local/sbin
+)
+
+
+EXTRA_PATHS=$(join_by ":" "${paths[@]}")
+export PATH="${EXTRA_PATHS}:${PATH}"
