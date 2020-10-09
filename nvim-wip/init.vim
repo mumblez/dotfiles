@@ -311,6 +311,7 @@ au BufWrite *.py :Autoformat
 
 "Plug 'mhinz/vim-startify'
 "
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 "== create plugin cache directories
@@ -581,3 +582,6 @@ autocmd FileType yml let b:autoformat_retab=0
 
 " set modeline
 " set modelines=5
+
+" vimwiki on Dropbox
+let g:vimwiki_list = [{'path': '~/Dropbox/Apps/VimWiki', 'path_html': '~/Dropbox/Apps/VimWiki/public_html'}]

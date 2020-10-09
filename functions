@@ -1,1 +1,52 @@
-function join_by { local d="$1"; shift; local f="$1"; shift; printf %s "$f" "${@/#/$d}"; }
+join_by () { local d="$1"; shift; local f="$1"; shift; printf %s "$f" "${@/#/$d}"; }
+
+kctx () {
+    local context
+    if [ -z $1 ]; then
+        context=$(kubectl config get-contexts -o name | fzf)
+    else
+        context="$1"
+    fi
+    kubectl config use-context "$context"
+}
+
+bastion-sainsburys() {
+    #mfab $(gopass otp te/sainsburys/bastion | cut -d' ' -f1)
+    gopass otp -c te/sainsburys/bastion | cut -d' ' -f1
+    sshuttle -v -r yusuf@sainsburys-gcloud-bastion-01 10.0.0.0/8 172.31.146.0/24 172.20.3.0/24
+}
+
+bastion-mns() {
+    gopass otp -c te/sainsburys/bastion | cut -d' ' -f1
+    sshuttle -v -r yusuf@mns-gcloud-bastion-01 10.159.218.0/24 10.222.0.0/16
+}
+
+git-switch () {
+    cd $HOME
+    local prefix current new
+    prefix=".gitconfig"
+    real=$(readlink $prefix)
+    current=${real#${prefix}.}
+
+    if [[ ! -z $1 && $1 == "status" ]]; then
+        echo "$current"
+        return
+    fi
+
+    case "$current" in
+        home) new=work ;;
+        work) new=home ;;
+    esac
+
+    rm -f "$prefix"
+    ln -snf "${prefix}.${new}" "$prefix"
+
+    echo "Old config $current replaced with $new"
+}
+
+ai_online () {
+    for i in $(grep -oE 'sainsburys-store-[a-z]{1,}.*' ~/.ssh/config)
+    do
+        ssh -o ConnectTimeout=5 "$i" hostname 2>/dev/null
+    done
+}

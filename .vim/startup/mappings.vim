@@ -91,9 +91,10 @@ nnoremap <C-n> :bnext<CR>
 "previous buffer
 nnoremap <C-p> :bprevious<CR>
 "== tabs
-nnoremap <C-left> :tabprevious<CR>
-nnoremap <C-right> :tabnext<CR>
-nnoremap <leader>t :tabclose<CR>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <M-q> :tabclose<CR>
+nnoremap <M-t> :tabnew<CR>
 
 "== QUICKFIX window navigation
 " cycle when we hit end / beginning

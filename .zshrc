@@ -219,17 +219,20 @@ if [ -z $TMUX ]; then
     gpgconf --launch gpg-agent
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
+    # pyenv init
+    export PYENV_ROOT="${HOME}/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+
+    # import aliases into zsh-abbr only once
+    # abbr import-aliases &>/dev/null
+    abbr load
+
 fi
 
-# import aliases into zsh-abbr only once
-# abbr import-aliases &>/dev/null
-abbr load
 
 # pyenv init
-export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 source "$(pyenv root)/completions/pyenv.zsh"
 # pyenv doctor fix
@@ -254,3 +257,37 @@ unset __conda_setup
 #
 # autojump (j)
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+export NIX_IGNORE_SYMLINK_STORE=1 # catalina fix
+export REPO_DIR="${HOME}/repos"
+DOTFILES_REPO="$REPO_DIR/dotfiles"
+CACHE_DIR="${HOME}/.cache"
+[ -d "${CACHE_DIR:-}" ] || mkdir -p "$CACHE_DIR"
+VIM_SESSIONS="${CACHE_DIR}/vim-sessions"
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,.terraform,node_modules}/*" --no-messages'
+export FZF_CTRL_T_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{.git,.terraform,node_modules}/*" --no-messages '
+export FZF_ALT_C_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{.git,.terraform,node_modules}/*" --null --no-messages | xargs -0 dirname | uniq'
+
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+
+export CHEATCOLORS=true
+export DEFAULT_CHEAT_DIR="${DOTFILES_REPO}/.cheat"
+
+#source <(gopass completion zsh)
+export CHEAT_USE_FZF=true
+
+edge-gcr() {
+  local tag
+  tag="$1"
+  oldimage="eu.gcr.io/thirdeyelabs-common/edge-prod-cuda10.0-amd64:${tag}"
+  newimage="europe-west1-docker.pkg.dev/telabs-client-share/stable/edge-prod-cuda10.0-amd64:${tag}"
+  [ -z $tag ] && { echo "you need to provide the tag!"; exit 1; }
+
+  echo "Caching image locally"
+  docker pull $oldimage
+  echo "Re-tagging with new client registry"
+  docker tag $oldimage $newimage
+  echo "Pushing image..."
+  docker push $newimage
+}
