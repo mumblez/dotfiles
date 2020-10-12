@@ -50,3 +50,17 @@ ai_online () {
         ssh -o ConnectTimeout=5 "$i" hostname 2>/dev/null
     done
 }
+
+dhcp_status() {
+    sudo systemctl status dhcpd
+}
+
+dhcp_start() {
+    sudo systemctl start dhcpd
+    dhcp_status
+}
+
+dhcp_stop() {
+    sudo systemctl stop dhcpd
+    dhcp_status
+}

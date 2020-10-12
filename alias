@@ -6,6 +6,7 @@ alias grep='grep --color=auto'
 alias gc='git commit'
 alias gs='git status'
 alias gl='git lg'
+alias gp='git push'
 alias ga='git add'
 alias gd='git diff'
 alias gac='git commit -am'
@@ -14,7 +15,11 @@ alias tf='terraform'
 alias tfp='terraform plan'
 alias tfpo='terraform plan -out=.tfplan.out'
 alias tfao='terraform apply .tfplan.out'
-alias vim='nvim'
+if [ $(uname -s) = 'Linux' ]; then
+    alias vim="~/neovim-dev/nvim.appimage"
+else
+    alias vim='nvim'
+fi
 alias vimdiff='nvim -d'
 alias es='/Applications/EmbyServer.app/Contents/MacOS/EmbyServer'
 alias k='kubectl'
@@ -32,3 +37,4 @@ alias xavier='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no yu
 alias sshdev='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias scpdev='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias sshnoid='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o identityfile=/dev/null -o pubkeyauthentication=no'
+alias obs="~/Downloads/Obsidian-0.9.2.AppImage &"
