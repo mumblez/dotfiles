@@ -291,3 +291,5 @@ edge-gcr() {
   echo "Pushing image..."
   docker push $newimage
 }
+
+alias sed='/usr/local/bin/gsed'

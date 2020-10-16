@@ -11,6 +11,7 @@ alias gps='git push --set-upstream origin $(git symbolic-ref --short HEAD)'
 alias ga='git add'
 alias gd='git diff'
 alias gac='git commit -am'
+alias gp='git push'
 alias drmall="docker ps | sed '1d' | cut -d' ' -f1 | xargs -I{} docker rm -f {};"
 alias tf='terraform'
 alias tfp='terraform plan'
