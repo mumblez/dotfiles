@@ -64,3 +64,34 @@ dhcp_stop() {
     sudo systemctl stop dhcpd
     dhcp_status
 }
+
+kvmon() {
+    # https://wiki.archlinux.org/index.php/HiDPI#Java_applications
+    xhost +
+    #sudo java -jar /run/media/yusuf/9279-375D/JavaClient.jar
+    sudo java -Dsun.java2d.uiScale=2 -jar /run/media/yusuf/9279-375D/JavaClient.jar
+    xhost -
+}
+
+edge-gcr() {
+  local tag
+  tag="$1"
+  oldimage="eu.gcr.io/thirdeyelabs-common/edge-prod-cuda10.0-amd64:${tag}"
+  newimage="europe-west1-docker.pkg.dev/telabs-client-share/stable/edge-prod-cuda10.0-amd64:${tag}"
+  [ -z $tag ] && { echo "you need to provide the tag!"; exit 1; }
+
+  echo "Caching image locally"
+  docker pull $oldimage
+  echo "Re-tagging with new client registry"
+  docker tag $oldimage $newimage
+  echo "Pushing image..."
+  docker push $newimage
+}
+
+wgon() {
+    sudo systemctl start wg-quick@wg1
+}
+
+wgoff() {
+    sudo systemctl stop wg-quick@wg1
+}

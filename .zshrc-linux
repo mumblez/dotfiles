@@ -281,20 +281,8 @@ export DEFAULT_CHEAT_DIR="${DOTFILES_REPO}/.cheat"
 #source <(gopass completion zsh)
 export CHEAT_USE_FZF=true
 
-edge-gcr() {
-  local tag
-  tag="$1"
-  oldimage="eu.gcr.io/thirdeyelabs-common/edge-prod-cuda10.0-amd64:${tag}"
-  newimage="europe-west1-docker.pkg.dev/telabs-client-share/stable/edge-prod-cuda10.0-amd64:${tag}"
-  [ -z $tag ] && { echo "you need to provide the tag!"; exit 1; }
-
-  echo "Caching image locally"
-  docker pull $oldimage
-  echo "Re-tagging with new client registry"
-  docker tag $oldimage $newimage
-  echo "Pushing image..."
-  docker push $newimage
-}
-
 # Cleanup PATH with just unique entries
 typeset -aU path
+
+
+export PATH="$HOME/.poetry/bin:$PATH"
