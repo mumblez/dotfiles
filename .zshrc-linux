@@ -235,7 +235,6 @@ eval "$(starship init zsh)"
 
 # fi
 
-
 # pyenv init
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 source "$(pyenv root)/completions/pyenv.zsh"
