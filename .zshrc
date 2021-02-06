@@ -4,10 +4,6 @@
 
 # patch /etc/zprofile to ensure path_helper only runs if NOT tmux, e.g. [ -z $TMUX ]
 
-autoload -U compinit
-compinit
-setopt completeinword
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Path to your oh-my-zsh installation.
 #export ZSH=/Users/yusuf/.oh-my-zsh
 
@@ -113,10 +109,15 @@ SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
+setopt completeinword
 zstyle ':completion:*' menu select
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zmodload zsh/complist
-compinit
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit
+done
+compinit -C
 _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
@@ -192,7 +193,9 @@ if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
     autoload -Uz compinit
-    compinit
+    for dump in ~/.zcompdump(N.mh+24); do
+        compinit
+    done
 fi
 
 source ~/google-cloud-sdk/completion.zsh.inc
@@ -229,6 +232,9 @@ if [ -z $TMUX ]; then
     # abbr import-aliases &>/dev/null
     abbr load
 
+    # nix
+    source ~/.nix-profile/etc/profile.d/nix.sh
+
 fi
 
 
@@ -238,6 +244,7 @@ source "$(pyenv root)/completions/pyenv.zsh"
 # pyenv doctor fix
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl/include"
+
 
 
 # >>> conda initialize >>>

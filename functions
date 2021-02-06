@@ -21,7 +21,7 @@ bastion-mns() {
     sshuttle -v -r yusuf@mns-gcloud-bastion-01 10.159.218.0/24 10.222.0.0/16
 }
 
-git-switch () {
+git-switch() {
     cd $HOME
     local prefix current new
     prefix=".gitconfig"
