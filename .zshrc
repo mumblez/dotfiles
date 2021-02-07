@@ -107,6 +107,11 @@ autoload -U colors && colors
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
+# remove EOL % when command doesn't terminate to new line
+PROMPT_EOL_MARK=''
+
+# asdf completions
+fpath=(~/.asdf/completions $fpath)
 
 # Basic auto/tab complete:
 autoload -Uz compinit
@@ -198,6 +203,7 @@ if type brew &>/dev/null; then
     done
 fi
 
+
 source ~/google-cloud-sdk/completion.zsh.inc
 
 # brew install olets/tap/zsh-abbr
@@ -214,9 +220,11 @@ eval "$(starship init zsh)"
 if [ -z $TMUX ]; then
     source ~/google-cloud-sdk/path.zsh.inc
 
-
     source ~/dotfiles/functions
     source ~/dotfiles/paths
+
+    # asdf
+    source ~/.asdf/asdf.sh
 
     # gpg
     gpgconf --launch gpg-agent
