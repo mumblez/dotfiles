@@ -220,6 +220,7 @@ eval "$(starship init zsh)"
 if [ -z $TMUX ]; then
     source ~/google-cloud-sdk/path.zsh.inc
 
+
     source ~/dotfiles/functions
     source ~/dotfiles/paths
 
@@ -272,6 +273,7 @@ unset __conda_setup
 #
 # autojump (j)
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
 
 export NIX_IGNORE_SYMLINK_STORE=1 # catalina fix
 export REPO_DIR="${HOME}/repos"

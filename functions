@@ -95,3 +95,13 @@ wgon() {
 wgoff() {
     sudo systemctl stop wg-quick@wg1
 }
+
+cht() {
+    local topic query
+    topic="$1"
+    query="$(echo ${@:2} | tr ' ' '+')"
+    curl "$(printf "http://cht.sh/%s/%s" "$topic" "$query")"
+
+}
+
+# vim: set ft=sh:
