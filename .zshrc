@@ -310,3 +310,6 @@ edge-gcr() {
 }
 
 alias sed='/usr/local/bin/gsed'
+
+# Cleanup PATH with just unique entries
+typeset -aU path

@@ -4,10 +4,6 @@
 
 # patch /etc/zprofile to ensure path_helper only runs if NOT tmux, e.g. [ -z $TMUX ]
 
-autoload -U compinit
-compinit
-setopt completeinword
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Path to your oh-my-zsh installation.
 #export ZSH=/Users/yusuf/.oh-my-zsh
 
@@ -111,12 +107,21 @@ autoload -U colors && colors
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
+# remove EOL % when command doesn't terminate to new line
+PROMPT_EOL_MARK=''
+
+# asdf completions
+fpath=(~/.asdf/completions $fpath)
 
 # Basic auto/tab complete:
 autoload -U compinit
+setopt completeinword
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit
+done
+compinit -C
 _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
@@ -196,7 +201,9 @@ if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
     autoload -Uz compinit
-    compinit
+    for dump in ~/.zcompdump(N.mh+24); do
+        compinit
+    done
 fi
 
 source ~/google-cloud-sdk/completion.zsh.inc
@@ -212,12 +219,15 @@ source ~/repos/dotfiles/alias
 eval "$(starship init zsh)"
 
 # anything that modifies PATH put in here so it only loads once
-# if [ -z $TMUX ]; then
+if [ -z $TMUX ]; then
     source ~/google-cloud-sdk/path.zsh.inc
 
 
     source ~/dotfiles/functions
     source ~/dotfiles/paths
+
+    # asdf
+    source ~/.asdf/asdf.sh
 
     # gpg
     gpgconf --launch gpg-agent
@@ -233,7 +243,10 @@ eval "$(starship init zsh)"
     # abbr import-aliases &>/dev/null
     abbr load
 
-# fi
+    # nix
+    source ~/.nix-profile/etc/profile.d/nix.sh
+fi
+
 
 # pyenv init
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
