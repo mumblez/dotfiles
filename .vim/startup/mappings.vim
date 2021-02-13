@@ -125,3 +125,6 @@ set foldlevel=99
 
 "== save read-only file
 cmap w!! w !sudo tee > /dev/null %
+
+"== window maximize toggle
+nnoremap <silent> <leader>m :MaximizerToggle!<CR>

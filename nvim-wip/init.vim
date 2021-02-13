@@ -307,6 +307,7 @@ Plug 'xolox/vim-misc'
 " Plug 'ryanoasis/vim-devicons' "icons are small unless using different font
 " but then breaks status line and tmux line!
 Plug 'Chiel92/vim-autoformat'
+Plug 'szw/vim-maximizer'
 au BufWrite *.py :Autoformat
 
 "Plug 'mhinz/vim-startify'
