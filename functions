@@ -42,6 +42,7 @@ git-switch() {
     ln -snf "${prefix}.${new}" "$prefix"
 
     echo "Old config $current replaced with $new"
+    [ -z $TMUX ] || tmux refresh-client -S
 }
 
 ai_online () {
@@ -102,6 +103,21 @@ cht() {
     query="$(echo ${@:2} | tr ' ' '+')"
     curl "$(printf "http://cht.sh/%s/%s" "$topic" "$query")"
 
+}
+
+bvpn() {
+    local action="$1"
+    local gpentry="te/carrefour/vpn"
+
+
+    if [ "$action" = "start" ]; then
+        local u=$(gopass show $gpentry username)
+        local p=$(gopass show $gpentry --password)
+        sudo barracudavpn ${2:-} --start --login $u --serverpwd $p
+        barracudavpn --status
+    else
+        barracudavpn --stop
+    fi
 }
 
 # vim: set ft=sh:

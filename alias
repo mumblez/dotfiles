@@ -45,3 +45,9 @@ alias sshdev='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias scpdev='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias sshnoid='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o identityfile=/dev/null -o pubkeyauthentication=no'
 alias obs="~/Downloads/Obsidian-0.9.2.AppImage &"
+
+alias c1='ssh -AJ yusuf@192.168.247.9 oberon@10.0.22.136'
+alias c1j='ssh yusuf@192.168.247.9'
+alias c1tunnel='ssh -NL 8080:10.0.22.136:19999 -AJ yusuf@192.168.247.9 oberon@10.0.22.136'
+alias wgcu='sudo wg-quick up client-share; sudo wg show'
+alias wgcd='sudo wg-quick down client-share; sudo wg show'

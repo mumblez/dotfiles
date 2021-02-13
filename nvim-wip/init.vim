@@ -449,15 +449,15 @@ let g:rustfmt_autosave = 1
 "     " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
 " augroup END
 
+"require'nvim_lsp'.terraformls.setup{}
+" nvim_lsp.terraformls.setup{
+" root_dir = nvim_lsp.util.root_pattern('.terraform');
+" }
 lua <<EOF
 require'nvim_lsp'.rust_analyzer.setup{}
 require'nvim_lsp'.pyls.setup{}
 require'nvim_lsp'.gopls.setup{}
-require'nvim_lsp'.terraformls.setup{}
 local nvim_lsp = require'nvim_lsp'
-nvim_lsp.terraformls.setup{
-root_dir = nvim_lsp.util.root_pattern('.terraform');
-}
 require'nvim_lsp'.bashls.setup{}
 EOF
 

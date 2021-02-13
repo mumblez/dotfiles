@@ -219,7 +219,7 @@ source ~/repos/dotfiles/alias
 eval "$(starship init zsh)"
 
 # anything that modifies PATH put in here so it only loads once
-if [ -z $TMUX ]; then
+# if [ -z $TMUX ]; then
     source ~/google-cloud-sdk/path.zsh.inc
 
 
@@ -245,7 +245,7 @@ if [ -z $TMUX ]; then
 
     # nix
     source ~/.nix-profile/etc/profile.d/nix.sh
-fi
+# fi
 
 
 # pyenv init
@@ -298,3 +298,4 @@ typeset -aU path
 
 
 export PATH="$HOME/.poetry/bin:$PATH"
+export GH_TOKEN=$(gopass show misc/misc_gha-pat)
