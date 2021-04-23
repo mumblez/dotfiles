@@ -17,11 +17,6 @@ alias tf='terraform'
 alias tfp='terraform plan'
 alias tfpo='terraform plan -out=.tfplan.out'
 alias tfao='terraform apply .tfplan.out'
-if [ $(uname -s) = 'Linux' ]; then
-    alias vim="~/neovim-dev/nvim.appimage"
-else
-    alias vim='nvim'
-fi
 alias vimdiff='nvim -d'
 alias es='/Applications/EmbyServer.app/Contents/MacOS/EmbyServer'
 alias k='kubectl'
@@ -51,3 +46,7 @@ alias c1j='ssh yusuf@192.168.247.9'
 alias c1tunnel='ssh -NL 8080:10.0.22.136:19999 -AJ yusuf@192.168.247.9 oberon@10.0.22.136'
 alias wgcu='sudo wg-quick up client-share; sudo wg show'
 alias wgcd='sudo wg-quick down client-share; sudo wg show'
+
+alias v='nvim'
+alias cat='bat'
+alias grunner='gcloud --project telabs-integration-tests-vpn compute ssh vpn-server --zone europe-west2-c -- -A ssh gh@10.1.0.2'

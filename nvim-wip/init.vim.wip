@@ -141,7 +141,8 @@ augroup last_edit
 augroup END
 
 " deoplete
-set completeopt=longest,menuone " auto complete setting
+" set completeopt=longest,menuone " auto complete setting
+set cot=menuone,noinsert,noselect shm +=c
 let g:deoplete#enable_at_startup = 1
 "let g:deoplete#enable_smart_case = 1
 "let g:deoplete#auto_complete_start_length = 1
@@ -266,16 +267,23 @@ Plug 'hashivim/vim-terraform'
 " Plug 'sebastianmarkow/deoplete-rust'
 "Plug 'racer-rust/vim-racer'
 " LSP alt - https://dev.to/drmason13/configure-neovim-for-rust-development-1fjn
-"Plug 'neovim/nvim-lsp'
+" Plug 'neovim/nvim-lsp'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'neovim/nvim-lspconfig'
-Plug 'Shougo/deoplete-lsp'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug '9mm/vim-closer'
+Plug 'davidhalter/jedi'
+
+
+
+" Plug 'Shougo/deoplete-lsp'
 Plug 'ervandew/supertab'
 
 Plug 'w0rp/ale'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'jiangmiao/auto-pairs'
 let vim_markdown_preview_github=1
 " brew install grip
 Plug 'skywind3000/asyncrun.vim'
@@ -313,7 +321,56 @@ au BufWrite *.py :Autoformat
 "Plug 'mhinz/vim-startify'
 "
 "Plug 'vimwiki/vimwiki'
+Plug 'tweekmonster/startuptime.vim'
 call plug#end()
+
+" == lsp stuff
+let g:diagnostic_virtual_text_prefix = ''
+let g:diagnostic_enable_virtual_text = 1
+
+let g:completion_confirm_key = "\<C-y>"
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_matching_smart_case = 1
+let g:completion_trigger_on_delete = 1
+
+" lua <<EOF
+" require'nvim_lsp'.rust_analyzer.setup{}
+" require'nvim_lsp'.pyls.setup{}
+" require'nvim_lsp'.gopls.setup{}
+" require'nvim_lsp'.terraformls.setup{}
+" local nvim_lsp = require'nvim_lsp'
+" nvim_lsp.terraformls.setup{
+" root_dir = nvim_lsp.util.root_pattern('.terraform');
+" }
+" require'nvim_lsp'.bashls.setup{}
+" EOF
+
+:lua << EOF
+  local nvim_lsp = require('lspconfig')
+  local on_attach = function(_, bufnr)
+    require('diagnostic').on_attach()
+    require('completion').on_attach()
+    local opts = { noremap=true, silent=true }
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xd', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
+  end
+  local servers = {'pyls', 'rust_analyzer', 'gopls', 'terraformls', 'bashls', 'yamlls' }
+  for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup {
+      on_attach = on_attach,
+    }
+  end
+EOF
+
+command! Format execute 'lua vim.lsp.buf.formatting()'
 
 "== create plugin cache directories
 " for plugin_cache_dir in [g:gutentags_cache_dir, vim_sessions_cache_dir]
@@ -450,23 +507,21 @@ let g:rustfmt_autosave = 1
 "     " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
 " augroup END
 
-"require'nvim_lsp'.terraformls.setup{}
+" lua <<EOF
+" require'nvim_lsp'.rust_analyzer.setup{}
+" require'nvim_lsp'.pyls.setup{}
+" require'nvim_lsp'.gopls.setup{}
+" require'nvim_lsp'.terraformls.setup{}
+" local nvim_lsp = require'nvim_lsp'
 " nvim_lsp.terraformls.setup{
 " root_dir = nvim_lsp.util.root_pattern('.terraform');
 " }
-" require'nvim_lsp'.rust_analyzer.setup{}
-" require'nvim_lsp'.gopls.setup{}
-" require'nvim_lsp'.pyls.setup{}
 " require'nvim_lsp'.bashls.setup{}
-" require'nvim_lsp'.yamlls.setup{}
-lua <<EOF
-local lspconfig = require'lspconfig'
-lspconfig.bashls.setup{}
-lspconfig.yamlls.setup{}
-lspconfig.pyls.setup{}
-EOF
+" EOF
 
-autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+" lua require'nvim_lsp'.yamlls.setup{}
+" autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+" autocmd Filetype py setlocal omnifunc=v:lua.vim.lsp.omnifunc
 let g:SuperTabDefaultCompletionType = "<c-n>"
 "autocmd BufWrite * :Autoformat
 
