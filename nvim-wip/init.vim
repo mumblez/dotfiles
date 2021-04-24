@@ -227,8 +227,9 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
-" Status line
+" Status and buffer line
 Plug 'glepnir/galaxyline.nvim'
+Plug 'ap/vim-buftabline'
 " Plug 'vim-airline/vim-airline'
 
 " Debugging
@@ -341,8 +342,10 @@ require'nvim-treesitter.configs'.setup {
 EOF
 " Status line
 luafile ~/.config/nvim/eviline.lua
- 
- 
+
+" Buflinetab
+let g:buftabline_show = 1
+
 " END OF NEW STUFF
 
 
@@ -410,6 +413,7 @@ lspconfig.bashls.setup{}
 lspconfig.yamlls.setup{}
 lspconfig.pyls.setup{}
 lspconfig.gopls.setup{}
+lspconfig.rust_analyzer.setup{}
 EOF
 
 " autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
