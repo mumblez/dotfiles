@@ -216,8 +216,9 @@ Plug 'SirVer/ultisnips'
 " colour scheme
 " Plug 'sainnhe/edge'
 
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " Fuzzy finder
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -509,7 +510,7 @@ source ~/.vim/startup/mappings.vim
 "source ~/.vim/startup/ctrlp.vim
 "source ~/.vim/startup/terraform.vim
 
-" set rtp+=~/.fzf
+set rtp+=~/.fzf
 
 " ctags for go - brew install gotags
 " let g:tagbar_type_go = {

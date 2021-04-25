@@ -27,7 +27,7 @@ nnoremap <leader>O O<ESC>j
 nnoremap <F2> :NERDTreeToggle<CR>
 " nnoremap <F2> :NERDTreeFind<CR>
 "set pastetoggle=<F3>
-nnoremap <F3> :set number!<CR>
+" nnoremap <F3> :set number!<CR> F3 = toggle maximize window / pane
 nnoremap <F4> :set spell!<CR>
 nnoremap <F5> :set ft=sh<CR>
 "== copy and paste shortcuts into system clipboard
