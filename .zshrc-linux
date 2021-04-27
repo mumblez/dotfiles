@@ -215,8 +215,6 @@ source ~/google-cloud-sdk/completion.zsh.inc
 # Import alias
 source ~/repos/dotfiles/alias
 
-# Prompt
-eval "$(starship init zsh)"
 
 # anything that modifies PATH put in here so it only loads once
 # if [ -z $TMUX ]; then
@@ -247,6 +245,8 @@ eval "$(starship init zsh)"
     source ~/.nix-profile/etc/profile.d/nix.sh
 # fi
 
+# Prompt
+eval "$(starship init zsh)"
 
 # pyenv init
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
