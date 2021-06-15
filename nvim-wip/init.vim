@@ -259,7 +259,7 @@ Plug 'wincent/terminus'
 
 " Plug 'sheerun/vim-polyglot'
 " Plug 'hashivim/vim-terraform'
-" Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
@@ -467,16 +467,16 @@ EOF
 
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
-        require('lspconfig').util.nvim_multiline_command [[
-        :hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-        :hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-        :hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-        augroup lsp_document_highlight
-            autocmd!
-            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-        ]]
+        vim.api.nvim_exec([[
+            :hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+            :hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+            :hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+            augroup lsp_document_highlight
+                autocmd!
+                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]], false)
     end
   end
 
