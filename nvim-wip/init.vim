@@ -334,6 +334,9 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true
   },
+  ident = {
+      enable = true
+  },
   playground = {
     enable = true,
     disable = {},
@@ -489,11 +492,23 @@ EOF
     }
   end
 EOF
+"  -- Enable diagnostics
+"  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+"    vim.lsp.diagnostic.on_publish_diagnostics, {
+"        virtual_text = true,
+"        signs = true,
+"        update_in_insert = true,
+"    }
+"  )
 
 " Completion
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+let g:completion_confirm_key = ""
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
 
 " Enable type inlay hints
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
@@ -504,6 +519,9 @@ autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 set updatetime=300
 " Show diagnostic popup on cursor hold
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+set signcolumn=yes
+
+
  
 " -------------------- LSP ---------------------------------
 
