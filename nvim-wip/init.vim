@@ -258,7 +258,7 @@ Plug 'godlygeek/tabular'
 Plug 'wincent/terminus'
 
 " Plug 'sheerun/vim-polyglot'
-" Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-terraform'
 Plug 'rust-lang/rust.vim'
 
 Plug 'neovim/nvim-lspconfig'
@@ -299,6 +299,9 @@ Plug 'xolox/vim-misc'
 " Plug 'ryanoasis/vim-devicons' "icons are small unless using different font
 " but then breaks status line and tmux line!
 Plug 'szw/vim-maximizer' " F3 to toggle
+
+" github colour theme
+" Plug 'projekt0n/github-nvim-theme'
 
 call plug#end()
 
@@ -485,13 +488,21 @@ EOF
     end
   end
 
-  local servers = {'pyright', 'gopls', 'rust_analyzer', 'bashls', 'yamlls'}
+  local servers = {'pyright', 'gopls', 'bashls', 'yamlls', 'rust_analyzer'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
     }
   end
+
+  -- require('github-theme').setup()
 EOF
+  " nvim_lsp['terraformls'].setup {
+  "     on_attach = on_attach,
+  "     cmd = { "terraform-lsp" },
+  "     filetypes = { "terraform" },
+  "     root_dir = nvim_lsp.util.root_pattern(".terraform", ".git"),
+  " }
 "  -- Enable diagnostics
 "  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 "    vim.lsp.diagnostic.on_publish_diagnostics, {
