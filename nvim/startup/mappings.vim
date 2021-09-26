@@ -65,7 +65,7 @@ nnoremap <leader>sd :DeleteSession
 nnoremap <leader>sc :quitall<CR>
 
 "== git / fugitive
-nnoremap <leader>g :Gstatus<cr>
+nnoremap <leader>g :Git<cr>
 " inside status window
 " C-n - next file
 " C-p - prev file

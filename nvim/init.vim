@@ -428,7 +428,7 @@ lua <<EOF
 local lspconfig = require'lspconfig'
 lspconfig.bashls.setup{}
 lspconfig.yamlls.setup{}
-lspconfig.pyls.setup{}
+lspconfig.pyright.setup{}
 lspconfig.gopls.setup{}
 lspconfig.rust_analyzer.setup{}
 lspconfig.terraformls.setup{
