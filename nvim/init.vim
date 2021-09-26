@@ -141,9 +141,8 @@ augroup last_edit
 augroup END
 
 " deoplete
-" set completeopt=longest,menuone " auto complete setting
-set cot=menuone,noinsert,noselect shm +=c
-let g:deoplete#enable_at_startup = 1
+set completeopt=menuone,noinsert,noselect " auto complete setting
+" let g:deoplete#enable_at_startup = 1
 "let g:deoplete#enable_smart_case = 1
 "let g:deoplete#auto_complete_start_length = 1
 "let g:deoplete#keyword_patterns = {}
@@ -185,15 +184,15 @@ let g:deoplete#enable_at_startup = 1
 
 " ale
 " Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'
-let g:ale_set_loclist = 1
-" breaks navigating items in qf across multi files
-let g:ale_set_quickfix = 0
-let g:ale_open_list = 1
-
-" Enable integration with airline.
-let g:airline#extensions#ale#enabled = 1
+" let g:ale_sign_error = '⤫'
+" let g:ale_sign_warning = '⚠'
+" let g:ale_set_loclist = 1
+" " breaks navigating items in qf across multi files
+" let g:ale_set_quickfix = 0
+" let g:ale_open_list = 1
+"
+" " Enable integration with airline.
+" let g:airline#extensions#ale#enabled = 1
 
 
 
@@ -211,86 +210,78 @@ set termguicolors
 
 " plugins
 call plug#begin()
-
-"==Plug 'neomake/neomake'
-" if errors when editing go files, on vim-go update, in terminal `gocode exit`, re-run GoInstallBinaries
-" or GoUpdateBinaries,
-" GO LANG
-" Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-" Plug 'sebdah/vim-delve'
-" Plug 'jodosha/vim-godebug'
-" let g:go_version_warning = 0
-" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-" let g:deoplete#sources#go#align_class = 1
-
-Plug 'zchee/deoplete-go', { 'do': 'make' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zchee/deoplete-jedi'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
-Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
 Plug 'honza/vim-snippets'
-" Plug 'Shougo/neosnippet'
-" let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
-" Plug 'Shougo/neosnippet-snippets'
 Plug 'SirVer/ultisnips'
 
-Plug 'Shougo/neocomplcache'
+" Terraform
+Plug 'hashivim/vim-terraform'
+let g:terraform_allign = 1
+let g:terraform_fmt_on_save = 1
+
+" colour scheme
+" Plug 'sainnhe/edge'
+Plug 'briones-gabriel/darcula-solid.nvim'
+Plug 'rktjmp/lush.nvim'
+
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" Fuzzy finder
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" Syntax
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+
+" Status and buffer line
+Plug 'glepnir/galaxyline.nvim'
+Plug 'ap/vim-buftabline'
+" Plug 'vim-airline/vim-airline'
+
+" Debugging
+Plug 'nvim-telescope/telescope-dap.nvim'
+Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
+
+" Github Integration
+Plug 'pwntester/octo.nvim'
+
+" Icons
+Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'kyazdani42/nvim-tree.lua'
+
 Plug 'junegunn/vim-peekaboo'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-" Plug 'airblade/vim-gitgutter'
-"Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'scrooloose/nerdtree'
+
+
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'LnL7/vim-nix'
-Plug 'cespare/vim-toml'
-"Plug 'edkolev/tmuxline.vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'bling/vim-bufferline'
-Plug 'mattn/emmet-vim'
 Plug 'godlygeek/tabular'
 Plug 'wincent/terminus'
 
-Plug 'sheerun/vim-polyglot'
-" Plug 'pearofducks/ansible-vim'
-" Plug 'Glench/Vim-Jinja2-Syntax'
+" Plug 'sheerun/vim-polyglot'
 Plug 'hashivim/vim-terraform'
-" Plug 'hashivim/vim-packer'
-" Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
-
-" RUST
-" Plug 'sebastianmarkow/deoplete-rust'
-"Plug 'racer-rust/vim-racer'
-" LSP alt - https://dev.to/drmason13/configure-neovim-for-rust-development-1fjn
-" Plug 'neovim/nvim-lsp'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/diagnostic-nvim'
-Plug '9mm/vim-closer'
-Plug 'davidhalter/jedi'
+" Plug 'ervandew/supertab'
 
-
-
-" Plug 'Shougo/deoplete-lsp'
-Plug 'ervandew/supertab'
-
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'jiangmiao/auto-pairs'
 let vim_markdown_preview_github=1
 " brew install grip
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 15
-"Plug 'wokalski/autocomplete-flow'
-Plug 'elmcast/elm-vim'
-" Plug 'pbogut/deoplete-elm'
 " Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
 " build and cache tags rather than maintain tags file for each project
 " need to also ensure $HOME/.ctags exists with definitions for each language
@@ -315,62 +306,12 @@ Plug 'xolox/vim-misc'
 "Plug 'tpope/vim-obsession'
 " Plug 'ryanoasis/vim-devicons' "icons are small unless using different font
 " but then breaks status line and tmux line!
-Plug 'Chiel92/vim-autoformat'
-au BufWrite *.py :Autoformat
+Plug 'szw/vim-maximizer' " F3 to toggle
 
-"Plug 'mhinz/vim-startify'
-"
-"Plug 'vimwiki/vimwiki'
-Plug 'tweekmonster/startuptime.vim'
+" github colour theme
+" Plug 'projekt0n/github-nvim-theme'
+
 call plug#end()
-
-" == lsp stuff
-let g:diagnostic_virtual_text_prefix = ''
-let g:diagnostic_enable_virtual_text = 1
-
-let g:completion_confirm_key = "\<C-y>"
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_matching_smart_case = 1
-let g:completion_trigger_on_delete = 1
-
-" lua <<EOF
-" require'nvim_lsp'.rust_analyzer.setup{}
-" require'nvim_lsp'.pyls.setup{}
-" require'nvim_lsp'.gopls.setup{}
-" require'nvim_lsp'.terraformls.setup{}
-" local nvim_lsp = require'nvim_lsp'
-" nvim_lsp.terraformls.setup{
-" root_dir = nvim_lsp.util.root_pattern('.terraform');
-" }
-" require'nvim_lsp'.bashls.setup{}
-" EOF
-
-:lua << EOF
-  local nvim_lsp = require('lspconfig')
-  local on_attach = function(_, bufnr)
-    require('diagnostic').on_attach()
-    require('completion').on_attach()
-    local opts = { noremap=true, silent=true }
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xd', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
-  end
-  local servers = {'pyls', 'rust_analyzer', 'gopls', 'terraformls', 'bashls', 'yamlls' }
-  for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-    }
-  end
-EOF
-
-command! Format execute 'lua vim.lsp.buf.formatting()'
 
 "== create plugin cache directories
 " for plugin_cache_dir in [g:gutentags_cache_dir, vim_sessions_cache_dir]
@@ -380,49 +321,49 @@ endfor
 
 " Ultisnips for completion engine
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<m-j>"
 let g:UltiSnipsJumpBackwardTrigger="<m-k>"
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsEditSplit="vertical"
+"
 
-"" vim-go
-" let g:go_def_mapping_enabled = 1
-" let g:go_fmt_command = 'goimports'
-" let g:go_fmt_fail_silently = 1
-" let g:go_term_enabled = 1
-" let g:go_highlight_functions = 1
-" let g:go_highlight_fields = 1
-" let g:go_highlight_types = 1
-" let g:go_highlight_methods = 1
-" let g:go_highlight_structs = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_build_constraints = 1
-" let g:go_highlight_chan_whitespace_error = 1
-" let g:go_highlight_extra_types = 1
-" " let g:go_auto_type_info = 1 " seems to cause errors
-" let g:go_snippet_engine = "neosnippet"
-" let g:go_def_mode = "gopls"
-" call deoplete#custom#option('omni_patterns', {
-" \ 'go': '[^. *\t]\.\w*',
-" \})
-" brew install delve
-" xcode-select --install for dlv / lldb-server to work
+let g:completion_enable_snippet = 'UltiSnips'
 
+" NEW STUFF
+" Fuzzy finder
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fl <cmd>Telescope git_files<cr> 
+nnoremap <leader>fa <cmd>Telescope grep_string<cr> 
 
-" tell gutentags how to detect root of a project to build tags for
-" will cache tags file in ~/.cache/gutentags/
-" enables native <C-]> and <C-t> to hop around (without using tagbar menu)
-" autocmd FileType rust let g:gutentags_project_root = ['Cargo.toml']
-" autocmd FileType rust call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
-" fixes tagbar bug when we have unit tests in the file
-" if !filereadable(expand('~/.ctags.d/rust.ctags'))
-"     let g:tagbar_type_rust.deffile = expand('~/.ctags.d/rust.ctags')
-" endif
-" autocmd FileType rust call tagbar#debug#start_debug()
+" Syntax
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true
+  },
+  ident = {
+      enable = true
+  },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false -- Whether the query persists across vim sessions
+  }
+}
+EOF
+" Status line
+luafile ~/.config/nvim/eviline.lua
 
-" r#debug#start_debug()call
+" Buflinetab
+let g:buftabline_show = 1
+
+" END OF NEW STUFF
 
 
 
@@ -432,39 +373,6 @@ autocmd VimEnter *
             \|   PlugInstall
             \| endif
 
-call deoplete#custom#source('_', 'converters',
-            \ ['converter_auto_paren',
-            \  'converter_auto_delimiter',
-            \  'converter_remove_overlap'],
-            \ 'max_menu_width', 80)
-
-" mappings
-
-" deoplete
-" imap <expr> <tab>   pumvisible() ? "\<c-n>" : "\<tab>"
-" imap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
-imap <expr> <cr>    pumvisible() ? deoplete#close_popup() : "\<cr>"
-
-" vim-go mappings
-" augroup go_bindings
-"     autocmd!
-"     autocmd FileType go nmap <buffer> <leader>r <plug>(go-run)
-"     autocmd FileType go nmap <buffer> <leader>b <plug>(go-build)
-"     autocmd FileType go nmap <buffer> <leader>t <plug>(go-test)
-"     autocmd FileType go nmap <buffer> <leader>e <plug>(go-rename)
-"     autocmd FileType go nmap <buffer> <leader>d <plug>(go-doc)
-"     "autocmd FileType go nmap <buffer> gd <plug>(go-def-vertical)
-"     autocmd FileType go nmap <buffer> gd <plug>(go-def)
-"     autocmd FileType go nmap <buffer> <c-]> <plug>(go-def)
-"     autocmd FileType go nmap <buffer> <leader>i <plug>(go-info)
-"     "au FileType go nmap <buffer> <C-t> <Plug>(go-def-pop)
-"     " navigate errors using location list overriding quick fix
-"     " autocmd FileType go command! Lnext try | lnext | catch | lfirst | catch | endtry
-"     " autocmd FileType go command! Lprev try | lprev | catch | llast | catch | endtry
-"     " autocmd FileType go nnoremap <silent> <C-Down> :Lnext<CR>
-"     " autocmd FileType go nnoremap <silent> <C-Up> :Lprev<CR>
-" augroup END
-"
 
 " RUST SETUP
 "let g:ale_rust_cargo_use_check = 1
@@ -507,74 +415,187 @@ let g:rustfmt_autosave = 1
 "     " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
 " augroup END
 
-" lua <<EOF
-" require'nvim_lsp'.rust_analyzer.setup{}
-" require'nvim_lsp'.pyls.setup{}
-" require'nvim_lsp'.gopls.setup{}
-" require'nvim_lsp'.terraformls.setup{}
-" local nvim_lsp = require'nvim_lsp'
+"require'nvim_lsp'.terraformls.setup{}
 " nvim_lsp.terraformls.setup{
 " root_dir = nvim_lsp.util.root_pattern('.terraform');
 " }
+" require'nvim_lsp'.rust_analyzer.setup{}
+" require'nvim_lsp'.gopls.setup{}
+" require'nvim_lsp'.pyls.setup{}
 " require'nvim_lsp'.bashls.setup{}
-" EOF
+" require'nvim_lsp'.yamlls.setup{}
+lua <<EOF
+local lspconfig = require'lspconfig'
+lspconfig.bashls.setup{}
+lspconfig.yamlls.setup{}
+lspconfig.pyls.setup{}
+lspconfig.gopls.setup{}
+lspconfig.rust_analyzer.setup{}
+lspconfig.terraformls.setup{
+    cmd = {'terraform-ls',  'serve'}
+}
+EOF
 
-" lua require'nvim_lsp'.yamlls.setup{}
 " autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
-" autocmd Filetype py setlocal omnifunc=v:lua.vim.lsp.omnifunc
-let g:SuperTabDefaultCompletionType = "<c-n>"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
 "autocmd BufWrite * :Autoformat
 
-nnoremap <silent>gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent><c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent>K     <cmd>lua vim.lsp.buf.hover()<CR>
+" nnoremap <silent>gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <silent><c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent>K     <cmd>lua vim.lsp.buf.hover()<CR>
 
 " END RUST SETUP
+"
+
+" -------------------- LSP ---------------------------------
+:lua << EOF
+  local nvim_lsp = require('lspconfig')
+
+  local on_attach = function(client, bufnr)
+    require('completion').on_attach()
+
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings
+    local opts = { noremap=true, silent=true }
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+
+    -- Set some keybinds conditional on server capabilities
+    if client.resolved_capabilities.document_formatting then
+        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    elseif client.resolved_capabilities.document_range_formatting then
+        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    end
+
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec([[
+            :hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+            :hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+            :hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+            augroup lsp_document_highlight
+                autocmd!
+                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]], false)
+    end
+  end
+
+  local servers = {'pyright', 'gopls', 'bashls', 'yamlls', 'rust_analyzer', 'terraformls'}
+  for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup {
+      on_attach = on_attach,
+    }
+  end
+
+  -- require('github-theme').setup()
+EOF
+  " nvim_lsp['terraformls'].setup {
+  "     on_attach = on_attach,
+  "     cmd = { "terraform-lsp" },
+  "     filetypes = { "terraform" },
+  "     root_dir = nvim_lsp.util.root_pattern(".terraform", ".git"),
+  " }
+"  -- Enable diagnostics
+"  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+"    vim.lsp.diagnostic.on_publish_diagnostics, {
+"        virtual_text = true,
+"        signs = true,
+"        update_in_insert = true,
+"    }
+"  )
+
+" Completion
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+let g:completion_confirm_key = ""
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
+
+" Enable type inlay hints
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+
+" Set updatetime for CursorHold
+" 300ms of no cursor movement to trigger CursorHold
+set updatetime=300
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+set signcolumn=yes
+
+
+ 
+" -------------------- LSP ---------------------------------
+
+
 
 "== Load custom settings =="
 " for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
 "     exe 'source' f
 " endfor
-source ~/.vim/startup/color.vim
-source ~/.vim/startup/functions.vim
-source ~/.vim/startup/mappings.vim
+" source ~/.vim/startup/color.vim
+source ~/.config/nvim/startup/functions.vim
+source ~/.config/nvim/startup/mappings.vim
 "autocmd FileType go source ~/.vim/startup/golang.vim
 "source ~/.vim/startup/golang.vim
-source ~/.vim/startup/python.vim
+" source ~/.vim/startup/python.vim
 "source ~/.vim/startup/airline.vim
 "source ~/.vim/startup/ctrlp.vim
 "source ~/.vim/startup/terraform.vim
 
 set rtp+=~/.fzf
 
+colorscheme darcula-solid
+
 " ctags for go - brew install gotags
-let g:tagbar_type_go = {
-            \ 'ctagstype' : 'go',
-            \ 'kinds'     : [
-            \ 'p:package',
-            \ 'i:imports:1',
-            \ 'c:constants',
-            \ 'v:variables',
-            \ 't:types',
-            \ 'n:interfaces',
-            \ 'w:fields',
-            \ 'e:embedded',
-            \ 'm:methods',
-            \ 'r:constructor',
-            \ 'f:functions'
-            \ ],
-            \ 'sro' : '.',
-            \ 'kind2scope' : {
-            \ 't' : 'ctype',
-            \ 'n' : 'ntype'
-            \ },
-            \ 'scope2kind' : {
-            \ 'ctype' : 't',
-            \ 'ntype' : 'n'
-            \ },
-            \ 'ctagsbin'  : 'gotags',
-            \ 'ctagsargs' : '-sort -silent'
-            \ }
+" let g:tagbar_type_go = {
+"             \ 'ctagstype' : 'go',
+"             \ 'kinds'     : [
+"             \ 'p:package',
+"             \ 'i:imports:1',
+"             \ 'c:constants',
+"             \ 'v:variables',
+"             \ 't:types',
+"             \ 'n:interfaces',
+"             \ 'w:fields',
+"             \ 'e:embedded',
+"             \ 'm:methods',
+"             \ 'r:constructor',
+"             \ 'f:functions'
+"             \ ],
+"             \ 'sro' : '.',
+"             \ 'kind2scope' : {
+"             \ 't' : 'ctype',
+"             \ 'n' : 'ntype'
+"             \ },
+"             \ 'scope2kind' : {
+"             \ 'ctype' : 't',
+"             \ 'ntype' : 'n'
+"             \ },
+"             \ 'ctagsbin'  : 'gotags',
+"             \ 'ctagsargs' : '-sort -silent'
+"             \ }
 
 
 " it'll use ctags from rust.vim instead
@@ -597,14 +618,14 @@ let g:tagbar_type_go = {
 "     \]
 "     \}
 
-let g:tagbar_autoshowtag = 1
-let g:tagbar_autofocus = 1
-let g:tagbar_autoclose = 1
+" let g:tagbar_autoshowtag = 1
+" let g:tagbar_autofocus = 1
+" let g:tagbar_autoclose = 1
 " autocmd FileType go,rust nested :TagbarOpen "annoying on close, have to press, also breaks colouring
 " colors - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 " fix highlight and function signature color
-highlight TagbarSignature ctermfg=37
-highlight TagbarHighlight ctermfg=119
+" highlight TagbarSignature ctermfg=37
+" highlight TagbarHighlight ctermfg=119
 " also strange errors when there are tests within a lib.rs
 
 " imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -616,23 +637,23 @@ highlight TagbarHighlight ctermfg=119
 "             \}
 
 """" Airline config (cool status bars)..
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#tab_nr_type = 1 " show tab # not splits in tab
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tabs = 0
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#bufferline#overwrite_variables = 1
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
-"""" Bufferline (show buffers on airline) config
-let g:bufferline_echo = 1 " no buffer display on the command line
-let g:bufferline_active_buffer_left = '>'
-let g:bufferline_active_buffer_right = '<'
-let g:bufferline_show_bufnr = 1
-" let g:bufferline_active_highlight = 'StatusLineNC'
-let g:bufferline_active_highlight = 'airline_c'
-" let g:bufferline_inactive_highlight = 'airline_c'
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#tab_nr_type = 1 " show tab # not splits in tab
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#show_tabs = 0
+" let g:airline#extensions#tabline#show_buffers = 1
+" let g:airline#extensions#bufferline#overwrite_variables = 1
+" let g:airline#extensions#bufferline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+"
+" """" Bufferline (show buffers on airline) config
+" let g:bufferline_echo = 1 " no buffer display on the command line
+" let g:bufferline_active_buffer_left = '>'
+" let g:bufferline_active_buffer_right = '<'
+" let g:bufferline_show_bufnr = 1
+" " let g:bufferline_active_highlight = 'StatusLineNC'
+" let g:bufferline_active_highlight = 'airline_c'
+" " let g:bufferline_inactive_highlight = 'airline_c'
 "
 "let g:polyglot_disabled = ['ansible', 'yaml', 'yml']
 let g:ansible_unindent_after_newline = 1
