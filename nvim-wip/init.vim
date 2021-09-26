@@ -184,15 +184,15 @@ set completeopt=menuone,noinsert,noselect " auto complete setting
 
 " ale
 " Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'
-let g:ale_set_loclist = 1
-" breaks navigating items in qf across multi files
-let g:ale_set_quickfix = 0
-let g:ale_open_list = 1
-
-" Enable integration with airline.
-let g:airline#extensions#ale#enabled = 1
+" let g:ale_sign_error = '⤫'
+" let g:ale_sign_warning = '⚠'
+" let g:ale_set_loclist = 1
+" " breaks navigating items in qf across multi files
+" let g:ale_set_quickfix = 0
+" let g:ale_open_list = 1
+"
+" " Enable integration with airline.
+" let g:airline#extensions#ale#enabled = 1
 
 
 
@@ -213,8 +213,16 @@ call plug#begin()
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 
+" Terraform
+Plug 'hashivim/vim-terraform'
+let g:terraform_allign = 1
+let g:terraform_fmt_on_save = 1
+
 " colour scheme
 " Plug 'sainnhe/edge'
+Plug 'briones-gabriel/darcula-solid.nvim'
+Plug 'rktjmp/lush.nvim'
+
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -266,7 +274,7 @@ Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
 " Plug 'ervandew/supertab'
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'jiangmiao/auto-pairs'
@@ -330,6 +338,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fl <cmd>Telescope git_files<cr> 
+nnoremap <leader>fa <cmd>Telescope grep_string<cr> 
 
 " Syntax
 lua <<EOF
@@ -422,6 +431,9 @@ lspconfig.yamlls.setup{}
 lspconfig.pyls.setup{}
 lspconfig.gopls.setup{}
 lspconfig.rust_analyzer.setup{}
+lspconfig.terraformls.setup{
+    cmd = {'terraform-ls',  'serve'}
+}
 EOF
 
 " autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -453,7 +465,7 @@ EOF
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -488,7 +500,7 @@ EOF
     end
   end
 
-  local servers = {'pyright', 'gopls', 'bashls', 'yamlls', 'rust_analyzer'}
+  local servers = {'pyright', 'gopls', 'bashls', 'yamlls', 'rust_analyzer', 'terraformls'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -542,7 +554,7 @@ set signcolumn=yes
 " for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
 "     exe 'source' f
 " endfor
-source ~/.vim/startup/color.vim
+" source ~/.vim/startup/color.vim
 source ~/.vim/startup/functions.vim
 source ~/.vim/startup/mappings.vim
 "autocmd FileType go source ~/.vim/startup/golang.vim
@@ -553,6 +565,8 @@ source ~/.vim/startup/mappings.vim
 "source ~/.vim/startup/terraform.vim
 
 set rtp+=~/.fzf
+
+colorscheme darcula-solid
 
 " ctags for go - brew install gotags
 " let g:tagbar_type_go = {

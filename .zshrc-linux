@@ -124,6 +124,10 @@ done
 compinit -C
 _comp_options+=(globdots)		# Include hidden files.
 
+# work with bash auto complete
+autoload -U bashcompinit
+bashcompinit
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -228,8 +232,8 @@ source ~/repos/dotfiles/alias
     source ~/.asdf/asdf.sh
 
     # gpg
-    gpgconf --launch gpg-agent
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    # gpgconf --launch gpg-agent
+    # export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
     # pyenv init
     export PYENV_ROOT="${HOME}/.pyenv"
@@ -245,6 +249,10 @@ source ~/repos/dotfiles/alias
     source ~/.nix-profile/etc/profile.d/nix.sh
 # fi
 
+# ssh agent
+# if [ -z $TMUX ]; then
+#
+# fi
 # Prompt
 eval "$(starship init zsh)"
 
@@ -289,13 +297,20 @@ export FZF_ALT_C_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{
 
 export CHEATCOLORS=true
 export DEFAULT_CHEAT_DIR="${DOTFILES_REPO}/.cheat"
+export GH_TOKEN=$(gopass show misc/misc_gha-pat)
 
 #source <(gopass completion zsh)
 export CHEAT_USE_FZF=true
+
+# extra paths
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="${REPO_DIR}/arcanist/bin:$PATH"
+export PATH="${HOME}/standard/linux:$PATH"
 
 # Cleanup PATH with just unique entries
 typeset -aU path
 
 
-export PATH="$HOME/.poetry/bin:$PATH"
-export GH_TOKEN=$(gopass show misc/misc_gha-pat)
+[ -f "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh" ] && . "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh"
+# [ -f "${REPO_DIR}/cog/bash_completion" ] && . "${REPO_DIR}/cog/bash_completion" # doesn't work
+

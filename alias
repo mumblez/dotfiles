@@ -15,8 +15,8 @@ alias gp='git push'
 alias drmall="docker ps | sed '1d' | cut -d' ' -f1 | xargs -I{} docker rm -f {};"
 alias tf='terraform'
 alias tfp='terraform plan'
-alias tfpo='terraform plan -out=.tfplan.out'
-alias tfao='terraform apply .tfplan.out'
+alias tfpo='terraform plan -out=current.plan'
+alias tfao='terraform apply current.plan'
 alias vimdiff='nvim -d'
 alias es='/Applications/EmbyServer.app/Contents/MacOS/EmbyServer'
 alias k='kubectl'
@@ -52,3 +52,10 @@ alias v='nvim'
 alias cat='bat --style=plain'
 alias grunner='gcloud --project telabs-integration-tests-vpn compute ssh vpn-server --zone europe-west2-c -- -A ssh gh@10.1.0.2'
 alias logid='sudo systemctl restart logid'
+
+alias cvr='cog vault-proxy run'
+
+alias cda="cd ${REPO_DIR}/infrastructure/ansible"
+alias cdt="cd ${REPO_DIR}/infrastructure/terraform/environments/google"
+alias dc='docker-compose'
+alias ak='cat ~/.ssh/work | SSH_ASKPASS=~/.ssh/get-pp.sh ssh-add -'
