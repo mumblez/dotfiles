@@ -108,6 +108,9 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 vnoremap < <gv
 vnoremap > >gv
 
+"== treat words with '-' as whole words
+" set iskeyword-=-
+
 "== show column boundary =="
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
@@ -140,64 +143,9 @@ augroup last_edit
                 \ endif
 augroup END
 
-" deoplete
+" completion
 set completeopt=menuone,noinsert,noselect " auto complete setting
-" let g:deoplete#enable_at_startup = 1
-"let g:deoplete#enable_smart_case = 1
-"let g:deoplete#auto_complete_start_length = 1
-"let g:deoplete#keyword_patterns = {}
-"let g:deoplete#keyword_patterns['default'] = '\h\w*'
-"let g:deoplete#omni#input_patterns = {}
-
-" deoplete new way to handle options
-"[deoplete] g:deoplete#enable_smart_case is deprecated variable.  Please use deoplete#custom#option() instead.
-
-" neomake
-" autocmd BufWritePost * Neomake
-" let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
-" let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
-" let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
-" let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
-" let g:neomake_go_enabled_makers = [ 'go', 'gometalinter' ]
-" let g:neomake_go_gometalinter_maker = {
-"   \ 'args': [
-"   \   '--tests',
-"   \   '--enable-gc',
-"   \   '--concurrency=3',
-"   \   '--fast',
-"   \   '-D', 'aligncheck',
-"   \   '-D', 'dupl',
-"   \   '-D', 'gocyclo',
-"   \   '-D', 'gotype',
-"   \   '-E', 'errcheck',
-"   \   '-E', 'misspell',
-"   \   '-E', 'unused',
-"   \   '%:p:h',
-"   \ ],
-"   \ 'append_file': 0,
-"   \ 'errorformat':
-"   \   '%E%f:%l:%c:%trror: %m,' .
-"   \   '%W%f:%l:%c:%tarning: %m,' .
-"   \   '%E%f:%l::%trror: %m,' .
-"   \   '%W%f:%l::%tarning: %m'
-"   \ }
-
-" ale
-" Error and warning signs.
-" let g:ale_sign_error = '⤫'
-" let g:ale_sign_warning = '⚠'
-" let g:ale_set_loclist = 1
-" " breaks navigating items in qf across multi files
-" let g:ale_set_quickfix = 0
-" let g:ale_open_list = 1
-"
-" " Enable integration with airline.
-" let g:airline#extensions#ale#enabled = 1
-
-
-
-" use real tabs in .go files, not spaces
-"autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
+set shortmess+=c
 
 "== create cache dir, for tags, vim sessions...
 let cache_dir = expand('~/.cache')
@@ -271,7 +219,12 @@ Plug 'rust-lang/rust.vim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
-Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'glepnir/lspsaga.nvim'
 " Plug 'ervandew/supertab'
 
 " Plug 'w0rp/ale'
@@ -282,36 +235,19 @@ let vim_markdown_preview_github=1
 " brew install grip
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 15
-" Plug 'majutsushi/tagbar' " toggle with F8 (startup/mappings.vim)
-" build and cache tags rather than maintain tags file for each project
-" need to also ensure $HOME/.ctags exists with definitions for each language
-" using universal ctags, can drop tag definitions in ~/.ctags.d/<lang>.ctags
-" but rusty-tags will use from other plugins, e.g.
-" ~/.config/nvim/plugged/rust/ctags/rust.ctags
-" brew install --HEAD universal-ctags/universal-ctags/universal-ctags # need
-" this for recursive support!
-" mkdir ~/.cache/gutentags # for vim-gutentags to cache tag files
-"Plug 'ludovicchabant/vim-gutentags'
-" let g:gutentags_cache_dir = cache_dir . '/gutentags'
-" override system ctags when xcode installed
-" let g:gutentags_ctags_executable = '/usr/local/bin/ctags'
-"Plug 'romainl/vim-qf'
-" this only works if you manually clone to ~/.config/nvim/plugged
-" then add below line. Use 'Ack <search term>', dd irrelevant lines/files,
-" then 'Acks /replace/me/' to do multi-file search and replace
 Plug 'wincent/ferret'
 Plug 'xolox/vim-session'
 let vim_sessions_cache_dir = cache_dir . '/vim-sessions'
 Plug 'xolox/vim-misc'
-"Plug 'tpope/vim-obsession'
-" Plug 'ryanoasis/vim-devicons' "icons are small unless using different font
-" but then breaks status line and tmux line!
 Plug 'szw/vim-maximizer' " F3 to toggle
 
-" github colour theme
-" Plug 'projekt0n/github-nvim-theme'
-
 call plug#end()
+
+" install missing plugins on start
+autocmd VimEnter *
+            \  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+            \|   PlugInstall
+            \| endif
 
 "== create plugin cache directories
 " for plugin_cache_dir in [g:gutentags_cache_dir, vim_sessions_cache_dir]
@@ -329,9 +265,6 @@ let g:UltiSnipsJumpBackwardTrigger="<m-k>"
 " let g:UltiSnipsEditSplit="vertical"
 "
 
-let g:completion_enable_snippet = 'UltiSnips'
-
-" NEW STUFF
 " Fuzzy finder
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -354,76 +287,31 @@ require'nvim-treesitter.configs'.setup {
     disable = {},
     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
     persist_queries = false -- Whether the query persists across vim sessions
+  },
+  ensure_installed = {
+      "bash",
+      "dockerfile",
+      "go",
+      "gomod",
+      "lua",
+      "python",
+      "rust",
+      "toml",
+      "vim"
   }
 }
 EOF
+
 " Status line
 luafile ~/.config/nvim/eviline.lua
 
 " Buflinetab
 let g:buftabline_show = 1
 
-" END OF NEW STUFF
-
-
-
-" install missing plugins on start
-autocmd VimEnter *
-            \  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-            \|   PlugInstall
-            \| endif
-
-
 " RUST SETUP
-"let g:ale_rust_cargo_use_check = 1
 let g:rustfmt_autosave = 1
-" if executable('racer')
-"   " cargo install racer
-"   " rustup component add rust-src
-"   let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
-"   let g:racer_cmd = systemlist('which racer')[0]
-" endif
-"
-" if executable('rustc')
-"     " if src installed via rustup, we can get it by running
-"     " rustc --print sysroot then appending the rest of the path
-"     let rustc_root = systemlist('rustc --print sysroot')[0]
-"     let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
-"     if isdirectory(rustc_src_dir)
-"         let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
-"     endif
-" endif
-" let g:racer_experimental_completer = 1
-"
-" " rust mappings
-" augroup rust_bindings
-"     au!
-"     " au FileType rust nmap gd <Plug>(rust-def)
-"     " au FileType rust nmap <leader>gd <Plug>(rust-doc)
-"     au FileType rust nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
-"     au FileType rust nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-"     " au FileType rust nmap <buffer> <leader>t :AsyncRun cargo test<cr> " weird errors
-"     au FileType rust nmap <buffer> <leader>t :!cargo test<cr>
-"     au FileType rust nmap <buffer> <leader>r :AsyncRun cargo run -q<cr>
-"     " au FileType rust nmap <buffer> <leader>r :sp term://cargo run -q<cr>
-"     " au FileType rust nmap <buffer> <leader>r :AsyncRun RustRun<cr>
-"     au FileType rust nmap <buffer> <leader>b :AsyncRun cargo build<cr>
-"     " navigate errors using location list overriding quick fix
-"     " autocmd FileType rust command! Lnext try | lnext | catch | lfirst | catch | endtry
-"     " autocmd FileType rust command! Lprev try | lprev | catch | llast | catch | endtry
-"     " autocmd FileType rust nnoremap <silent> <C-Down> :Lnext<CR>
-"     " autocmd FileType rust nnoremap <silent> <C-Up> :Lprev<CR>
-" augroup END
 
-"require'nvim_lsp'.terraformls.setup{}
-" nvim_lsp.terraformls.setup{
-" root_dir = nvim_lsp.util.root_pattern('.terraform');
-" }
-" require'nvim_lsp'.rust_analyzer.setup{}
-" require'nvim_lsp'.gopls.setup{}
-" require'nvim_lsp'.pyls.setup{}
-" require'nvim_lsp'.bashls.setup{}
-" require'nvim_lsp'.yamlls.setup{}
+
 lua <<EOF
 local lspconfig = require'lspconfig'
 lspconfig.bashls.setup{}
@@ -436,23 +324,13 @@ lspconfig.terraformls.setup{
 }
 EOF
 
-" autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
-" let g:SuperTabDefaultCompletionType = "<c-n>"
-"autocmd BufWrite * :Autoformat
-
-" nnoremap <silent>gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-" nnoremap <silent><c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-" nnoremap <silent>K     <cmd>lua vim.lsp.buf.hover()<CR>
-
-" END RUST SETUP
-"
 
 " -------------------- LSP ---------------------------------
 :lua << EOF
   local nvim_lsp = require('lspconfig')
 
   local on_attach = function(client, bufnr)
-    require('completion').on_attach()
+    -- require('completion').on_attach()
 
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -464,8 +342,8 @@ EOF
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -507,31 +385,82 @@ EOF
     }
   end
 
-  -- require('github-theme').setup()
 EOF
-  " nvim_lsp['terraformls'].setup {
-  "     on_attach = on_attach,
-  "     cmd = { "terraform-lsp" },
-  "     filetypes = { "terraform" },
-  "     root_dir = nvim_lsp.util.root_pattern(".terraform", ".git"),
-  " }
-"  -- Enable diagnostics
-"  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-"    vim.lsp.diagnostic.on_publish_diagnostics, {
-"        virtual_text = true,
-"        signs = true,
-"        update_in_insert = true,
-"    }
-"  )
 
-" Completion
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" nvim-cmp (previously nvim-compe) setup
+lua <<EOF
+  local cmp = require'cmp'
 
-let g:completion_confirm_key = ""
-imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
-                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        -- For `vsnip` user.
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
+
+        -- For `luasnip` user.
+        -- require('luasnip').lsp_expand(args.body)
+
+        -- For `ultisnips` user.
+        vim.fn["UltiSnips#Anon"](args.body)
+      end,
+    },
+    mapping = {
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+
+      -- For vsnip user.
+      -- { name = 'vsnip' },
+
+      -- For luasnip user.
+      -- { name = 'luasnip' },
+
+      -- For ultisnips user.
+      { name = 'ultisnips' },
+
+      { name = 'buffer' },
+    }
+  })
+
+  -- Setup lspconfig.
+  require('lspconfig')['pyright'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  }
+EOF
+
+" autoformat
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100) 
+" autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync(nil, 100) 
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100) 
+autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 100) 
+ 
+" nnoremap <silent> K :Lspsaga hover_doc<CR>
+" nnoremap <silent> gs :Lspsaga signature_help<CR>
+" nnoremap <silent> ]d :Lspsaga diagnostic_jump_next<CR>
+" nnoremap <silent> [d :Lspsaga diagnostic_jump_prev<CR>
+
+" == Completion.nvim
+" let g:completion_enable_auto_hover = 1
+" let g:completion_enable_auto_signature = 1
+" let g:completion_enable_snippet = 'UltiSnips'
+" let g:completion_enable_auto_popup = 1
+" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" imap <tab> <Plug>(completion_smart_tab)
+" imap <s-tab> <Plug>(completion_smart_s_tab)
+"
+" let g:completion_confirm_key = ""
+" imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+"                  \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
+
+" == end completion.nvim
 
 " Enable type inlay hints
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
@@ -541,127 +470,22 @@ autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
 " Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+" autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 set signcolumn=yes
 
 
  
 " -------------------- LSP ---------------------------------
 
-
-
 "== Load custom settings =="
-" for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
-"     exe 'source' f
-" endfor
-" source ~/.vim/startup/color.vim
 source ~/.config/nvim/startup/functions.vim
 source ~/.config/nvim/startup/mappings.vim
-"autocmd FileType go source ~/.vim/startup/golang.vim
-"source ~/.vim/startup/golang.vim
-" source ~/.vim/startup/python.vim
-"source ~/.vim/startup/airline.vim
-"source ~/.vim/startup/ctrlp.vim
-"source ~/.vim/startup/terraform.vim
 
 set rtp+=~/.fzf
 
 colorscheme darcula-solid
 
-" ctags for go - brew install gotags
-" let g:tagbar_type_go = {
-"             \ 'ctagstype' : 'go',
-"             \ 'kinds'     : [
-"             \ 'p:package',
-"             \ 'i:imports:1',
-"             \ 'c:constants',
-"             \ 'v:variables',
-"             \ 't:types',
-"             \ 'n:interfaces',
-"             \ 'w:fields',
-"             \ 'e:embedded',
-"             \ 'm:methods',
-"             \ 'r:constructor',
-"             \ 'f:functions'
-"             \ ],
-"             \ 'sro' : '.',
-"             \ 'kind2scope' : {
-"             \ 't' : 'ctype',
-"             \ 'n' : 'ntype'
-"             \ },
-"             \ 'scope2kind' : {
-"             \ 'ctype' : 't',
-"             \ 'ntype' : 'n'
-"             \ },
-"             \ 'ctagsbin'  : 'gotags',
-"             \ 'ctagsargs' : '-sort -silent'
-"             \ }
-
-
-" it'll use ctags from rust.vim instead
-" also crashes on mod tests when below def enabled, but also works when not
-" enabled!
-" workaround is to open vim first (without a file) then open the file within
-" vim!
-" https://github.com/majutsushi/tagbar/wiki#rust
-"  let g:tagbar_type_rust = {
-"     \ 'ctagstype' : 'rust',
-"     \ 'kinds' : [
-"         \'T:types,type definitions',
-"         \'f:functions,function definitions',
-"         \'g:enum,enumeration names',
-"         \'s:structure names',
-"         \'m:modules,module names',
-"         \'c:consts,static constants',
-"         \'t:traits',
-"         \'i:impls,trait implementations',
-"     \]
-"     \}
-
-" let g:tagbar_autoshowtag = 1
-" let g:tagbar_autofocus = 1
-" let g:tagbar_autoclose = 1
-" autocmd FileType go,rust nested :TagbarOpen "annoying on close, have to press, also breaks colouring
-" colors - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-" fix highlight and function signature color
-" highlight TagbarSignature ctermfg=37
-" highlight TagbarHighlight ctermfg=119
-" also strange errors when there are tests within a lib.rs
-
-" imap <C-k> <Plug>(neosnippet_expand_or_jump)
-" smap <C-k> <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k> <Plug>(neosnippet_expand_target)
-"
-" let g:neosnippet#disable_runtime_snippets = {
-"             \ 'go': 1
-"             \}
-
-"""" Airline config (cool status bars)..
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#tab_nr_type = 1 " show tab # not splits in tab
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#show_tabs = 0
-" let g:airline#extensions#tabline#show_buffers = 1
-" let g:airline#extensions#bufferline#overwrite_variables = 1
-" let g:airline#extensions#bufferline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
-"
-" """" Bufferline (show buffers on airline) config
-" let g:bufferline_echo = 1 " no buffer display on the command line
-" let g:bufferline_active_buffer_left = '>'
-" let g:bufferline_active_buffer_right = '<'
-" let g:bufferline_show_bufnr = 1
-" " let g:bufferline_active_highlight = 'StatusLineNC'
-" let g:bufferline_active_highlight = 'airline_c'
-" " let g:bufferline_inactive_highlight = 'airline_c'
-"
-"let g:polyglot_disabled = ['ansible', 'yaml', 'yml']
 let g:ansible_unindent_after_newline = 1
 autocmd FileType yml let b:autoformat_autoindent=0
 autocmd FileType yml let b:autoformat_retab=0
 
-" set modeline
-" set modelines=5
-
-" vimwiki on Dropbox
-" let g:vimwiki_list = [{'path': '~/Dropbox/Apps/VimWiki', 'path_html': '~/Dropbox/Apps/VimWiki/public_html'}]

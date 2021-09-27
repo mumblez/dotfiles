@@ -314,3 +314,6 @@ typeset -aU path
 [ -f "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh" ] && . "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh"
 # [ -f "${REPO_DIR}/cog/bash_completion" ] && . "${REPO_DIR}/cog/bash_completion" # doesn't work
 
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
