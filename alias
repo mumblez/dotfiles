@@ -1,9 +1,9 @@
-alias gco="git checkout \$(git branch -a | fzf --height=15)"
-alias updatedb='sudo /usr/libexec/locate.updatedb'
+alias gco="git checkout \$(git branch -a | fzf --height=15)" alias updatedb='sudo /usr/libexec/locate.updatedb'
 alias ll='ls -lhAG'
 alias ls='ls -G'
 alias grep='grep --color=auto'
 alias gc='git commit'
+alias ge='git commit --amend --no-edit'
 alias gs='git status'
 alias gl='git lg'
 alias gp='git push'
@@ -55,7 +55,8 @@ alias logid='sudo systemctl restart logid'
 
 alias cvr='cog vault-proxy run'
 
-alias cda="cd ${REPO_DIR}/infrastructure/ansible"
-alias cdt="cd ${REPO_DIR}/infrastructure/terraform/environments/google"
+alias cda="cd ${REPO_DIR}/infrastructure/master/ansible"
+alias cdt="cd ${REPO_DIR}/infrastructure/master/terraform/environments/google"
 alias dc='docker-compose'
 alias ak='cat ~/.ssh/work | SSH_ASKPASS=~/.ssh/get-pp.sh ssh-add -'
+alias cvs='cog vault-proxy shell'

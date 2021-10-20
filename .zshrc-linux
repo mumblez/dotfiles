@@ -317,3 +317,6 @@ typeset -aU path
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
+
+# export vault oidc
+export TF_VAR_oidc_client_secret=$(gopass show misc/work-vault-oidc)

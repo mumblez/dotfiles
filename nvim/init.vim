@@ -360,7 +360,6 @@ EOF
 
 lua <<EOF
   local nvim_lsp = require('lspconfig')
-  local servers = {'pyright', 'gopls', 'bashls', 'yamlls', 'rust_analyzer', 'terraformls'}
 
   local on_attach = function(client, bufnr)
     require('lsp_signature').on_attach({
@@ -398,10 +397,11 @@ lua <<EOF
     if client.resolved_capabilities.document_formatting then
         buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     elseif client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
     -- Set autocommands conditional on server_capabilities
+    -- maybe cleanup - https://github.com/stnley/.dotfiles/blob/main/nvim/.config/nvim/lua/stnley/config/lsp/init.lua#L111
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_exec([[
             :hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
@@ -416,13 +416,40 @@ lua <<EOF
     end
   end
 
+  local custom_init = function(client)
+    client.config.flags = client.config.flags or {}
+    client.config.flags.allow_incremental_sync = true
+  end
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+  local servers = {'pyright', 'gopls', 'bashls', 'rust_analyzer'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
+      on_init = custom_init,
       on_attach = on_attach,
-      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      capabilities = capabilities,
     }
   end
+
+ nvim_lsp['terraformls'].setup{
+   settings = {
+    experimentalFeatures = {
+     prefillRequiredFields = true,
+     validateOnSave = true,
+    },
+   },
+   on_init = custom_init,
+   on_attach = function(client)
+       client.resolved_capabilities.document_formatting = false
+       client.resolved_capabilities.document_range_formatting = false
+       on_attach(client)
+   end,
+   capabilities = capabilities,
+ }
 EOF
+
 
 " autoformat
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000) 
@@ -442,8 +469,7 @@ nnoremap <silent> rn :Lspsaga rename<CR>
 
 
 " Enable type inlay hints
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+" autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
