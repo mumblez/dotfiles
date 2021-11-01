@@ -244,6 +244,7 @@ Plug 'xolox/vim-misc'
 Plug 'szw/vim-maximizer' " F3 to toggle
 Plug 'ray-x/lsp_signature.nvim'
 
+Plug 'github/copilot.vim'
 call plug#end()
 
 " install missing plugins on start
@@ -425,6 +426,7 @@ lua <<EOF
   capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
   local servers = {'pyright', 'gopls', 'bashls', 'rust_analyzer'}
+  --local servers = {'jedi_language_server', 'gopls', 'bashls', 'rust_analyzer'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_init = custom_init,

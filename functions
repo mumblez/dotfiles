@@ -10,16 +10,16 @@ kctx () {
     kubectl config use-context "$context"
 }
 
-bastion-sainsburys() {
-    #mfab $(gopass otp te/sainsburys/bastion | cut -d' ' -f1)
-    gopass otp -c te/sainsburys/bastion | cut -d' ' -f1
-    sshuttle -v -r yusuf@sainsburys-gcloud-bastion-01 10.0.0.0/8 172.31.146.0/24 172.20.3.0/24
-}
-
-bastion-mns() {
-    gopass otp -c te/sainsburys/bastion | cut -d' ' -f1
-    sshuttle -v -r yusuf@mns-gcloud-bastion-01 10.159.218.0/24 10.222.0.0/16
-}
+# bastion-sainsburys() {
+#     #mfab $(gopass otp te/sainsburys/bastion | cut -d' ' -f1)
+#     gopass otp -c te/sainsburys/bastion | cut -d' ' -f1
+#     sshuttle -v -r yusuf@sainsburys-gcloud-bastion-01 10.0.0.0/8 172.31.146.0/24 172.20.3.0/24
+# }
+#
+# bastion-mns() {
+#     gopass otp -c te/sainsburys/bastion | cut -d' ' -f1
+#     sshuttle -v -r yusuf@mns-gcloud-bastion-01 10.159.218.0/24 10.222.0.0/16
+# }
 
 git-switch() {
     cd $HOME
@@ -45,13 +45,13 @@ git-switch() {
     [ -z $TMUX ] || tmux refresh-client -S
 }
 
-ai_online () {
-    for i in $(grep -oE 'sainsburys-store-[a-z]{1,}.*' ~/.ssh/config)
-    do
-        ssh -o ConnectTimeout=5 "$i" hostname 2>/dev/null
-    done
-}
-
+# ai_online () {
+#     for i in $(grep -oE 'sainsburys-store-[a-z]{1,}.*' ~/.ssh/config)
+#     do
+#         ssh -o ConnectTimeout=5 "$i" hostname 2>/dev/null
+#     done
+# }
+#
 dhcp_status() {
     sudo systemctl status dhcpd
 }
@@ -108,29 +108,30 @@ cht() {
 
 }
 
-bvpn() {
-    local action="$1"
-    local gpentry="te/carrefour/vpn"
+# bvpn() {
+#     local action="$1"
+#     local gpentry="te/carrefour/vpn"
+#
+#
+#     if [ "$action" = "start" ]; then
+#         local u=$(gopass show $gpentry username)
+#         local p=$(gopass show $gpentry --password)
+#         sudo barracudavpn ${2:-} --start --login $u --serverpwd $p
+#         barracudavpn --status
+#     else
+#         barracudavpn --stop
+#     fi
+# }
+#
+# rtag() {
+#     local repo="$1"
+#     local dest="europe-west1-docker.pkg.dev/thirdeyelabs-common/test/${repo}"
+#
+#     docker pull $repo
+#     docker tag $repo $dest
+#     docker push $dest
+# }
 
-
-    if [ "$action" = "start" ]; then
-        local u=$(gopass show $gpentry username)
-        local p=$(gopass show $gpentry --password)
-        sudo barracudavpn ${2:-} --start --login $u --serverpwd $p
-        barracudavpn --status
-    else
-        barracudavpn --stop
-    fi
-}
-
-rtag() {
-    local repo="$1"
-    local dest="europe-west1-docker.pkg.dev/thirdeyelabs-common/test/${repo}"
-
-    docker pull $repo
-    docker tag $repo $dest
-    docker push $dest
-}
 
 # vim: set ft=sh:
 

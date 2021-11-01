@@ -1,6 +1,5 @@
 # quote if there's space in the path
 paths=(
-    ~/.nix-profile/bin
     ~/.cargo/bin
     ~/.fzf/bin
     /usr/local/opt/libpq/bin

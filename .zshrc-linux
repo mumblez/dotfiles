@@ -110,14 +110,13 @@ HISTFILE=~/.cache/zsh/history
 # remove EOL % when command doesn't terminate to new line
 PROMPT_EOL_MARK=''
 
-# asdf completions
-fpath=(~/.asdf/completions $fpath)
 
 # Basic auto/tab complete:
 autoload -U compinit
 setopt completeinword
 zstyle ':completion:*' menu select
 zmodload zsh/complist
+
 for dump in ~/.zcompdump(N.mh+24); do
     compinit
 done
@@ -127,6 +126,10 @@ _comp_options+=(globdots)		# Include hidden files.
 # work with bash auto complete
 autoload -U bashcompinit
 bashcompinit
+
+# asdf completions
+# fpath=(~/.asdf/completions $fpath)
+source ~/.asdf/completions/asdf.bash
 
 # vi mode
 bindkey -v
@@ -193,7 +196,7 @@ EDITOR=$VISUAL
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/repos/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/repos/zsh-abbr/zsh-abbr.zsh
+# source ~/repos/zsh-abbr/zsh-abbr.zsh
 
 # Bindings
 bindkey '^[[A' history-substring-search-up
@@ -201,14 +204,14 @@ bindkey '^[[B' history-substring-search-down
 
 
 # Auto load completions
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-    autoload -Uz compinit
-    for dump in ~/.zcompdump(N.mh+24); do
-        compinit
-    done
-fi
+# if type brew &>/dev/null; then
+#     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+#
+#     autoload -Uz compinit
+#     for dump in ~/.zcompdump(N.mh+24); do
+#         compinit
+#     done
+# fi
 
 source ~/google-cloud-sdk/completion.zsh.inc
 
@@ -243,7 +246,7 @@ source ~/repos/dotfiles/alias
 
     # import aliases into zsh-abbr only once
     # abbr import-aliases &>/dev/null
-    abbr load
+    # abbr load
 
     # nix
     source ~/.nix-profile/etc/profile.d/nix.sh
@@ -266,17 +269,17 @@ source "$(pyenv root)/completions/pyenv.zsh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("${HOME}/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "${HOME}/miniconda3/etc/profile.d/conda.sh"
-    else
-        [ -z $TMUX ] && export PATH="${HOME}/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$("${HOME}/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "${HOME}/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         [ -z $TMUX ] && export PATH="${HOME}/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 #
 # autojump (j)
@@ -311,7 +314,7 @@ export PATH="${HOME}/standard/linux:$PATH"
 typeset -aU path
 
 
-[ -f "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh" ] && . "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh"
+# [ -f "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh" ] && . "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh"
 # [ -f "${REPO_DIR}/cog/bash_completion" ] && . "${REPO_DIR}/cog/bash_completion" # doesn't work
 
 

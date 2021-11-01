@@ -1,0 +1,17 @@
+# available versions
+pyenv install -l
+
+# install python 
+pyenv install <version>
+
+# setup version as global
+pyenv global <version>
+# or
+pyenv global <env>
+
+# create virtualenv with version
+pyenv virtualenv <version> <name>
+
+# set virtualenv locally
+pyenv local <name>
+# will generate .python-version in current directory
