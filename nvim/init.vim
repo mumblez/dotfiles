@@ -415,6 +415,8 @@ lua <<EOF
             augroup END
         ]], false)
     end
+
+    -- suppress 
   end
 
   local custom_init = function(client)
@@ -425,7 +427,7 @@ lua <<EOF
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-  local servers = {'pyright', 'gopls', 'bashls', 'rust_analyzer'}
+  local servers = {'pyright', 'gopls', 'rust_analyzer', 'bashls'}
   --local servers = {'jedi_language_server', 'gopls', 'bashls', 'rust_analyzer'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
@@ -450,6 +452,15 @@ lua <<EOF
    end,
    capabilities = capabilities,
  }
+
+-- nvim_lsp['bashls'].setup{
+--   on_init = custom_init,
+--   capabilities = capabilities,
+--   on_attach = function(client)
+--       client.resolved_capabilities.code_actions = false
+--       on_attach(client)
+--   end,
+-- }
 EOF
 
 
@@ -461,7 +472,12 @@ autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
  
 lua <<EOF
   local saga = require'lspsaga'
-  saga.init_lsp_saga()
+--  saga.init_lsp_saga()
+  saga.init_lsp_saga {
+    code_action_prompt = {
+        enable = false
+    }
+  }
 EOF
 nnoremap <silent> K :Lspsaga hover_doc<CR>
 nnoremap <silent> gs :Lspsaga signature_help<CR>
