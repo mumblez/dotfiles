@@ -213,6 +213,7 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${REPO_DIR}/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ${REPO_DIR}/evalcache/evalcache.plugin.zsh
+source ${REPO_DIR}/zsh-lazyload/zsh-lazyload.zsh
 # source ~/repos/zsh-abbr/zsh-abbr.zsh
 
 
@@ -232,7 +233,7 @@ bindkey '^[[B' history-substring-search-down
 # fi
 #
 
-source ~/google-cloud-sdk/completion.zsh.inc
+lazyload gcloud -- 'source ~/google-cloud-sdk/completion.zsh.inc'
 
 # brew install olets/tap/zsh-abbr
 #source /usr/local/share/zsh-abbr/zsh-abbr.zsh
@@ -250,7 +251,8 @@ source ${DOTFILES_REPO}/paths
     # asdf
     source ~/.asdf/asdf.sh
     # fpath=(~/.asdf/completions $fpath)
-    source ~/.asdf/completions/asdf.bash
+    # source ~/.asdf/completions/asdf.bash
+    lazyload asdf -- 'source ~/.asdf/completions/asdf.bash'
 
     # gpg
     # gpgconf --launch gpg-agent
@@ -282,7 +284,7 @@ _evalcache starship init zsh
 
 # pyenv init
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-source "$(pyenv root)/completions/pyenv.zsh"
+lazyload pyenv -- 'source "$(pyenv root)/completions/pyenv.zsh"'
 # pyenv doctor fix
 #export LDFLAGS="-L/usr/local/opt/openssl/lib"
 #export CPPFLAGS="-I/usr/local/opt/openssl/include"
