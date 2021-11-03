@@ -133,5 +133,18 @@ cht() {
 # }
 
 
-# vim: set ft=sh:
 
+tfvars() {
+    export TF_VAR_oidc_client_secret=$(gopass show misc/work-vault-oidc)
+    export TF_VAR_pagerduty_service_key=$(gopass show misc/work-pagerduty-service-key)
+    export TF_VAR_slack_auth_token=$(gopass show misc/work-slack-auth-token)
+    export TF_VAR_jenkins_user_github_token=$(gopass show misc/work-jenkins-user-github-token)
+    export TF_VAR_oauth2_client_id=$(gopass show misc/work-oauth2-client-id)
+    export TF_VAR_oauth2_client_secret=$(gopass show misc/work-oauth2-client-secret)
+    export TF_VAR_old_pypi_download_password=$(gopass show misc/work-old-pypi-download-password)
+    export TF_VAR_old_pypi_password=$(gopass show misc/work-old-pypi-password)
+    export TF_VAR_pypi_api_key=$(gopass show misc/work-pypi-api-key)
+    export TF_VAR_pypi_download_api_key=$(gopass show misc/work-pypi-download-api-key)
+}
+
+# vim: set ft=sh:

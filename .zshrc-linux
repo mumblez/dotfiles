@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
@@ -117,19 +118,24 @@ setopt completeinword
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 
-for dump in ~/.zcompdump(N.mh+24); do
-    compinit
-done
-compinit -C
+# for dump in ~/.zcompdump(N.mh+24); do
+#     compinit
+# done
+# compinit -C
+
+if [ $(($(date +%s) - $(stat -c %Y ~/.zcompdump))) -gt 86400 ]; then
+  compinit
+  compdump
+else
+  compinit -C
+fi
+
 _comp_options+=(globdots)		# Include hidden files.
 
 # work with bash auto complete
 autoload -U bashcompinit
 bashcompinit
 
-# asdf completions
-# fpath=(~/.asdf/completions $fpath)
-source ~/.asdf/completions/asdf.bash
 
 # vi mode
 bindkey -v
@@ -212,6 +218,13 @@ bindkey '^[[B' history-substring-search-down
 #         compinit
 #     done
 # fi
+#
+# exports
+export REPO_DIR="${HOME}/repos"
+DOTFILES_REPO="$REPO_DIR/dotfiles"
+CACHE_DIR="${HOME}/.cache"
+[ -d "${CACHE_DIR:-}" ] || mkdir -p "$CACHE_DIR"
+VIM_SESSIONS="${CACHE_DIR}/vim-sessions"
 
 source ~/google-cloud-sdk/completion.zsh.inc
 
@@ -219,20 +232,19 @@ source ~/google-cloud-sdk/completion.zsh.inc
 #source /usr/local/share/zsh-abbr/zsh-abbr.zsh
 
 
-# Import alias
-source ~/repos/dotfiles/alias
-
+# Import our stuff
+source ${DOTFILES_REPO}/alias
+source ${DOTFILES_REPO}/functions
+source ${DOTFILES_REPO}/paths
 
 # anything that modifies PATH put in here so it only loads once
 # if [ -z $TMUX ]; then
     source ~/google-cloud-sdk/path.zsh.inc
 
-
-    source ~/dotfiles/functions
-    source ~/dotfiles/paths
-
     # asdf
     source ~/.asdf/asdf.sh
+    # fpath=(~/.asdf/completions $fpath)
+    source ~/.asdf/completions/asdf.bash
 
     # gpg
     # gpgconf --launch gpg-agent
@@ -287,11 +299,6 @@ source "$(pyenv root)/completions/pyenv.zsh"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 export NIX_IGNORE_SYMLINK_STORE=1 # catalina fix
-export REPO_DIR="${HOME}/repos"
-DOTFILES_REPO="$REPO_DIR/dotfiles"
-CACHE_DIR="${HOME}/.cache"
-[ -d "${CACHE_DIR:-}" ] || mkdir -p "$CACHE_DIR"
-VIM_SESSIONS="${CACHE_DIR}/vim-sessions"
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,.terraform,node_modules}/*" --no-messages'
 export FZF_CTRL_T_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{.git,.terraform,node_modules}/*" --no-messages '
@@ -301,7 +308,7 @@ export FZF_ALT_C_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{
 
 export CHEATCOLORS=true
 export DEFAULT_CHEAT_DIR="${DOTFILES_REPO}/.cheat"
-export GH_TOKEN=$(gopass show misc/misc_gha-pat)
+# export GH_TOKEN=$(gopass show misc/misc_gha-pat) # now using github-cli instead of hub
 
 #source <(gopass completion zsh)
 export CHEAT_USE_FZF=true
@@ -310,26 +317,14 @@ export CHEAT_USE_FZF=true
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="${REPO_DIR}/arcanist/bin:$PATH"
 export PATH="${HOME}/standard/linux:$PATH"
+export PATH=$PATH:$HOME/.pulumi/bin
 
-# Cleanup PATH with just unique entries
-typeset -aU path
 
 
 # [ -f "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh" ] && . "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh"
 # [ -f "${REPO_DIR}/cog/bash_completion" ] && . "${REPO_DIR}/cog/bash_completion" # doesn't work
 
+# Cleanup PATH with just unique entries
+typeset -aU path
 
-# add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin
-
-# export work tf secrets
-export TF_VAR_oidc_client_secret=$(gopass show misc/work-vault-oidc)
-export TF_VAR_pagerduty_service_key=$(gopass show misc/work-pagerduty-service-key)
-export TF_VAR_slack_auth_token=$(gopass show misc/work-slack-auth-token)
-export TF_VAR_jenkins_user_github_token=$(gopass show misc/work-jenkins-user-github-token)
-export TF_VAR_oauth2_client_id=$(gopass show misc/work-oauth2-client-id)
-export TF_VAR_oauth2_client_secret=$(gopass show misc/work-oauth2-client-secret)
-export TF_VAR_old_pypi_download_password=$(gopass show misc/work-old-pypi-download-password)
-export TF_VAR_old_pypi_password=$(gopass show misc/work-old-pypi-password)
-export TF_VAR_pypi_api_key=$(gopass show misc/work-pypi-api-key)
-export TF_VAR_pypi_download_api_key=$(gopass show misc/work-pypi-download-api-key)
+# zprof
