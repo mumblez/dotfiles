@@ -2,6 +2,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
+# be sure to bring in repos:
+# - git@github.com:mroth/evalcache.git
+# - git@github.com:qoomon/zsh-lazyload.git
 
 # patch /etc/zprofile to ensure path_helper only runs if NOT tmux, e.g. [ -z $TMUX ]
 
@@ -198,11 +201,20 @@ bindkey '^e' edit-command-line
 VISUAL=nvim
 EDITOR=$VISUAL
 
+# exports
+export REPO_DIR="${HOME}/repos"
+DOTFILES_REPO="$REPO_DIR/dotfiles"
+CACHE_DIR="${HOME}/.cache"
+[ -d "${CACHE_DIR:-}" ] || mkdir -p "$CACHE_DIR"
+VIM_SESSIONS="${CACHE_DIR}/vim-sessions"
+
 # Plugins
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/repos/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ${REPO_DIR}/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ${REPO_DIR}/evalcache/evalcache.plugin.zsh
 # source ~/repos/zsh-abbr/zsh-abbr.zsh
+
 
 # Bindings
 bindkey '^[[A' history-substring-search-up
@@ -219,12 +231,6 @@ bindkey '^[[B' history-substring-search-down
 #     done
 # fi
 #
-# exports
-export REPO_DIR="${HOME}/repos"
-DOTFILES_REPO="$REPO_DIR/dotfiles"
-CACHE_DIR="${HOME}/.cache"
-[ -d "${CACHE_DIR:-}" ] || mkdir -p "$CACHE_DIR"
-VIM_SESSIONS="${CACHE_DIR}/vim-sessions"
 
 source ~/google-cloud-sdk/completion.zsh.inc
 
@@ -253,9 +259,10 @@ source ${DOTFILES_REPO}/paths
     # pyenv init
     export PYENV_ROOT="${HOME}/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
-    # eval "$(pyenv virtualenv-init -)"
+    # eval "$(pyenv init --path)"
+    # eval "$(pyenv init -)"
+    _evalcache pyenv init --path
+    _evalcache pyenv init -
 
     # import aliases into zsh-abbr only once
     # abbr import-aliases &>/dev/null
@@ -270,7 +277,8 @@ source ${DOTFILES_REPO}/paths
 #
 # fi
 # Prompt
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+_evalcache starship init zsh
 
 # pyenv init
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
