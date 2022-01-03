@@ -67,7 +67,7 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 
-keymap("n", "<leader>h", ":nohlsearch<CR>", opts)           -- toggle highlighted search
+-- keymap("n", "<leader>h", ":nohlsearch<CR>", opts)           -- toggle highlighted search
 keymap("n", "<leader>q", ":quit<CR>", opts)                 -- quick quit
 keymap("n", "<leader>Q", ":qa!<CR>", opts)
 keymap("n", "<leader>o", "o<ESC>k", opts)                   -- add blank lines above and below current line.
