@@ -261,12 +261,13 @@ source ${DOTFILES_REPO}/paths
     # pyenv init
     export PYENV_ROOT="${HOME}/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
-    # eval "$(pyenv init --path)"
-    # eval "$(pyenv init -)"
-    # eval "$(pyenv virtualenv-init -)"
-    _evalcache pyenv init --path
-    _evalcache pyenv init -
-    _evalcache pyenv virtualenv-init -
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    # _evalcache pyenv init --path
+    # _evalcache pyenv init -
+    # _evalcache pyenv virtualenv-init - # breaks when using evalcache
+    source "$(pyenv root)/completions/pyenv.zsh"
 
     # import aliases into zsh-abbr only once
     # abbr import-aliases &>/dev/null
@@ -286,7 +287,7 @@ _evalcache starship init zsh
 
 # pyenv init
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-lazyload pyenv -- 'source "$(pyenv root)/completions/pyenv.zsh"'
+# lazyload pyenv -- 'source "$(pyenv root)/completions/pyenv.zsh"'
 # pyenv doctor fix
 #export LDFLAGS="-L/usr/local/opt/openssl/lib"
 #export CPPFLAGS="-I/usr/local/opt/openssl/include"
