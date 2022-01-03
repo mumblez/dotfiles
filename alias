@@ -26,6 +26,7 @@ alias ke='kubectl exec -it'
 alias ka='kubectl apply -f'
 alias kd='kubectl delete -f'
 alias kns='kubectl config set-context --current --namespace'
+alias lg='lazygit'
 
 alias rn='cargo new --vcs none --bin'
 alias l='exa -lagF --git --color-scale --group-directories-first -I "._*|.DS_Store"'
