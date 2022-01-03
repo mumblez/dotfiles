@@ -33,9 +33,9 @@ nnoremap <F5> :set ft=sh<CR>
 "== copy and paste shortcuts into system clipboard
 " can use '+' or '*'
 vnoremap <F6> "+y
-nnoremap <F7> "+p
+" nnoremap <F7> "+p
 "nnoremap <F8> :TagbarOpenAutoClose<CR>
-nnoremap <F8> :TagbarToggle<CR>
+" nnoremap <F8> :TagbarToggle<CR>
 
 "custom function to switch tab logic between spaces and real tab
 nnoremap <F9> mz:execute TabToggle()<CR>'z
@@ -48,7 +48,7 @@ nnoremap \b :bd <CR>
 nnoremap \j :lcd %:p:h<CR>:pwd<CR>
 
 "== ALE turn off checks
-nnoremap \a :ALEToggle <CR>
+" nnoremap \a :ALEToggle <CR>
 
 "== markdown preview toggle
 nmap \m <Plug>MarkdownPreviewToggle<CR>
