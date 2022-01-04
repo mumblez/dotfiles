@@ -1,1 +1,0 @@
-/Users/yusuf/.config/nvim/plugged/gocode/vim/ftplugin/go/gocomplete.vim

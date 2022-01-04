@@ -1,4 +1,0 @@
-copy into system clipboard with + register
-
-e.g highlight text with v, "+y
-double quotes and plus sign to select + to select register (+ = system clipboard) and y = yank
