@@ -63,10 +63,9 @@ return packer.startup(function(use)
     config = function()
       require"surround".setup {
             mappings_style = "sandwich",
-            prefix = "S" 
+            prefix = "S"
         }
-      
-    end
+    end,
   }
   use "github/copilot.vim"
   use "szw/vim-maximizer"
