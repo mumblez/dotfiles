@@ -3,6 +3,12 @@ if not status_ok then
 	return
 end
 
+local function file_exists(name)
+    local f=io.open(name, "r")
+    if f~=nil then io.close(f) return true else return false end
+end
+
+
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
@@ -26,8 +32,10 @@ lsp_installer.on_server_ready(function(server)
     --     opts = vim.tbl_deep_extend("force", terraformls_opts, opts)
     -- end
 
+    -- if vim.fn.empty(vim.fn.glob(settings_file)) == 0 then
+    -- cleaner if we can get current working directory!
     local settings_file = vim.fn.stdpath("config") .. "/lua/user/lsp/settings/" .. server.name .. ".lua"
-    if vim.fn.empty(vim.fn.glob(settings_file)) == 0 then
+    if file_exists(settings_file) then
         local local_opts = require("user.lsp.settings." .. server.name)
         opts = vim.tbl_deep_extend("force", local_opts, opts)
     end
