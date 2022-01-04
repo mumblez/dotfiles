@@ -1,8 +1,8 @@
 return {
 	settings = {
         experimentalFeatures = {
-         prefillRequiredFields = true,
-         validateOnSave = true,
+            prefillRequiredFields = true,
+            validateOnSave = true,
         },
 	},
 }
