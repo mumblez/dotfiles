@@ -240,9 +240,9 @@ lazyload gcloud -- 'source ~/google-cloud-sdk/completion.zsh.inc'
 
 
 # Import our stuff
-source ${DOTFILES_REPO}/alias
-source ${DOTFILES_REPO}/functions
-source ${DOTFILES_REPO}/paths
+source ${DOTFILES_REPO}/zsh/alias
+source ${DOTFILES_REPO}/zsh/functions
+source ${DOTFILES_REPO}/zsh/paths
 
 # anything that modifies PATH put in here so it only loads once
 # if [ -z $TMUX ]; then
