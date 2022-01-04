@@ -1,6 +1,10 @@
+# zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
+# be sure to bring in repos:
+# - git@github.com:mroth/evalcache.git
+# - git@github.com:qoomon/zsh-lazyload.git
 
 # patch /etc/zprofile to ensure path_helper only runs if NOT tmux, e.g. [ -z $TMUX ]
 
@@ -110,20 +114,31 @@ HISTFILE=~/.cache/zsh/history
 # remove EOL % when command doesn't terminate to new line
 PROMPT_EOL_MARK=''
 
-# asdf completions
-fpath=(~/.asdf/completions $fpath)
 
 # Basic auto/tab complete:
-autoload -Uz compinit
+autoload -U compinit
 setopt completeinword
 zstyle ':completion:*' menu select
-# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zmodload zsh/complist
-for dump in ~/.zcompdump(N.mh+24); do
-    compinit
-done
-compinit -C
+
+# for dump in ~/.zcompdump(N.mh+24); do
+#     compinit
+# done
+# compinit -C
+
+if [ $(($(date +%s) - $(stat -c %Y ~/.zcompdump))) -gt 86400 ]; then
+  compinit
+  compdump
+else
+  compinit -C
+fi
+
 _comp_options+=(globdots)		# Include hidden files.
+
+# work with bash auto complete
+autoload -U bashcompinit
+bashcompinit
+
 
 # vi mode
 bindkey -v
@@ -135,6 +150,9 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+
+# fix reverse search
+bindkey '^R' history-incremental-search-backward
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -183,10 +201,21 @@ bindkey '^e' edit-command-line
 VISUAL=nvim
 EDITOR=$VISUAL
 
+# exports
+export REPO_DIR="${HOME}/repos"
+DOTFILES_REPO="$REPO_DIR/dotfiles"
+CACHE_DIR="${HOME}/.cache"
+[ -d "${CACHE_DIR:-}" ] || mkdir -p "$CACHE_DIR"
+VIM_SESSIONS="${CACHE_DIR}/vim-sessions"
+
 # Plugins
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${REPO_DIR}/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ${REPO_DIR}/evalcache/evalcache.plugin.zsh
+source ${REPO_DIR}/zsh-lazyload/zsh-lazyload.zsh
+# source ~/repos/zsh-abbr/zsh-abbr.zsh
+
 
 # Bindings
 bindkey '^[[A' history-substring-search-up
@@ -194,93 +223,95 @@ bindkey '^[[B' history-substring-search-down
 
 
 # Auto load completions
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+# if type brew &>/dev/null; then
+#     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+#
+#     autoload -Uz compinit
+#     for dump in ~/.zcompdump(N.mh+24); do
+#         compinit
+#     done
+# fi
+#
 
-    autoload -Uz compinit
-    for dump in ~/.zcompdump(N.mh+24); do
-        compinit
-    done
-fi
-
-
-source ~/google-cloud-sdk/completion.zsh.inc
+lazyload gcloud -- 'source ~/google-cloud-sdk/completion.zsh.inc'
 
 # brew install olets/tap/zsh-abbr
-source /usr/local/share/zsh-abbr/zsh-abbr.zsh
+#source /usr/local/share/zsh-abbr/zsh-abbr.zsh
 
 
-# Import alias
-source ~/dotfiles/alias
-
-# Prompt
-eval "$(starship init zsh)"
+# Import our stuff
+source ${DOTFILES_REPO}/alias
+source ${DOTFILES_REPO}/functions
+source ${DOTFILES_REPO}/paths
 
 # anything that modifies PATH put in here so it only loads once
-if [ -z $TMUX ]; then
+# if [ -z $TMUX ]; then
     source ~/google-cloud-sdk/path.zsh.inc
-
-
-    source ~/dotfiles/functions
-    source ~/dotfiles/paths
 
     # asdf
     source ~/.asdf/asdf.sh
+    # fpath=(~/.asdf/completions $fpath)
+    # source ~/.asdf/completions/asdf.bash
+    lazyload asdf -- 'source ~/.asdf/completions/asdf.bash'
 
     # gpg
-    gpgconf --launch gpg-agent
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    # gpgconf --launch gpg-agent
+    # export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
     # pyenv init
     export PYENV_ROOT="${HOME}/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
+    # _evalcache pyenv init --path
+    # _evalcache pyenv init -
+    # _evalcache pyenv virtualenv-init - # breaks when using evalcache
+    source "$(pyenv root)/completions/pyenv.zsh"
 
     # import aliases into zsh-abbr only once
     # abbr import-aliases &>/dev/null
-    abbr load
+    # abbr load
 
     # nix
-    source ~/.nix-profile/etc/profile.d/nix.sh
+    # source ~/.nix-profile/etc/profile.d/nix.sh
+# fi
 
-fi
-
+# ssh agent
+# if [ -z $TMUX ]; then
+#
+# fi
+# Prompt
+# eval "$(starship init zsh)"
+_evalcache starship init zsh
 
 # pyenv init
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-source "$(pyenv root)/completions/pyenv.zsh"
+# lazyload pyenv -- 'source "$(pyenv root)/completions/pyenv.zsh"'
 # pyenv doctor fix
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl/include"
-
+#export LDFLAGS="-L/usr/local/opt/openssl/lib"
+#export CPPFLAGS="-I/usr/local/opt/openssl/include"
 
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/yusuf/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/yusuf/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/yusuf/miniconda3/etc/profile.d/conda.sh"
-    else
-        [ -z $TMUX ] && export PATH="/Users/yusuf/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$("${HOME}/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "${HOME}/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         [ -z $TMUX ] && export PATH="${HOME}/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 #
 # autojump (j)
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-
 export NIX_IGNORE_SYMLINK_STORE=1 # catalina fix
-export REPO_DIR="${HOME}/repos"
-DOTFILES_REPO="$REPO_DIR/dotfiles"
-CACHE_DIR="${HOME}/.cache"
-[ -d "${CACHE_DIR:-}" ] || mkdir -p "$CACHE_DIR"
-VIM_SESSIONS="${CACHE_DIR}/vim-sessions"
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,.terraform,node_modules}/*" --no-messages'
 export FZF_CTRL_T_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{.git,.terraform,node_modules}/*" --no-messages '
@@ -290,26 +321,24 @@ export FZF_ALT_C_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{
 
 export CHEATCOLORS=true
 export DEFAULT_CHEAT_DIR="${DOTFILES_REPO}/.cheat"
+# export GH_TOKEN=$(gopass show misc/misc_gha-pat) # now using github-cli instead of hub
 
 #source <(gopass completion zsh)
 export CHEAT_USE_FZF=true
 
-edge-gcr() {
-  local tag
-  tag="$1"
-  oldimage="eu.gcr.io/thirdeyelabs-common/edge-prod-cuda10.0-amd64:${tag}"
-  newimage="europe-west1-docker.pkg.dev/telabs-client-share/stable/edge-prod-cuda10.0-amd64:${tag}"
-  [ -z $tag ] && { echo "you need to provide the tag!"; exit 1; }
+# extra paths
+# export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="${REPO_DIR}/arcanist/bin:$PATH"
+export PATH="${HOME}/standard/linux:$PATH"
+export PATH=$PATH:$HOME/.pulumi/bin
 
-  echo "Caching image locally"
-  docker pull $oldimage
-  echo "Re-tagging with new client registry"
-  docker tag $oldimage $newimage
-  echo "Pushing image..."
-  docker push $newimage
-}
 
-alias sed='/usr/local/bin/gsed'
+
+# [ -f "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh" ] && . "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh"
+# [ -f "${REPO_DIR}/cog/bash_completion" ] && . "${REPO_DIR}/cog/bash_completion" # doesn't work
 
 # Cleanup PATH with just unique entries
 typeset -aU path
+
+# zprof
+
