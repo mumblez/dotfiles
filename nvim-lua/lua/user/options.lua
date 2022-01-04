@@ -34,7 +34,7 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
-  ruler = true                             -- show cursor position
+  ruler = true,                            -- show cursor position
 }
 
 vim.opt.shortmess:append "c"
@@ -42,6 +42,9 @@ vim.opt.shortmess:append "c"
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.g.python_host_prog = "~/.pyenv/versions/neovim2/bin/python"
+vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python"
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
