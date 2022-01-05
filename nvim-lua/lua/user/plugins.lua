@@ -97,12 +97,13 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim"    -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "nvim-lua/lsp_extensions.nvim"    -- for rust inlay hints (might require virtual text)
+  -- use "simrat39/rust-tools.nvim"     -- to test, can replace above (lsp_extensions)
   use "ray-x/lsp_signature.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use {
-    "AckslD/nvim-neoclip.lua",
+    "AckslD/nvim-neoclip.lua",          -- clipboard history
     config = function()
         require('neoclip').setup()
         require('telescope').load_extension('neoclip')

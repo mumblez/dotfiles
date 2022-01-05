@@ -313,6 +313,8 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 export NIX_IGNORE_SYMLINK_STORE=1 # catalina fix
 
+eval "$(zoxide init zsh)"
+
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,.terraform,node_modules}/*" --no-messages'
 export FZF_CTRL_T_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{.git,.terraform,node_modules}/*" --no-messages '
 export FZF_ALT_C_COMMAND='rg --files --no-ignore --hidden --no-follow --glob "!{.git,.terraform,node_modules}/*" --null --no-messages | xargs -0 dirname | uniq'
