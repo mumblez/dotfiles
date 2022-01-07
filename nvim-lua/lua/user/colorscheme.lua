@@ -8,6 +8,7 @@
 -- endtry
 -- ]]
 
+
 -- local colorscheme = "darcula-solid"
 local colorscheme = "nightfox"
 
@@ -17,7 +18,6 @@ if not status_ok then
 end
 
 local nf = require('nightfox')
-
 nf.setup({
   fox = "nightfox",
   styles = {
@@ -38,3 +38,9 @@ nf.setup({
   }
 })
 nf.load()
+
+-- show column boundary when we get there
+-- vim.cmd [[
+--     highlight ColorColumn ctermbg=magenta
+--     call matchadd('ColorColumn', '\%81v', 100)
+-- ]]
