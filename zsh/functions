@@ -147,4 +147,13 @@ tfvars() {
     export TF_VAR_pypi_download_api_key=$(gopass show misc/work-pypi-download-api-key)
 }
 
+# git worktree delete and also delete the branch
+# (infrastructure repo)
+gwd() {
+    local branch="$(git rev-parse --abbrev-ref HEAD)"
+    cd ~/repos/infrastructure
+    git worktree remove $branch
+    git branch -D $branch
+}
+
 # vim: set ft=sh:

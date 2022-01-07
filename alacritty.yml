@@ -511,7 +511,7 @@ shell:
 #
 # - `mods` (see key bindings)
 mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
+  - { mouse: Middle, action: Paste }
 
 # Key bindings
 #
