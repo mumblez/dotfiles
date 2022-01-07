@@ -72,8 +72,9 @@ return packer.startup(function(use)
 
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  use "lunarvim/darkplus.nvim"
-  use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
+  -- use "lunarvim/darkplus.nvim"
+  -- use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
+  use "EdenEast/nightfox.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"         -- The completion plugin
@@ -97,8 +98,11 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim"    -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "nvim-lua/lsp_extensions.nvim"    -- for rust inlay hints (might require virtual text)
-  -- use "simrat39/rust-tools.nvim"     -- to test, can replace above (lsp_extensions)
   use "ray-x/lsp_signature.nvim"
+  -- use "simrat39/rust-tools.nvim"     -- to test, can replace above (lsp_extensions)
+
+  -- Debugger
+  -- use "mfussenegger/nvim-dap"        -- to test
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"

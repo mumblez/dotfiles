@@ -8,7 +8,6 @@ local function file_exists(name)
     if f~=nil then io.close(f) return true else return false end
 end
 
-
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
@@ -16,6 +15,23 @@ lsp_installer.on_server_ready(function(server)
 		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,
 	}
+
+    -- not quite compatible with lsp-installer yet
+    -- if server.name == "rust-analyzer" then
+    --     local extension_path = os.getenv("HOME") .. '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.6.10/'
+    --     local codelldb_path = extension_path .. 'adapter/codelldb'
+    --     local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+    --     require("rust-tools").setup({
+    --         dap = {
+    --             adapter = require('rust-tools.dap').get_codelldb_adapter(
+    --                 codelldb_path, liblldb_path)
+    --         },
+    --         server = {
+    --             server= { cmd = server._default_options.cmd },
+    --         },
+    --     })
+    --     return
+    -- end
 
     -- if server.name == "jsonls" then
     --     local jsonls_opts = require("user.lsp.settings.jsonls")
