@@ -156,4 +156,12 @@ gwd() {
     git branch -D $branch
 }
 
+bucket_project() {
+    local bucket="${1##*/}"
+    local project_id
+
+    project_id=$(gsutil ls -L -b "gs://${bucket}" | grep projectNumber | grep -oE "[0-9]*" | head -n1)
+    gcloud projects list | grep "$project_id"
+}
+
 # vim: set ft=sh:
