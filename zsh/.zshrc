@@ -344,3 +344,6 @@ typeset -aU path
 
 # zprof
 
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C ~/.asdf/shims/boundary boundary

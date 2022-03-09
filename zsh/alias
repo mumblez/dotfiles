@@ -64,3 +64,4 @@ alias cdt="cd ${REPO_DIR}/infrastructure/master/terraform/environments/google"
 alias dc='docker-compose'
 alias ak='cat ~/.ssh/work | SSH_ASKPASS=~/.ssh/get-pp.sh ssh-add -'
 alias cvs='cog vault-proxy shell'
+alias ans='source ~/.pyenv/versions/3.9.6/envs/ans/bin/activate'
