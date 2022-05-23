@@ -145,6 +145,7 @@ tfvars() {
     export TF_VAR_old_pypi_password=$(gopass show misc/work-old-pypi-password)
     export TF_VAR_pypi_api_key=$(gopass show misc/work-pypi-api-key)
     export TF_VAR_pypi_download_api_key=$(gopass show misc/work-pypi-download-api-key)
+    export TF_VAR_sentry_token=$(gopass show misc/work-sentry)
 }
 
 # git worktree delete and also delete the branch
