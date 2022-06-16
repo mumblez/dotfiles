@@ -1,5 +1,19 @@
 join_by () { local d="$1"; shift; local f="$1"; shift; printf %s "$f" "${@/#/$d}"; }
 
+topenwork() {
+    WORKDIR="~/repos/camera-install/rust"
+    SESSION="Cam Inst"
+
+    tmux kill-session -t $SESSION
+    tmux new-session -d -s $SESSION
+    # tmux split-window -h -t $SESSION:1.1
+    # tmux split-window -v -t $SESSION:1.2
+    tmux send-keys -t $SESSION:1.1 "cd $WORK_DIR && v ." Enter
+    # tmux send-keys -t $SESSION:1.1 "G" Enter
+    # tmux send-keys -t $SESSION:1.3 "cd $WORK_DIR && ll" Enter
+    tmux attach-session -t $SESSION
+}
+
 kctx () {
     local context
     if [ -z $1 ]; then
