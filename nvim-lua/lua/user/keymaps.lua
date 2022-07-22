@@ -75,3 +75,4 @@ keymap("n", "<leader>O", "O<ESC>j", opts)
 keymap("c", "w!!", "w !sudo tee > /dev/null %", opts)       -- sudo save
 keymap("n", "<leader>m", ":MaximizerToggle!", opts)         -- window maximize
 
+-- Telescope keymaps

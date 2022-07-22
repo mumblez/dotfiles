@@ -67,7 +67,6 @@ return packer.startup(function(use)
         }
     end,
   }
-  use "github/copilot.vim"
   use "szw/vim-maximizer"
 
   -- Colorschemes
@@ -113,6 +112,7 @@ return packer.startup(function(use)
         require('telescope').load_extension('neoclip')
     end,
   }
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
 
   -- Treesitter
   use {

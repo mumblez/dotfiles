@@ -92,5 +92,98 @@ telescope.setup {
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = 'smart_case',        -- other options: 'ignore_case' or 'respect_case'
+    }
   },
 }
+
+-- local themes = {
+--   popup_list = {
+--     theme = 'popup_list',
+--     border = true,
+--     preview = false,
+--     prompt_title = false,
+--     results_title = false,
+--     sorting_strategy = 'ascending',
+--     layout_strategy = 'center',
+--     borderchars = {
+--       prompt  = { '─', '│', '─', '│', '┌', '┐', '┤', '└' },
+--       results = { '─', '│', '─', '│', '├', '┤', '┘', '└' },
+--       preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+--     },
+--   },
+--   popup_extended = {
+--     theme = 'popup_extended',
+--     prompt_title = false,
+--     results_title = false,
+--     layout_strategy = 'center',
+--     layout_config = {
+--       width = 0.7,
+--       height = 0.3,
+--       mirror = true,
+--       preview_cutoff = 1,
+--     },
+--     borderchars = {
+--       prompt  = { '─', '│', ' ', '│', '┌', '┐', '│', '│' },
+--       results = { '─', '│', '─', '│', '├', '┤', '┘', '└' },
+--       preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+--     },
+--   },
+--   command_pane = {
+--     theme = 'command_pane',
+--     preview = false,
+--     prompt_title = false,
+--     results_title = false,
+--     sorting_strategy = 'descending',
+--     layout_strategy = 'bottom_pane',
+--     layout_config = {
+--       height = 13,
+--       preview_cutoff = 1,
+--       prompt_position = 'bottom'
+--     },
+--   },
+--   ivy_plus = {
+--     theme = 'ivy_plus',
+--     preview = false,
+--     prompt_title = false,
+--     results_title = false,
+--     layout_strategy = 'bottom_pane',
+--     layout_config = {
+--       height = 13,
+--       preview_cutoff = 120,
+--       prompt_position = 'bottom'
+--     },
+--     borderchars = {
+--       prompt  = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+--       results = { '─', '│', '─', '│', '┌', '┬', '┴', '└' },
+--       preview = { '─', '│', ' ', ' ', '─', '┐', '│', ' ' },
+--     },
+--   },
+-- }
+
+-- local map = vim.keymap.set
+-- local telescope_builtin = require('telescope.builtin')
+--
+-- telescope.load_extension('fzf')
+-- telescope.load_extension('dap')
+
+-- local use_layout = function(picker, layout)
+--   return function() picker(themes[layout]) end
+-- end
+-- local set_keymap = function(lhs, rhs)
+--   map('n', lhs, rhs, { noremap = true })
+-- end
+--
+-- set_keymap('<leader>t', use_layout(telescope_builtin.builtin, 'popup_list'))
+-- set_keymap('<leader>o', use_layout(telescope_builtin.find_files, 'popup_list'))
+-- set_keymap('<leader>b', use_layout(telescope_builtin.buffers, 'popup_extended'))
+-- set_keymap('<leader>p', use_layout(telescope_builtin.commands, 'command_pane'))
+-- set_keymap('<leader>g', use_layout(telescope_builtin.git_status, 'popup_extended'))
+-- set_keymap('<leader>q', use_layout(telescope_builtin.quickfix, 'ivy_plus'))
+-- set_keymap('<leader>l', use_layout(telescope_builtin.loclist, 'ivy_plus'))
+-- set_keymap('<F1>',      use_layout(telescope_builtin.help_tags, 'popup_extended'))
+
