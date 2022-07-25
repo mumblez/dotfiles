@@ -10,3 +10,6 @@ export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/application_default_crede
 - GOOGLE_CREDENTIALS
 - GOOGLE_CLOUD_KEYFILE_JSON
 - GCLOUD_KEYFILE_JSON
+
+# ensure both linux and mac can run the same terraform
+terraform providers lock -platform=linux_amd64 -platform=darwin_amd64
