@@ -1,9 +1,7 @@
 add_newline = false
 
-# right_format = """\
-#     $time\
-#     $terraform\
-#     """
+right_format = """
+$directory"""
 
 [aws]
 disabled = true
@@ -11,8 +9,8 @@ disabled = true
 [gcloud]
 disabled = true
 
-# [docker]
-# disabled = true
+[docker_context]
+disabled = true
 
 [terraform]
 disabled = true
