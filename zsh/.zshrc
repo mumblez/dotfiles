@@ -347,3 +347,4 @@ typeset -aU path
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C ~/.asdf/shims/boundary boundary
+export JIRA_API_TOKEN=$(gopass show -o misc/work-jira-api)
