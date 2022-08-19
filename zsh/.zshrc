@@ -247,6 +247,7 @@ source ${DOTFILES_REPO}/zsh/paths
 # anything that modifies PATH put in here so it only loads once
 # if [ -z $TMUX ]; then
     source ~/google-cloud-sdk/path.zsh.inc
+    export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
     # asdf
     source ~/.asdf/asdf.sh

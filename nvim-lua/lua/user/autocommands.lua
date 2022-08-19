@@ -13,6 +13,11 @@ vim.cmd [[
     autocmd FileType gitcommit setlocal spell
   augroup end
 
+  augroup _makefile
+    autocmd!
+    autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+  augroup end
+
   augroup _markdown
     autocmd!
     autocmd FileType markdown setlocal wrap
