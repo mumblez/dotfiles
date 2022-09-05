@@ -197,4 +197,10 @@ bucket_project() {
     gcloud projects list | grep "$project_id"
 }
 
+work() {
+    xdotool type 'tfvars' && xdotool key Return
+    xdotool type 'cvs' && xdotool key Return && sleep 2
+    xdotool type 'tmux' && xdotool key Return
+}
+
 # vim: set ft=sh:
