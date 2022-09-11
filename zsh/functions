@@ -201,6 +201,27 @@ work() {
     xdotool type 'tfvars' && xdotool key Return
     xdotool type 'cvs' && xdotool key Return && sleep 2
     xdotool type 'tmux' && xdotool key Return
+    xdotool type '`'
+    xdotool key ctrl+r
+}
+
+off() {
+    # save tmux session and exit tmux
+    if [ ! -z $TMUX ]; then
+        xdotool type '`'
+        xdotool key ctrl+s
+        xdotool type '`'
+        xdotool key d
+    fi
+    # update
+    sudo dnf update -y
+
+    # shutdown
+    while true; do
+        poweroff || true # systemd-inhibitors.....
+        sleep 5
+    done
 }
 
 # vim: set ft=sh:
+
