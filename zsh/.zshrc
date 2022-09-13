@@ -268,7 +268,8 @@ source ${DOTFILES_REPO}/zsh/paths
     # _evalcache pyenv init --path
     # _evalcache pyenv init -
     # _evalcache pyenv virtualenv-init - # breaks when using evalcache
-    source "$(pyenv root)/completions/pyenv.zsh"
+    # source "$(pyenv root)/completions/pyenv.zsh"
+    source "${HOME}/.pyenv/completions/pyenv.zsh"
 
     # import aliases into zsh-abbr only once
     # abbr import-aliases &>/dev/null

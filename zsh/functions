@@ -198,26 +198,28 @@ bucket_project() {
 }
 
 work() {
-    xdotool type 'tfvars' && xdotool key Return
-    xdotool type 'cvs' && xdotool key Return && sleep 2
-    xdotool type 'tmux' && xdotool key Return
-    xdotool type '`'
-    xdotool key ctrl+r
+    # xdotool type 'tfvars' && xdotool key Return
+    # xdotool type 'cvs' && xdotool key Return && sleep 2
+    xdotool type 'tmux' && xdotool key Return && sleep 3
+    tmux send-keys -t 0 "\` C-r" Enter
+    # xdotool type '`'
+    # xdotool key ctrl+r
 }
 
 off() {
     # save tmux session and exit tmux
     if [ ! -z $TMUX ]; then
+        echo ">>> Saving tmux session"
         xdotool type '`'
         xdotool key ctrl+s
-        xdotool type '`'
-        xdotool key d
     fi
     # update
+    echo ">>> Updates"
     sudo dnf update -y
 
     # shutdown
     while true; do
+        echo ">>> Attempting to power off..."
         poweroff || true # systemd-inhibitors.....
         sleep 5
     done
