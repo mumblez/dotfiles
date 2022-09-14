@@ -198,10 +198,10 @@ bucket_project() {
 }
 
 work() {
-    # xdotool type 'tfvars' && xdotool key Return
-    # xdotool type 'cvs' && xdotool key Return && sleep 2
+    xdotool type 'tfvars' && xdotool key Return
+    xdotool type 'cvs' && xdotool key Return && sleep 2
     xdotool type 'tmux' && xdotool key Return && sleep 3
-    tmux send-keys -t 0 "\` C-r" Enter
+    # tmux send-keys -t 0 "\` C-r" Enter
     # xdotool type '`'
     # xdotool key ctrl+r
 }
