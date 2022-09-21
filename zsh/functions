@@ -178,6 +178,10 @@ tfvars() {
     export TF_VAR_pypi_api_key=$(gopass show misc/work-pypi-api-key)
     export TF_VAR_pypi_download_api_key=$(gopass show misc/work-pypi-download-api-key)
     export TF_VAR_sentry_token=$(gopass show misc/work-sentry)
+    export TF_VAR_terraform_user_admin_github_token=$(gopass show misc/work-github-admin-pat)
+    export TF_VAR_npm_token=$(gopass show misc/work-npm-token)
+    export TF_VAR_infrastructure_repo_deploy_key=$(gopass cat misc/work-infrastructure-repo-deploy-key)
+    export TF_VAR_actions_google_application_credentials=$(gopass cat misc/work-actions-google_application-credentials)
 }
 
 # git worktree delete and also delete the branch
