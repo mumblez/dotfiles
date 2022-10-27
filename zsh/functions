@@ -182,6 +182,7 @@ tfvars() {
     export TF_VAR_npm_token=$(gopass show misc/work-npm-token)
     export TF_VAR_infrastructure_repo_deploy_key=$(gopass cat misc/work-infrastructure-repo-deploy-key)
     export TF_VAR_actions_google_application_credentials=$(gopass cat misc/work-actions-google_application-credentials)
+    export TF_VAR_github_slack_api_token=$(gopass show misc/work-drbot-gh-slack-token)
 }
 
 # git worktree delete and also delete the branch

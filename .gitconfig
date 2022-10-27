@@ -25,6 +25,8 @@
     diffFilter = delta --color-only --features=interactive
 [diff]
     colorMoved = default
+    ; tool = '/usr/bin/delta'
+	tool = nvimdiff
 [merge]
 	#tool = '/usr/bin/nvim -d'
     conflictstyle = diff3

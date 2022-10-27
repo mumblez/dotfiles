@@ -39,13 +39,18 @@ vim.cmd [[
     autocmd!
     autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
   augroup end
+
+ augroup _terraform
+   autocmd!
+   autocmd BufWritePre *.tf :lua vim.lsp.buf.format()
+ augroup end
+
 ]]
 
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.tf", "*.tfvars"},
-  callback = vim.lsp.buf.formatting_sync,
-})
-
+--  augroup _terraform
+--    autocmd!
+--    autocmd BufWritePre *.tf :lua vim.lsp.buf.format()
+--  augroup end
 -- Autoformat
 -- augroup _lsp
 --   autocmd!
