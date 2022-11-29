@@ -211,6 +211,11 @@ work() {
     # xdotool key ctrl+r
 }
 
+bs() {
+    local repo="${HOME}/repos/bs"
+    echo '...' >> "${repo}/README.md" && git -C "$repo" add README.md && git -C "$repo" commit -m 'bs' && git -C "$repo" push
+}
+
 off() {
     # save tmux session and exit tmux
     if [ ! -z $TMUX ]; then
