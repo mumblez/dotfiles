@@ -58,6 +58,7 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
+  use "folke/which-key.nvim"
   use {
     -- "blackCauldron7/surround.nvim",
     "ur4ltz/surround.nvim",
@@ -121,6 +122,7 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "m-demare/hlargs.nvim"            -- highlight args properly using treesitter
   -- use "p00f/nvim-ts-rainbow" # causing errors atm
 
   -- Git
