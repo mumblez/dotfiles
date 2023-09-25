@@ -216,7 +216,6 @@ source ${REPO_DIR}/evalcache/evalcache.plugin.zsh
 source ${REPO_DIR}/zsh-lazyload/zsh-lazyload.zsh
 # source ~/repos/zsh-abbr/zsh-abbr.zsh
 
-
 # Bindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -233,11 +232,10 @@ bindkey '^[[B' history-substring-search-down
 # fi
 #
 
-lazyload gcloud -- 'source ~/google-cloud-sdk/completion.zsh.inc'
+# lazyload gcloud -- 'source ~/google-cloud-sdk/completion.zsh.inc'
 
 # brew install olets/tap/zsh-abbr
 #source /usr/local/share/zsh-abbr/zsh-abbr.zsh
-
 
 # Import our stuff
 source ${DOTFILES_REPO}/zsh/alias
@@ -246,14 +244,14 @@ source ${DOTFILES_REPO}/zsh/paths
 
 # anything that modifies PATH put in here so it only loads once
 # if [ -z $TMUX ]; then
-    source ~/google-cloud-sdk/path.zsh.inc
-    export CLOUDSDK_PYTHON_SITEPACKAGES=1
+    # source ~/google-cloud-sdk/path.zsh.inc
+    # export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
     # asdf
-    source ~/.asdf/asdf.sh
     # fpath=(~/.asdf/completions $fpath)
-    # source ~/.asdf/completions/asdf.bash
-    lazyload asdf -- 'source ~/.asdf/completions/asdf.bash'
+    # lazyload asdf -- 'source ~/.asdf/completions/asdf.bash'
+    source ~/.asdf/completions/asdf.bash
+    source ~/.asdf/asdf.sh
 
     # gpg
     # gpgconf --launch gpg-agent
@@ -265,11 +263,12 @@ source ${DOTFILES_REPO}/zsh/paths
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
+
     # _evalcache pyenv init --path
     # _evalcache pyenv init -
     # _evalcache pyenv virtualenv-init - # breaks when using evalcache
     # source "$(pyenv root)/completions/pyenv.zsh"
-    source "${HOME}/.pyenv/completions/pyenv.zsh"
+    # source "${HOME}/.pyenv/completions/pyenv.zsh"
 
     # import aliases into zsh-abbr only once
     # abbr import-aliases &>/dev/null
@@ -283,9 +282,9 @@ source ${DOTFILES_REPO}/zsh/paths
 # if [ -z $TMUX ]; then
 #
 # fi
+
 # Prompt
-# eval "$(starship init zsh)"
-_evalcache starship init zsh
+eval "$(starship init zsh)"
 
 # pyenv init
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -332,21 +331,12 @@ export CHEAT_USE_FZF=true
 
 # extra paths
 # export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="${REPO_DIR}/arcanist/bin:$PATH"
-export PATH="${HOME}/standard/linux:$PATH"
 export PATH=$PATH:$HOME/.pulumi/bin
 
-
-
-# [ -f "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh" ] && . "${REPO_DIR}/arcanist/support/shell/rules/bash-rules.sh"
-# [ -f "${REPO_DIR}/cog/bash_completion" ] && . "${REPO_DIR}/cog/bash_completion" # doesn't work
 
 # Cleanup PATH with just unique entries
 typeset -aU path
 
 # zprof
 
-
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C ~/.asdf/shims/boundary boundary
-export JIRA_API_TOKEN=$(gopass show -o misc/work-jira-api)
