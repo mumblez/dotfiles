@@ -1,0 +1,7 @@
+Execution order (linux)
+
+1. /etc/zshenv
+2. /etc/zprofile
+3. ~/.zprofile
+4. ~/.zshrc
+5. /etc/zlogin
